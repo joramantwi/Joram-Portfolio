@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Joram Antwi — Portfolio
 
-## Getting Started
+Professional portfolio for **Joram Antwi**, Dynamics 365 Functional Consultant. The UI is themed after the **Dynamics 365 model-driven app** experience — a dark command bar, a grouped left navigation pane, an in-app command bar, and dashboard-style tiles.
 
-First, run the development server:
+## Tech stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **lucide-react** icons
+- Static export (`output: "export"`) — ready for **Azure Static Web Apps**
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build (static export)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+The static site is generated into the `out/` folder.
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All portfolio content lives in a single file: [`src/data/portfolio.ts`](src/data/portfolio.ts). Update your summary, experience, skills, projects, certifications and education there — the UI updates automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Navigation groups and view titles are defined in [`src/components/nav.ts`](src/components/nav.ts).
 
-## Deploy on Vercel
+## CV download
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The "Download CV" buttons link to `/Joram-Antwi-CV.pdf`. Drop your CV PDF into the `public/` folder with that exact filename to enable the download.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment (Azure Static Web Apps)
+
+A workflow is provided at `.github/workflows/azure-static-web-apps.yml`.
+
+1. Create an Azure Static Web App resource and connect it to this GitHub repo.
+2. Set **app location** = `/`, **output location** = `out`, **build command** = `npm run build`.
+3. Azure adds the `AZURE_STATIC_WEB_APPS_API_TOKEN` secret automatically — pushes to `main` then deploy.
+
+## Project structure
+
+```
+src/
+  app/               # Next.js app router (layout, page, global styles)
+  components/
+    TopBar.tsx       # dark D365 command header
+    Sidebar.tsx      # grouped navigation pane
+    CommandBar.tsx   # in-view command/action bar
+    AppShell.tsx     # client shell wiring views + navigation
+    nav.ts           # navigation config + view titles
+    ui.tsx           # shared Tile / Badge primitives
+    views/           # one component per navigable view
+  data/
+    portfolio.ts     # all portfolio content
+```

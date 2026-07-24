@@ -1,0 +1,63 @@
+"use client";
+
+import { Grid3x3, Search, Settings, Plus, HelpCircle, Lightbulb } from "lucide-react";
+import { profile } from "@/data/portfolio";
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+export default function TopBar() {
+  return (
+    <header
+      className="flex h-12 items-center gap-2 px-2 text-white shrink-0 z-30"
+      style={{ background: "var(--d365-navy)" }}
+    >
+      <button
+        aria-label="App launcher"
+        className="grid h-9 w-9 place-items-center rounded hover:bg-white/10 transition-colors"
+      >
+        <Grid3x3 size={18} />
+      </button>
+
+      <div className="flex items-center gap-3 pl-1 pr-4">
+        <span className="text-[15px] font-semibold tracking-tight">Joram Antwi</span>
+        <span className="hidden text-white/40 sm:inline">|</span>
+        <span className="hidden text-[13px] font-normal uppercase tracking-wide text-white/70 sm:inline">
+          Dynamics 365 Portfolio
+        </span>
+      </div>
+
+      <div className="mx-auto hidden w-full max-w-xl md:block">
+        <div className="flex items-center gap-2 rounded bg-white/10 px-3 py-1.5 text-sm text-white/70 ring-1 ring-inset ring-white/15 transition-colors hover:bg-white/15">
+          <Search size={15} />
+          <span className="select-none">Search</span>
+        </div>
+      </div>
+
+      <div className="ml-auto flex items-center gap-1">
+        {[Lightbulb, Plus, Settings, HelpCircle].map((Icon, i) => (
+          <button
+            key={i}
+            className="hidden h-9 w-9 place-items-center rounded hover:bg-white/10 transition-colors sm:grid"
+            aria-label="Action"
+          >
+            <Icon size={17} />
+          </button>
+        ))}
+        <div
+          className="ml-1 grid h-8 w-8 place-items-center rounded-full text-[12px] font-semibold"
+          style={{ background: "var(--d365-teal)" }}
+          title={profile.name}
+        >
+          {initials(profile.name)}
+        </div>
+      </div>
+    </header>
+  );
+}
