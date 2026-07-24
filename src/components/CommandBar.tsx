@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType, CSSProperties } from "react";
-import { ArrowLeft, ChevronDown, Download, Mail, RefreshCw, Share2 } from "lucide-react";
+import { ArrowLeft, ChevronDown, FileText, Mail, RefreshCw, Share2 } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { LinkedInIcon } from "./ui";
 import { viewTitles, type ViewKey } from "./nav";
@@ -29,7 +29,11 @@ export default function CommandBar({ view, onBack, canGoBack }: CommandBarProps)
 
         <span className="mx-1 h-5 w-px" style={{ background: "var(--border)" }} />
 
-        <CmdButton icon={Download} label="Download CV" href="/Joram-Antwi-CV.pdf" download />
+        <CmdButton
+          icon={FileText}
+          label="Request CV"
+          href={`mailto:${profile.email}?subject=CV%20request&body=Hi%20Joram%2C%20I%27d%20like%20a%20copy%20of%20your%20CV.`}
+        />
         <CmdButton icon={Mail} label="Email" href={`mailto:${profile.email}`} />
         <CmdButton icon={LinkedInIcon} label="LinkedIn" href={profile.linkedin} external />
         <CmdButton icon={RefreshCw} label="Refresh" onClick={() => window.location.reload()} />

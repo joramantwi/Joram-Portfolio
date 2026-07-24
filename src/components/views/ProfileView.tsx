@@ -1,6 +1,6 @@
 "use client";
 
-import { UserRound, MapPin, Mail, Phone, Download } from "lucide-react";
+import { UserRound, MapPin, Mail, Phone } from "lucide-react";
 import { profile, skillGroups } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
 
@@ -55,12 +55,11 @@ export default function ProfileView() {
           </div>
 
           <a
-            href="/Joram-Antwi-CV.pdf"
-            download
+            href={`mailto:${profile.email}?subject=CV%20request&body=Hi%20Joram%2C%20I%27d%20like%20a%20copy%20of%20your%20CV.`}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded px-4 py-2 text-[13px] font-semibold text-white transition-colors"
             style={{ background: "var(--d365-blue)" }}
           >
-            <Download size={15} /> Download CV
+            <Mail size={15} /> Request CV
           </a>
         </div>
       </Tile>

@@ -32,9 +32,9 @@ All portfolio content lives in a single file: [`src/data/portfolio.ts`](src/data
 
 Navigation groups and view titles are defined in [`src/components/nav.ts`](src/components/nav.ts).
 
-## CV download
+## CV (by request only)
 
-The "Download CV" buttons link to `/Joram-Antwi-CV.pdf`. Drop your CV PDF into the `public/` folder with that exact filename to enable the download.
+The CV is intentionally **not hosted** on the public site. The "Request CV" buttons and the sidebar "CV / Résumé" link open a pre-addressed email so you can send your CV only to recruiters and people you choose to share it with.
 
 ## Deployment (Azure Static Web Apps)
 
