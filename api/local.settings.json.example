@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+    "AZURE_STORAGE_CONNECTION_STRING": "<blob+table storage connection string>",
+    "CV_CONTAINER": "cv",
+    "CV_BLOB_NAME": "Joram-Antwi-CV.pdf",
+    "ACS_CONNECTION_STRING": "<azure communication services connection string>",
+    "ACS_SENDER_ADDRESS": "DoNotReply@<your-domain>.azurecomm.net",
+    "OWNER_EMAIL": "joram.antwi@hotmail.co.uk",
+    "APPROVAL_SIGNING_SECRET": "<random-long-secret>",
+    "SITE_BASE_URL": "https://wonderful-bay-02d83c210.7.azurestaticapps.net"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

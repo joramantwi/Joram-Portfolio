@@ -1,9 +1,10 @@
 "use client";
 
 import type { ComponentType, CSSProperties } from "react";
-import { ArrowLeft, ChevronDown, FileText, Mail, RefreshCw, Share2 } from "lucide-react";
+import { ArrowLeft, ChevronDown, FileText, RefreshCw, Share2 } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { LinkedInIcon } from "./ui";
+import { useRequestCv } from "./cv/RequestCvProvider";
 import { viewTitles, type ViewKey } from "./nav";
 
 type IconType = ComponentType<{ size?: number; style?: CSSProperties }>;
@@ -15,6 +16,7 @@ type CommandBarProps = {
 };
 
 export default function CommandBar({ view, onBack, canGoBack }: CommandBarProps) {
+  const { open } = useRequestCv();
   return (
     <div className="shrink-0 border-b bg-white" style={{ borderColor: "var(--border)" }}>
       <div className="flex items-center gap-1 px-3 py-1.5 text-[13px]">
@@ -29,12 +31,7 @@ export default function CommandBar({ view, onBack, canGoBack }: CommandBarProps)
 
         <span className="mx-1 h-5 w-px" style={{ background: "var(--border)" }} />
 
-        <CmdButton
-          icon={FileText}
-          label="Request CV"
-          href={`mailto:${profile.email}?subject=CV%20request&body=Hi%20Joram%2C%20I%27d%20like%20a%20copy%20of%20your%20CV.`}
-        />
-        <CmdButton icon={Mail} label="Email" href={`mailto:${profile.email}`} />
+        <CmdButton icon={FileText} label="Request CV" onClick={open} />
         <CmdButton icon={LinkedInIcon} label="LinkedIn" href={profile.linkedin} external />
         <CmdButton icon={RefreshCw} label="Refresh" onClick={() => window.location.reload()} />
 

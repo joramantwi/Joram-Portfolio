@@ -33,6 +33,12 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# azure functions local secrets
+api/local.settings.json
+api/node_modules
+/bin
+/obj
+
 # vercel
 .vercel
 

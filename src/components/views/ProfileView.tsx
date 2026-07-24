@@ -1,14 +1,14 @@
 "use client";
 
-import { UserRound, MapPin, Mail, Phone } from "lucide-react";
+import { UserRound, MapPin, FileText } from "lucide-react";
 import { profile, skillGroups } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
+import { useRequestCv } from "../cv/RequestCvProvider";
 
 export default function ProfileView() {
+  const { open } = useRequestCv();
   const rows = [
     { icon: MapPin, label: "Location", value: profile.location },
-    { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-    { icon: Phone, label: "Phone", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
     { icon: LinkedInIcon, label: "LinkedIn", value: profile.linkedinLabel, href: profile.linkedin, external: true },
   ];
 
@@ -54,13 +54,13 @@ export default function ProfileView() {
             })}
           </div>
 
-          <a
-            href={`mailto:${profile.email}?subject=CV%20request&body=Hi%20Joram%2C%20I%27d%20like%20a%20copy%20of%20your%20CV.`}
+          <button
+            onClick={open}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded px-4 py-2 text-[13px] font-semibold text-white transition-colors"
             style={{ background: "var(--d365-blue)" }}
           >
-            <Mail size={15} /> Request CV
-          </a>
+            <FileText size={15} /> Request CV
+          </button>
         </div>
       </Tile>
 

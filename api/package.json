@@ -1,0 +1,11 @@
+{
+  "name": "joram-portfolio-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions API for gated CV requests on the Joram Antwi portfolio.",
+  "dependencies": {
+    "@azure/communication-email": "^1.0.0",
+    "@azure/data-tables": "^13.3.1",
+    "@azure/storage-blob": "^12.27.0"
+  }
+}

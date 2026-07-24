@@ -3,8 +3,6 @@ export const profile = {
   title: "Dynamics 365 Functional Consultant",
   headline: "Microsoft Dynamics 365 CE · Power Platform · CRM Solutions",
   location: "London, UK",
-  email: "joram.antwi@hotmail.co.uk",
-  phone: "+44 7951 826719",
   linkedin: "https://linkedin.com/in/joramantwi",
   linkedinLabel: "linkedin.com/in/joramantwi",
   summary:

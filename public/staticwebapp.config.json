@@ -1,6 +1,10 @@
 {
   "navigationFallback": {
-    "rewrite": "/index.html"
+    "rewrite": "/index.html",
+    "exclude": ["/api/*", "/_next/*", "/images/*", "*.{css,js,png,jpg,jpeg,gif,svg,ico,webp,woff,woff2,pdf}"]
+  },
+  "platform": {
+    "apiRuntime": "node:20"
   },
   "mimeTypes": {
     ".json": "application/json"
