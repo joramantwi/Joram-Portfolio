@@ -22,7 +22,6 @@ type D365App = {
   note: string;
   icon: IconType;
   color: string;
-  status?: "upcoming";
 };
 
 type AppGroup = {
@@ -122,10 +121,9 @@ const groups: AppGroup[] = [
     apps: [
       {
         name: "Supply Chain Management",
-        note: "Joining my next role — coming soon",
+        note: "Planning, inventory & warehouse operations",
         icon: Truck,
         color: "#0078d4",
-        status: "upcoming",
       },
     ],
   },
@@ -209,14 +207,6 @@ export default function AppLauncher() {
                               <span className="truncate text-[13px] font-semibold text-[var(--text)]">
                                 {app.name}
                               </span>
-                              {app.status === "upcoming" && (
-                                <span
-                                  className="shrink-0 rounded-full px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wide"
-                                  style={{ background: "#c8842014", color: "#b7791f" }}
-                                >
-                                  Upcoming
-                                </span>
-                              )}
                             </span>
                             <span className="block truncate text-[11.5px] text-[var(--text-secondary)]">
                               {app.note}
