@@ -10,7 +10,7 @@ export default function CertificationsView() {
     <div className="grid gap-4 lg:grid-cols-2">
       <Tile title="Certifications" icon={BadgeCheck} accent="#8764b8">
         <div className="p-4">
-          <ul className="space-y-3">
+          <ul className="stagger-children space-y-3">
             {certifications.map((c) => {
               const inner = (
                 <>

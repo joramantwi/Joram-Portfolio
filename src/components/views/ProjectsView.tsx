@@ -6,16 +6,16 @@ import { Badge } from "../ui";
 
 export default function ProjectsView() {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="stagger-children grid gap-4 md:grid-cols-2">
       {projects.map((p) => (
         <article
           key={p.name}
-          className="group flex flex-col rounded-lg border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          className="group card-lift flex flex-col rounded-lg border bg-white p-5 shadow-sm"
           style={{ borderColor: "var(--border)" }}
         >
           <div className="flex items-start justify-between">
             <div
-              className="grid h-10 w-10 place-items-center rounded-md"
+              className="grid h-10 w-10 place-items-center rounded-md transition-transform group-hover:scale-110"
               style={{ background: "#107c4114" }}
             >
               <FolderKanban size={18} style={{ color: "var(--d365-green)" }} />

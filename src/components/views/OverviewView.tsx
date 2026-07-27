@@ -2,7 +2,7 @@
 
 import { Briefcase, Sparkles, FolderKanban, TrendingUp, MapPin, ArrowRight } from "lucide-react";
 import { profile, kpis, experiences, skillGroups, projects } from "@/data/portfolio";
-import { Tile, Badge } from "../ui";
+import { Tile, Badge, CountUp } from "../ui";
 import type { ViewKey } from "../nav";
 
 export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
@@ -17,8 +17,12 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         }}
       >
         <div
-          className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full opacity-20"
+          className="orb-float pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full opacity-20"
           style={{ background: "radial-gradient(circle, #4aa5f0, transparent 70%)" }}
+        />
+        <div
+          className="orb-float-delayed pointer-events-none absolute -bottom-24 right-40 h-72 w-72 rounded-full opacity-[0.14]"
+          style={{ background: "radial-gradient(circle, #8764b8, transparent 70%)" }}
         />
         <p className="text-[13px] font-medium uppercase tracking-widest text-white/60">
           {profile.title}
@@ -47,15 +51,15 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
       </div>
 
       {/* KPI tiles */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="stagger-children grid grid-cols-2 gap-4 lg:grid-cols-4">
         {kpis.map((k) => (
-          <Tile key={k.label} className="p-4">
+          <Tile key={k.label} className="card-lift p-4">
             <div className="flex items-start justify-between">
               <span className="text-[12px] font-medium text-[var(--text-secondary)]">{k.label}</span>
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: k.accent }} />
             </div>
             <div className="mt-2 text-3xl font-bold tracking-tight" style={{ color: k.accent }}>
-              {k.value}
+              <CountUp value={k.value} />
             </div>
             <div className="mt-1 text-[12px] text-[var(--text-muted)]">{k.caption}</div>
           </Tile>
@@ -112,7 +116,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         {/* Top skills */}
         <Tile title="Top Capabilities" icon={Sparkles} accent="#8764b8">
           <div className="space-y-3 p-4">
-            {skillGroups.slice(0, 4).map((g) => {
+            {skillGroups.slice(0, 4).map((g, i) => {
               const pct = Math.min(95, 60 + g.skills.length * 4);
               return (
                 <div key={g.category}>
@@ -122,8 +126,12 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
                   </div>
                   <div className="h-2 w-full overflow-hidden rounded-full" style={{ background: "#eef0f3" }}>
                     <div
-                      className="h-full rounded-full"
-                      style={{ width: `${pct}%`, background: "linear-gradient(90deg, #0f6cbd, #8764b8)" }}
+                      className="bar-grow h-full rounded-full"
+                      style={{
+                        width: `${pct}%`,
+                        background: "linear-gradient(90deg, #0f6cbd, #8764b8)",
+                        animationDelay: `${0.15 + i * 0.12}s`,
+                      }}
                     />
                   </div>
                 </div>
@@ -155,12 +163,18 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
       >
         <div className="grid gap-px bg-[var(--border)] sm:grid-cols-2 lg:grid-cols-3">
           {projects.slice(0, 3).map((p) => (
-            <div key={p.name} className="bg-white p-4">
+            <div
+              key={p.name}
+              className="group cursor-pointer bg-white p-4 transition-colors hover:bg-[var(--d365-blue-light)]"
+              onClick={() => onNavigate("projects")}
+            >
               <div className="flex items-center gap-2">
                 <TrendingUp size={15} style={{ color: "var(--d365-green)" }} />
                 <Badge color="#107c41">{p.stage}</Badge>
               </div>
-              <h3 className="mt-2 text-[14px] font-semibold text-[var(--text)]">{p.name}</h3>
+              <h3 className="mt-2 text-[14px] font-semibold text-[var(--text)] transition-colors group-hover:text-[var(--d365-blue)]">
+                {p.name}
+              </h3>
               <p className="text-[12px] text-[var(--text-muted)]">{p.org}</p>
               <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
                 {p.summary}

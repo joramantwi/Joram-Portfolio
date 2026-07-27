@@ -114,7 +114,7 @@ export default function ProfileView() {
         </Tile>
 
         <Tile title="At a Glance" icon={UserRound} accent="#8764b8">
-          <div className="space-y-3 p-4">
+          <div className="stagger-children space-y-3 p-4">
             {atAGlance.map((item) => {
               const Icon = item.icon;
               return (

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import type { ReactNode, CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 
@@ -118,5 +121,40 @@ export function Badge({ children, color = "#0f6cbd" }: { children: ReactNode; co
     >
       {children}
     </span>
+  );
+}
+
+/** Animates a numeric value (with optional suffix like "+") counting up on mount. */
+export function CountUp({ value, duration = 1100 }: { value: string; duration?: number }) {
+  const match = value.match(/^(\d+)(.*)$/);
+  const target = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] : "";
+  const [display, setDisplay] = useState(match ? 0 : NaN);
+  const frame = useRef<number>(0);
+
+  useEffect(() => {
+    if (!match) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(target);
+      return;
+    }
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setDisplay(Math.round(eased * target));
+      if (t < 1) frame.current = requestAnimationFrame(tick);
+    };
+    frame.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, duration]);
+
+  if (!match) return <>{value}</>;
+  return (
+    <>
+      {display}
+      {suffix}
+    </>
   );
 }
