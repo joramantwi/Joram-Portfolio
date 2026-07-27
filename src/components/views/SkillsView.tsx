@@ -1,18 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { skillGroups } from "@/data/portfolio";
 import {
-  Handshake,
-  Headset,
-  MessageSquare,
-  Truck,
-  Grid3x3,
+  ArrowRight,
   Code2,
   Workflow,
   Cloud,
   Database,
-  Layers,
   UserCog,
   Braces,
   ShieldCheck,
@@ -37,81 +32,29 @@ import {
   Network,
   RefreshCw,
   Zap,
+  Headset,
+  MessageSquare,
+  Truck,
+  Handshake,
   type LucideIcon,
 } from "lucide-react";
 
 /* ---------------------------------------------------------------------------
- * 1. Dynamics 365 app hub — the first-party business apps I deliver on.
+ * The three chapters of the journey — software engineer → D365 → AI.
  * ------------------------------------------------------------------------- */
-type AppMeta = { icon: LucideIcon; accent: string; caption: string };
-
-const APP_META: Record<string, AppMeta> = {
-  Sales: {
-    icon: Handshake,
-    accent: "#0f6cbd",
-    caption: "Build stronger customer relationships",
-  },
-  "Customer Service": {
-    icon: Headset,
-    accent: "#038387",
-    caption: "Deliver exceptional service experiences",
-  },
-  "Customer Voice": {
-    icon: MessageSquare,
-    accent: "#8764b8",
-    caption: "Capture feedback and act on it",
-  },
-  "Supply Chain Management": {
-    icon: Truck,
-    accent: "#107c41",
-    caption: "Plan inventory & warehouse operations",
-  },
-};
-
-/* ---------------------------------------------------------------------------
- * 2. Core capabilities — the "key skills" themes that cut across the work.
- * ------------------------------------------------------------------------- */
-const CAPABILITIES: { icon: LucideIcon; title: string; caption: string; accent: string }[] = [
+const JOURNEY: { icon: LucideIcon; title: string; note: string; accent: string }[] = [
+  { icon: Code2, title: "Software Engineering", note: "Where I started", accent: "#0f6cbd" },
   {
-    icon: Code2,
-    title: "Low-code + Pro-code",
-    caption: "Configure first, extend with code when it's needed",
-    accent: "#0f6cbd",
-  },
-  {
-    icon: Workflow,
-    title: "Automation & Workflow",
-    caption: "Power Automate flows that remove manual work",
+    icon: LayoutGrid,
+    title: "Dynamics 365 & Power Platform",
+    note: "My specialism today",
     accent: "#107c41",
   },
-  {
-    icon: Cloud,
-    title: "Cloud & API Integration",
-    caption: "Connect D365 to external systems securely",
-    accent: "#038387",
-  },
-  {
-    icon: Database,
-    title: "Data Modelling & Governance",
-    caption: "Clean Dataverse schema, security & GDPR",
-    accent: "#c19c00",
-  },
-  {
-    icon: Layers,
-    title: "Solution Architecture & ALM",
-    caption: "Managed solutions shipped across environments",
-    accent: "#8764b8",
-  },
-  {
-    icon: UserCog,
-    title: "Requirements to Delivery",
-    caption: "Fit-gap, build, UAT, training & adoption",
-    accent: "#c33d2e",
-  },
+  { icon: Sparkles, title: "AI & Automation", note: "Where I'm growing", accent: "#8764b8" },
 ];
 
 /* ---------------------------------------------------------------------------
- * 3. Capability roadmap — the build skills, ordered foundation → advanced.
+ * Visual metadata + reading order for each skill area.
  * ------------------------------------------------------------------------- */
 type CategoryMeta = { icon: LucideIcon; accent: string; blurb: string };
 
@@ -119,27 +62,32 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   "Engineering Foundations": {
     icon: Code2,
     accent: "#0f6cbd",
-    blurb: "The software-engineering background behind the functional work.",
+    blurb: "The software-engineering background I build everything else on.",
   },
   "Dataverse & Model-Driven Apps": {
     icon: Database,
     accent: "#038387",
     blurb: "The data model and app-building layer beneath every D365 solution.",
   },
+  "Dynamics 365 Apps": {
+    icon: LayoutGrid,
+    accent: "#0f6cbd",
+    blurb: "The first-party business apps I configure and deliver on.",
+  },
   "Power Platform": {
     icon: Workflow,
     accent: "#107c41",
     blurb: "Low-code tools that extend and surface Dataverse data.",
   },
-  "Data & Integration": {
-    icon: Cable,
-    accent: "#c19c00",
-    blurb: "Moving, cleaning and connecting data across systems.",
-  },
   "Pro-Dev & Extensibility": {
     icon: Braces,
     accent: "#8764b8",
     blurb: "Code-first extensions where configuration alone isn't enough.",
+  },
+  "Data & Integration": {
+    icon: Cable,
+    accent: "#c19c00",
+    blurb: "Moving, cleaning and connecting data across systems.",
   },
   "ALM & Governance": {
     icon: ShieldCheck,
@@ -148,23 +96,24 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
   },
   "Delivery & Consulting": {
     icon: Users,
-    accent: "#8764b8",
+    accent: "#0f6cbd",
     blurb: "Turning business needs into shipped, adopted solutions.",
   },
   "AI & Emerging Tech": {
     icon: Bot,
-    accent: "#c19c00",
+    accent: "#8764b8",
     blurb: "Exploring how AI fits into CRM workflows and business use cases.",
   },
 };
 
-/** Order the roadmap reads as a journey, from foundations to advanced. */
-const ROADMAP_ORDER = [
+/** Order the skill set reads as a story, foundations → specialism → AI. */
+const CATEGORY_ORDER = [
   "Engineering Foundations",
   "Dataverse & Model-Driven Apps",
+  "Dynamics 365 Apps",
   "Power Platform",
-  "Data & Integration",
   "Pro-Dev & Extensibility",
+  "Data & Integration",
   "ALM & Governance",
   "Delivery & Consulting",
   "AI & Emerging Tech",
@@ -210,250 +159,136 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
   return fallback;
 }
 
-/* ---------------------------------------------------------------------------
- * Small presentational pieces
- * ------------------------------------------------------------------------- */
-function AppCard({ name, meta }: { name: string; meta: AppMeta }) {
-  const Icon = meta.icon;
-  return (
-    <div
-      className="card-lift flex flex-col items-center gap-1.5 rounded-xl border bg-white px-3 py-3 text-center shadow-sm"
-      style={{ borderColor: "var(--border)" }}
-    >
-      <span
-        className="grid h-10 w-10 place-items-center rounded-full"
-        style={{ background: `${meta.accent}16` }}
-      >
-        <Icon size={18} style={{ color: meta.accent }} />
-      </span>
-      <span className="text-[12.5px] font-semibold leading-tight text-[var(--text)]">{name}</span>
-      <span className="text-[10.5px] leading-snug text-[var(--text-muted)]">{meta.caption}</span>
-    </div>
-  );
-}
-
-function CenterNode() {
-  return (
-    <div
-      className="grid h-28 w-28 place-items-center rounded-full text-center shadow-lg"
-      style={{
-        background: "linear-gradient(145deg, var(--d365-navy-2), var(--d365-navy))",
-        boxShadow: "0 10px 30px rgba(11,21,36,0.35)",
-      }}
-    >
-      <div className="flex flex-col items-center gap-1">
-        <Grid3x3 size={22} className="text-[var(--d365-blue)]" />
-        <span className="text-[11px] font-semibold leading-tight text-white">
-          Dynamics
-          <br />
-          365
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------------------
- * Main view
- * ------------------------------------------------------------------------- */
 export default function SkillsView() {
-  const apps = useMemo(
-    () => skillGroups.find((g) => g.category === "Dynamics 365 Apps")?.skills ?? [],
-    []
-  );
-  const roadmap = useMemo(
+  const groups = useMemo(
     () =>
-      ROADMAP_ORDER.map((name) => skillGroups.find((g) => g.category === name)).filter(
+      CATEGORY_ORDER.map((name) => skillGroups.find((g) => g.category === name)).filter(
         (g): g is NonNullable<typeof g> => Boolean(g)
       ),
     []
   );
   const totalSkills = useMemo(
-    () => skillGroups.reduce((n, g) => n + g.skills.length, 0),
-    []
+    () => groups.reduce((n, g) => n + g.skills.length, 0),
+    [groups]
   );
 
   return (
-    <div className="view-enter space-y-8">
-      {/* ---------------------------------------------------------------- */}
-      {/* Section 1 — Dynamics 365 app hub                                  */}
-      {/* ---------------------------------------------------------------- */}
-      <section>
-        <header className="mb-3">
-          <h2 className="text-[16px] font-semibold text-[var(--text)]">
-            Dynamics 365 apps I deliver
-          </h2>
-          <p className="mt-0.5 text-[12.5px] text-[var(--text-secondary)]">
-            The first-party business apps I configure, extend and support — one platform, connected
-            data.
-          </p>
-        </header>
+    <div className="view-enter space-y-6">
+      {/* Intro */}
+      <header>
+        <h2 className="text-[17px] font-semibold text-[var(--text)]">My skill set</h2>
+        <p className="mt-1 max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
+          I started out as a software engineer and specialised into Microsoft Dynamics 365 and the
+          Power Platform — now folding AI into how I build and improve CRM solutions.
+        </p>
+      </header>
 
-        <div
-          className="relative overflow-hidden rounded-xl border p-5 sm:p-6"
-          style={{
-            borderColor: "var(--border)",
-            background:
-              "radial-gradient(120% 120% at 0% 0%, var(--d365-blue-light) 0%, white 60%)",
-          }}
-        >
-          <div className="flex flex-col gap-5 md:flex-row md:items-stretch">
-            {/* Dynamics 365 hub node */}
-            <div className="flex items-center gap-4 md:w-44 md:shrink-0 md:flex-col md:justify-center md:gap-3 md:text-center">
-              <CenterNode />
-              <div>
-                <p className="text-[13px] font-semibold text-[var(--text)]">Dynamics 365</p>
-                <p className="mt-0.5 text-[11.5px] leading-snug text-[var(--text-muted)]">
-                  One platform, connected data
-                </p>
-              </div>
-            </div>
-
-            {/* dashed connector */}
-            <div
-              className="hidden w-px shrink-0 border-l border-dashed md:block"
-              style={{ borderColor: "var(--border-strong)" }}
-              aria-hidden
-            />
-
-            {/* app cards */}
-            <div className="stagger-children grid flex-1 grid-cols-2 gap-3 lg:grid-cols-4">
-              {apps.map((app) => {
-                const meta = APP_META[app];
-                if (!meta) return null;
-                return <AppCard key={app} name={app} meta={meta} />;
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/* Section 2 — Core capabilities                                     */}
-      {/* ---------------------------------------------------------------- */}
-      <section>
-        <header className="mb-3">
-          <h2 className="text-[16px] font-semibold text-[var(--text)]">Core capabilities</h2>
-          <p className="mt-0.5 text-[12.5px] text-[var(--text-secondary)]">
-            The themes that run through everything I build.
-          </p>
-        </header>
-
-        <div className="stagger-children grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {CAPABILITIES.map((c) => (
-            <div
-              key={c.title}
-              className="card-lift flex items-start gap-3 rounded-lg border bg-white p-4 shadow-sm"
-              style={{ borderColor: "var(--border)" }}
-            >
+      {/* Journey strip */}
+      <div
+        className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-0"
+        style={{
+          borderColor: "var(--border)",
+          background: "linear-gradient(120deg, var(--d365-blue-light) 0%, white 70%)",
+        }}
+      >
+        {JOURNEY.map((p, i) => (
+          <Fragment key={p.title}>
+            <div className="flex flex-1 items-center gap-3">
               <span
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-lg"
-                style={{ background: `${c.accent}14` }}
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-xl"
+                style={{ background: `${p.accent}18` }}
               >
-                <c.icon size={19} style={{ color: c.accent }} />
+                <p.icon size={20} style={{ color: p.accent }} />
               </span>
               <div>
-                <h3 className="text-[13.5px] font-semibold text-[var(--text)]">{c.title}</h3>
-                <p className="mt-0.5 text-[11.5px] leading-snug text-[var(--text-secondary)]">
-                  {c.caption}
+                <p className="text-[13px] font-semibold leading-tight text-[var(--text)]">
+                  {p.title}
                 </p>
+                <p className="text-[11px] text-[var(--text-muted)]">{p.note}</p>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+            {i < JOURNEY.length - 1 && (
+              <ArrowRight
+                size={18}
+                className="mx-3 hidden shrink-0 sm:block"
+                style={{ color: "var(--text-muted)" }}
+                aria-hidden
+              />
+            )}
+          </Fragment>
+        ))}
+      </div>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* Section 3 — Capability roadmap                                    */}
-      {/* ---------------------------------------------------------------- */}
-      <section>
-        <header className="mb-3">
-          <h2 className="text-[16px] font-semibold text-[var(--text)]">Capability roadmap</h2>
-          <p className="mt-0.5 text-[12.5px] text-[var(--text-secondary)]">
-            The build skills behind the apps — from engineering foundations to emerging tech.
-          </p>
-        </header>
+      {/* Skill areas */}
+      <div className="stagger-children grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
+        {groups.map((group) => {
+          const meta =
+            CATEGORY_META[group.category] ??
+            ({ icon: Code2, accent: "#0f6cbd", blurb: "" } as CategoryMeta);
+          const Icon = meta.icon;
+          return (
+            <div
+              key={group.category}
+              className="card-lift overflow-hidden rounded-xl border bg-white shadow-sm"
+              style={{ borderColor: "var(--border)" }}
+            >
+              {/* accent bar */}
+              <div className="h-1 w-full" style={{ background: meta.accent }} />
 
-        <div
-          className="rounded-xl border bg-white p-5 shadow-sm sm:p-6"
-          style={{ borderColor: "var(--border)" }}
-        >
-          <ol className="relative">
-            {roadmap.map((group, i) => {
-              const meta =
-                CATEGORY_META[group.category] ??
-                ({ icon: Code2, accent: "#0f6cbd", blurb: "" } as CategoryMeta);
-              const num = String(i + 1).padStart(2, "0");
-              const last = i === roadmap.length - 1;
-              const Icon = meta.icon;
-              return (
-                <li key={group.category} className="flex gap-4 sm:gap-5">
-                  {/* number + connector spine */}
-                  <div className="flex flex-col items-center">
-                    <span
-                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[12px] font-bold text-white shadow-sm"
-                      style={{
-                        background: meta.accent,
-                        boxShadow: `0 4px 12px ${meta.accent}40`,
-                      }}
-                    >
-                      {num}
-                    </span>
-                    {!last && (
-                      <span
-                        className="mt-1 w-px flex-1"
-                        style={{ background: "var(--border)" }}
-                        aria-hidden
-                      />
-                    )}
-                  </div>
-
-                  {/* content */}
-                  <div className={last ? "flex-1" : "flex-1 pb-7"}>
-                    <div className="flex items-center gap-2">
-                      <Icon size={16} style={{ color: meta.accent }} />
-                      <h3 className="text-[14px] font-semibold text-[var(--text)]">
-                        {group.category}
-                      </h3>
-                    </div>
-                    <p className="mt-0.5 text-[12px] leading-relaxed text-[var(--text-secondary)]">
-                      {meta.blurb}
+              <div className="p-5">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-lg"
+                    style={{ background: `${meta.accent}14` }}
+                  >
+                    <Icon size={20} style={{ color: meta.accent }} />
+                  </span>
+                  <div>
+                    <h3 className="text-[14.5px] font-semibold leading-tight text-[var(--text)]">
+                      {group.category}
+                    </h3>
+                    <p className="mt-0.5 text-[11.5px] text-[var(--text-muted)]">
+                      {group.skills.length} skills
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {group.skills.map((skill) => {
-                        const SkillIcon = iconForSkill(skill, Icon);
-                        return (
-                          <span
-                            key={skill}
-                            className="inline-flex items-center gap-1.5 rounded-full border bg-white px-2.5 py-1 text-[12px] text-[var(--text)] transition-colors"
-                            style={{ borderColor: "var(--border)" }}
-                          >
-                            <SkillIcon size={13} style={{ color: meta.accent }} />
-                            {skill}
-                          </span>
-                        );
-                      })}
-                    </div>
                   </div>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </section>
+                </div>
 
-      {/* Footprint summary */}
+                <p className="mt-3 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
+                  {meta.blurb}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {group.skills.map((skill) => {
+                    const SkillIcon = iconForSkill(skill, Icon);
+                    return (
+                      <span
+                        key={skill}
+                        className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] text-[var(--text)]"
+                        style={{
+                          borderColor: `${meta.accent}33`,
+                          background: `${meta.accent}0a`,
+                        }}
+                      >
+                        <SkillIcon size={13} style={{ color: meta.accent }} />
+                        {skill}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footprint */}
       <div
-        className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-dashed px-4 py-3 text-[12.5px] text-[var(--text-secondary)]"
+        className="flex items-center gap-2 rounded-lg border border-dashed px-4 py-3 text-[12.5px] text-[var(--text-secondary)]"
         style={{ borderColor: "var(--border-strong)" }}
       >
-        <span className="flex items-center gap-2">
-          <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
-          <span className="font-medium text-[var(--text)]">{apps.length} Dynamics 365 apps</span>
-          {" · "}
-          <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
-          {roadmap.length} capability areas
-        </span>
+        <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
+        <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
+        {groups.length} areas — from engineering foundations to AI.
       </div>
     </div>
   );
