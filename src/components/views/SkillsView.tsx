@@ -290,56 +290,34 @@ export default function SkillsView() {
         </header>
 
         <div
-          className="relative overflow-hidden rounded-xl border p-6"
+          className="relative overflow-hidden rounded-xl border p-5 sm:p-6"
           style={{
             borderColor: "var(--border)",
             background:
-              "radial-gradient(120% 120% at 50% 0%, var(--d365-blue-light) 0%, white 55%)",
+              "radial-gradient(120% 120% at 0% 0%, var(--d365-blue-light) 0%, white 60%)",
           }}
         >
-          {/* Desktop radial hub */}
-          <div className="relative mx-auto hidden h-[440px] max-w-[540px] md:block">
-            {/* decorative dashed ring */}
+          <div className="flex flex-col gap-5 md:flex-row md:items-stretch">
+            {/* Dynamics 365 hub node */}
+            <div className="flex items-center gap-4 md:w-44 md:shrink-0 md:flex-col md:justify-center md:gap-3 md:text-center">
+              <CenterNode />
+              <div>
+                <p className="text-[13px] font-semibold text-[var(--text)]">Dynamics 365</p>
+                <p className="mt-0.5 text-[11.5px] leading-snug text-[var(--text-muted)]">
+                  One platform, connected data
+                </p>
+              </div>
+            </div>
+
+            {/* dashed connector */}
             <div
-              className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed"
+              className="hidden w-px shrink-0 border-l border-dashed md:block"
               style={{ borderColor: "var(--border-strong)" }}
               aria-hidden
             />
-            {/* soft glow behind centre */}
-            <div
-              className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
-              style={{ background: "rgba(15,108,189,0.18)" }}
-              aria-hidden
-            />
-            {/* centre */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <CenterNode />
-            </div>
-            {/* app satellites */}
-            {apps.map((app, i) => {
-              const meta = APP_META[app];
-              if (!meta) return null;
-              const angle = (360 / apps.length) * i;
-              return (
-                <div
-                  key={app}
-                  className="absolute left-1/2 top-1/2 w-40"
-                  style={{
-                    transform: `translate(-50%,-50%) rotate(${angle}deg) translate(0,-160px) rotate(${-angle}deg)`,
-                  }}
-                >
-                  <AppCard name={app} meta={meta} />
-                </div>
-              );
-            })}
-          </div>
 
-          {/* Mobile stacked hub */}
-          <div className="md:hidden">
-            <div className="flex justify-center">
-              <CenterNode />
-            </div>
-            <div className="stagger-children mt-5 grid grid-cols-2 gap-3">
+            {/* app cards */}
+            <div className="stagger-children grid flex-1 grid-cols-2 gap-3 lg:grid-cols-4">
               {apps.map((app) => {
                 const meta = APP_META[app];
                 if (!meta) return null;
