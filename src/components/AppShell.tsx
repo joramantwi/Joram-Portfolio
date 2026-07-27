@@ -12,6 +12,7 @@ import CertificationsView from "./views/CertificationsView";
 import ProfileView from "./views/ProfileView";
 import ContactView from "./views/ContactView";
 import { RequestCvProvider } from "./cv/RequestCvProvider";
+import { SearchProvider } from "./search/SearchProvider";
 import type { ViewKey } from "./nav";
 
 export default function AppShell() {
@@ -40,31 +41,33 @@ export default function AppShell() {
 
   return (
     <RequestCvProvider>
-      <div className="flex h-screen flex-col overflow-hidden">
-        <TopBar />
-        <div className="flex min-h-0 flex-1">
-          <Sidebar
-            active={view}
-            onSelect={navigate}
-            collapsed={collapsed}
-            onToggle={() => setCollapsed((c) => !c)}
-          />
-          <main className="flex min-w-0 flex-1 flex-col">
-            <CommandBar view={view} onBack={goBack} canGoBack={history.length > 0} />
-            <div className="flex-1 overflow-y-auto p-4 lg:p-5">
-              <div key={view} className="view-enter mx-auto max-w-6xl">
-                {view === "overview" && <OverviewView onNavigate={navigate} />}
-                {view === "experience" && <ExperienceView />}
-                {view === "skills" && <SkillsView />}
-                {view === "projects" && <ProjectsView />}
-                {view === "certifications" && <CertificationsView />}
-                {view === "profile" && <ProfileView />}
-                {view === "contact" && <ContactView />}
+      <SearchProvider onNavigate={navigate}>
+        <div className="flex h-screen flex-col overflow-hidden">
+          <TopBar />
+          <div className="flex min-h-0 flex-1">
+            <Sidebar
+              active={view}
+              onSelect={navigate}
+              collapsed={collapsed}
+              onToggle={() => setCollapsed((c) => !c)}
+            />
+            <main className="flex min-w-0 flex-1 flex-col">
+              <CommandBar view={view} onBack={goBack} canGoBack={history.length > 0} />
+              <div className="flex-1 overflow-y-auto p-4 lg:p-5">
+                <div key={view} className="view-enter mx-auto max-w-6xl">
+                  {view === "overview" && <OverviewView onNavigate={navigate} />}
+                  {view === "experience" && <ExperienceView />}
+                  {view === "skills" && <SkillsView />}
+                  {view === "projects" && <ProjectsView />}
+                  {view === "certifications" && <CertificationsView />}
+                  {view === "profile" && <ProfileView />}
+                  {view === "contact" && <ContactView />}
+                </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
-      </div>
+      </SearchProvider>
     </RequestCvProvider>
   );
 }
