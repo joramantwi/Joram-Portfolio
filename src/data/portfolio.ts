@@ -287,6 +287,27 @@ export const certifications: Certification[] = [
   },
 ];
 
+export type CertificationGoal = {
+  name: string;
+  issuer: string;
+  exam?: string;
+  level?: string;
+  focus: string;
+  url: string;
+};
+
+export const certificationGoals: CertificationGoal[] = [
+  {
+    name: "Microsoft Certified: Agentic AI Business Solutions Architect",
+    issuer: "Microsoft",
+    exam: "AB-100",
+    level: "Advanced",
+    focus:
+      "Designing agentic, AI-powered business solutions across Dynamics 365, Copilot Studio and the Power Platform.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-business-solutions-architect/",
+  },
+];
+
 export type Education = {
   qualification: string;
   institution: string;
