@@ -45,37 +45,47 @@ type CategoryMeta = {
 
 /** Visual metadata per category, keyed by the category name in portfolio.ts */
 const categoryMeta: Record<string, CategoryMeta> = {
-  "Microsoft Dynamics 365 / CRM": {
+  "Dynamics 365 Apps": {
     icon: LayoutGrid,
     accent: "#0f6cbd",
-    blurb: "Model-driven apps, configuration and customisation across the CE stack.",
+    blurb: "The first-party business apps I configure and deliver on.",
   },
-  "Power Platform & Dataverse": {
+  "Dataverse & Model-Driven Apps": {
     icon: Database,
     accent: "#038387",
-    blurb: "Low-code build on Dataverse — apps, automation, pages and reporting.",
+    blurb: "The data model and app-building layer beneath every D365 solution.",
   },
-  "Automation, Integration & Data": {
+  "Power Platform": {
     icon: Workflow,
     accent: "#107c41",
-    blurb: "Connecting systems and keeping data clean, mapped and moving.",
+    blurb: "Low-code tools that extend and surface Dataverse data.",
   },
-  "Security, Governance & ALM": {
+  "Pro-Dev & Extensibility": {
+    icon: Braces,
+    accent: "#8764b8",
+    blurb: "Code-first extensions where configuration alone isn't enough.",
+  },
+  "ALM & Governance": {
     icon: ShieldCheck,
     accent: "#c33d2e",
-    blurb: "Access control, compliance and a disciplined path to production.",
+    blurb: "Shipping solutions safely across environments, with security and compliance.",
   },
-  "Delivery & Stakeholder Management": {
+  "Data & Integration": {
+    icon: Cable,
+    accent: "#c19c00",
+    blurb: "Moving, cleaning and connecting data across systems.",
+  },
+  "Delivery & Consulting": {
     icon: Users,
     accent: "#8764b8",
     blurb: "Turning business needs into shipped, adopted solutions.",
   },
-  "Technical Foundations": {
+  "Engineering Foundations": {
     icon: Code2,
     accent: "#0f6cbd",
-    blurb: "The engineering background behind the functional work.",
+    blurb: "The software-engineering background behind the functional work.",
   },
-  "AI & Emerging Technologies": {
+  "AI & Emerging Tech": {
     icon: Bot,
     accent: "#c19c00",
     blurb: "Exploring how AI fits into CRM workflows and business use cases.",
@@ -88,6 +98,9 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
   const rules: [RegExp, LucideIcon][] = [
     [/sales/, PieChart],
     [/customer service|case|sla|routing/, Headset],
+    [/customer voice|survey|feedback/, MessageSquare],
+    [/supply chain/, Boxes],
+    [/copilot studio|copilot/, Bot],
     [/customer engagement|\bce\b/, Handshake],
     [/power automate|workflow|flow|automation/, Workflow],
     [/power apps|model-driven|canvas|app\b/, LayoutGrid],
