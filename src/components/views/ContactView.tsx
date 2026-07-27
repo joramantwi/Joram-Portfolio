@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
+import { MapPin, Send, CheckCircle2, Loader2, Award } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
 
@@ -19,6 +19,14 @@ export default function ContactView() {
       href: profile.linkedin,
       external: true,
       accent: "#038387",
+    },
+    {
+      icon: Award,
+      label: "Microsoft Learn",
+      value: profile.learnProfileLabel,
+      href: profile.learnCredentials,
+      external: true,
+      accent: "#0f6cbd",
     },
     {
       icon: MapPin,
@@ -64,7 +72,7 @@ export default function ContactView() {
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         {cards.map((c) => {
           const Icon = c.icon;
           const inner = (

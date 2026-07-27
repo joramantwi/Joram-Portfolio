@@ -5,6 +5,9 @@ export const profile = {
   location: "London, UK",
   linkedin: "https://linkedin.com/in/joramantwi",
   linkedinLabel: "linkedin.com/in/joramantwi",
+  learnProfile: "https://learn.microsoft.com/en-us/users/joramantwi-5080/",
+  learnCredentials: "https://learn.microsoft.com/en-us/users/joramantwi-5080/credentials/",
+  learnProfileLabel: "learn.microsoft.com/users/joramantwi-5080",
   summary:
     "CRM professional focused on building and improving Microsoft D365 CE solutions that actually work for the people using them. Started out as a software engineer, which means I can read and write code as well as configure — useful when working with developers or scoping technical solutions. Have led CRM migrations, redesigned systems end-to-end, built automation with Power Automate, and supported teams across Sales, Customer Service, and Operations. Comfortable working with stakeholders directly, understanding what they need, and translating that into platform decisions. Outside of work, actively exploring AI tools and prompt engineering — including how they fit into CRM workflows and business use cases.",
 };
@@ -259,6 +262,8 @@ export type Certification = {
   name: string;
   issuer: string;
   date: string;
+  badge?: string;
+  credentialUrl?: string;
 };
 
 export const certifications: Certification[] = [
@@ -266,6 +271,9 @@ export const certifications: Certification[] = [
     name: "Microsoft Certified: Dynamics 365 Fundamentals (CRM)",
     issuer: "Microsoft",
     date: "Dec 2023",
+    badge: "/badges/d365-fundamentals.svg",
+    credentialUrl:
+      "https://learn.microsoft.com/api/credentials/share/en-us/JoramAntwi-5080/105DEDD0B17725D2?sharingId=2D2315E42F8E805",
   },
 ];
 

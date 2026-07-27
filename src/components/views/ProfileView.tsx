@@ -1,6 +1,6 @@
 "use client";
 
-import { UserRound, MapPin, FileText } from "lucide-react";
+import { UserRound, MapPin, FileText, Award } from "lucide-react";
 import { profile, skillGroups } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
 import { useRequestCv } from "../cv/RequestCvProvider";
@@ -10,6 +10,7 @@ export default function ProfileView() {
   const rows = [
     { icon: MapPin, label: "Location", value: profile.location },
     { icon: LinkedInIcon, label: "LinkedIn", value: profile.linkedinLabel, href: profile.linkedin, external: true },
+    { icon: Award, label: "Microsoft Learn", value: profile.learnProfileLabel, href: profile.learnCredentials, external: true },
   ];
 
   return (
