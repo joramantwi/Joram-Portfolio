@@ -114,32 +114,37 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         </Tile>
 
         {/* Top skills */}
-        <Tile title="Top Capabilities" icon={Sparkles} accent="#8764b8">
-          <div className="space-y-3 p-4">
-            {skillGroups.slice(0, 4).map((g, i) => {
-              const pct = Math.min(95, 60 + g.skills.length * 4);
+        <Tile title="Skill Areas" icon={Sparkles} accent="#8764b8">
+          <div className="p-2">
+            {skillGroups.slice(0, 5).map((g, i) => {
+              const accent = ["#0f6cbd", "#038387", "#107c41", "#8764b8", "#c19c00"][i % 5];
               return (
-                <div key={g.category}>
-                  <div className="mb-1 flex items-center justify-between text-[12px]">
-                    <span className="font-medium text-[var(--text)]">{g.category}</span>
-                    <span className="text-[var(--text-muted)]">{g.skills.length}</span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full" style={{ background: "#eef0f3" }}>
-                    <div
-                      className="bar-grow h-full rounded-full"
-                      style={{
-                        width: `${pct}%`,
-                        background: "linear-gradient(90deg, #0f6cbd, #8764b8)",
-                        animationDelay: `${0.15 + i * 0.12}s`,
-                      }}
+                <button
+                  key={g.category}
+                  onClick={() => onNavigate("skills")}
+                  className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-[var(--sidebar-hover)]"
+                >
+                  <span className="flex min-w-0 items-center gap-2.5">
+                    <span
+                      className="h-2 w-2 shrink-0 rounded-full"
+                      style={{ background: accent }}
                     />
-                  </div>
-                </div>
+                    <span className="truncate text-[13px] font-medium text-[var(--text)]">
+                      {g.category}
+                    </span>
+                  </span>
+                  <span
+                    className="shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                    style={{ background: `${accent}14`, color: accent }}
+                  >
+                    {g.skills.length} skills
+                  </span>
+                </button>
               );
             })}
             <button
               onClick={() => onNavigate("skills")}
-              className="mt-1 text-[12px] font-medium text-[var(--d365-blue)] hover:underline"
+              className="mt-1 px-3 text-[12px] font-medium text-[var(--d365-blue)] hover:underline"
             >
               View all skills
             </button>
