@@ -50,7 +50,12 @@ const JOURNEY: { icon: LucideIcon; title: string; note: string; accent: string }
     note: "My specialism today",
     accent: "#107c41",
   },
-  { icon: Sparkles, title: "AI & Automation", note: "Where I'm growing", accent: "#8764b8" },
+  {
+    icon: Sparkles,
+    title: "AI Solution Architecture",
+    note: "Where I'm heading",
+    accent: "#8764b8",
+  },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -179,7 +184,8 @@ export default function SkillsView() {
         <h2 className="text-[17px] font-semibold text-[var(--text)]">My skill set</h2>
         <p className="mt-1 max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
           I started out as a software engineer and specialised into Microsoft Dynamics 365 and the
-          Power Platform — now folding AI into how I build and improve CRM solutions.
+          Power Platform. I'm now combining that engineering background with AI, working toward AI
+          solution architecture in the Dynamics 365 space.
         </p>
       </header>
 
@@ -288,7 +294,7 @@ export default function SkillsView() {
       >
         <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
         <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
-        {groups.length} areas — from engineering foundations to AI.
+        {groups.length} areas — from engineering foundations toward AI solution architecture.
       </div>
     </div>
   );
