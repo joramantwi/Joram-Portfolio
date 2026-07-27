@@ -11,7 +11,6 @@ import ProjectsView from "./views/ProjectsView";
 import CertificationsView from "./views/CertificationsView";
 import ProfileView from "./views/ProfileView";
 import ContactView from "./views/ContactView";
-import { RequestCvProvider } from "./cv/RequestCvProvider";
 import { SearchProvider } from "./search/SearchProvider";
 import type { ViewKey } from "./nav";
 
@@ -40,9 +39,8 @@ export default function AppShell() {
   }, []);
 
   return (
-    <RequestCvProvider>
-      <SearchProvider onNavigate={navigate}>
-        <div className="flex h-screen flex-col overflow-hidden">
+    <SearchProvider onNavigate={navigate}>
+      <div className="flex h-screen flex-col overflow-hidden">
           <TopBar />
           <div className="flex min-h-0 flex-1">
             <Sidebar
@@ -67,7 +65,6 @@ export default function AppShell() {
             </main>
           </div>
         </div>
-      </SearchProvider>
-    </RequestCvProvider>
+    </SearchProvider>
   );
 }

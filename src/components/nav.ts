@@ -6,7 +6,6 @@ import {
   BadgeCheck,
   UserRound,
   Mail,
-  FileText,
   type LucideIcon,
 } from "lucide-react";
 
@@ -55,13 +54,6 @@ export const navGroups: NavGroup[] = [
     ],
   },
 ];
-
-export const docsItem: NavItem = {
-  key: "profile",
-  label: "Download CV",
-  icon: FileText,
-  color: "#c33d2e",
-};
 
 export const viewTitles: Record<ViewKey, string> = {
   overview: "My Overview",

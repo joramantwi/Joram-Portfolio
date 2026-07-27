@@ -1,9 +1,8 @@
 "use client";
 
-import { UserRound, MapPin, FileText, Award, LayoutGrid, Database, Puzzle, GitBranch } from "lucide-react";
+import { UserRound, MapPin, Award, LayoutGrid, Database, Puzzle, GitBranch } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
-import { useRequestCv } from "../cv/RequestCvProvider";
 
 type GlanceItem = {
   title: string;
@@ -47,7 +46,6 @@ const atAGlance: GlanceItem[] = [
 ];
 
 export default function ProfileView() {
-  const { open } = useRequestCv();
   const rows = [
     { icon: MapPin, label: "Location", value: profile.location },
     { icon: LinkedInIcon, label: "LinkedIn", value: profile.linkedinLabel, href: profile.linkedin, external: true },
@@ -95,14 +93,6 @@ export default function ProfileView() {
               );
             })}
           </div>
-
-          <button
-            onClick={open}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded px-4 py-2 text-[13px] font-semibold text-white transition-colors"
-            style={{ background: "var(--d365-blue)" }}
-          >
-            <FileText size={15} /> Request CV
-          </button>
         </div>
       </Tile>
 

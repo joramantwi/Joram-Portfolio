@@ -1,8 +1,7 @@
 "use client";
 
-import { Menu, Clock, Pin, ChevronDown, FileText } from "lucide-react";
+import { Menu, Clock, Pin, ChevronDown } from "lucide-react";
 import { navGroups, type ViewKey } from "./nav";
-import { useRequestCv } from "./cv/RequestCvProvider";
 
 type SidebarProps = {
   active: ViewKey;
@@ -12,7 +11,6 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ active, onSelect, collapsed, onToggle }: SidebarProps) {
-  const { open } = useRequestCv();
   return (
     <nav
       className="flex h-full flex-col border-r bg-white transition-all duration-200 shrink-0"
@@ -84,23 +82,6 @@ export default function Sidebar({ active, onSelect, collapsed, onToggle }: Sideb
             </ul>
           </div>
         ))}
-
-        <div className="mt-3">
-          {!collapsed && (
-            <div className="px-2 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-              Docs
-            </div>
-          )}
-          {collapsed && <div className="mx-2 my-2 border-t" style={{ borderColor: "var(--border)" }} />}
-          <button
-            onClick={open}
-            title="Request CV"
-            className="flex w-full items-center gap-3 rounded px-2 py-[7px] text-left text-[13px] text-[var(--text)] transition-colors hover:bg-[var(--sidebar-hover)]"
-          >
-            <FileText size={18} style={{ color: "var(--d365-red)" }} className="shrink-0" />
-            {!collapsed && <span className="truncate">CV / Résumé</span>}
-          </button>
-        </div>
       </div>
     </nav>
   );
