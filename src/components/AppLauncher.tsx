@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
 import {
-  Grid3x3,
   PieChart,
   Headset,
   Database,
@@ -14,7 +13,7 @@ import {
   Cloud,
   Infinity,
 } from "lucide-react";
-import { GitHubIcon } from "./ui";
+import { GitHubIcon, WaffleIcon } from "./ui";
 
 type IconType = ComponentType<{ size?: number; style?: CSSProperties }>;
 
@@ -163,7 +162,7 @@ export default function AppLauncher() {
         className="grid h-9 w-9 place-items-center rounded transition-colors hover:bg-white/10"
         style={{ background: open ? "rgba(255,255,255,0.12)" : undefined }}
       >
-        <Grid3x3 size={18} />
+        <WaffleIcon size={18} />
       </button>
 
       {open && (
@@ -177,7 +176,7 @@ export default function AppLauncher() {
             className="flex items-center gap-2.5 px-4 py-3 text-white"
             style={{ background: "var(--d365-navy)" }}
           >
-            <Grid3x3 size={16} />
+            <WaffleIcon size={16} />
             <div>
               <p className="text-[13.5px] font-semibold leading-tight">Apps I&apos;ve worked with</p>
               <p className="text-[11.5px] text-white/60">Platforms &amp; tools across my experience</p>

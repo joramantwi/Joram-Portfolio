@@ -49,6 +49,35 @@ export function GitHubIcon({
   );
 }
 
+export function WaffleIcon({
+  size = 18,
+  style,
+  className,
+}: {
+  size?: number;
+  style?: CSSProperties;
+  className?: string;
+}) {
+  const positions = [4, 10, 16];
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      style={style}
+      className={className}
+      aria-hidden="true"
+    >
+      {positions.flatMap((cy) =>
+        positions.map((cx) => (
+          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={1.6} />
+        ))
+      )}
+    </svg>
+  );
+}
+
 export function Tile({
   children,
   className = "",
