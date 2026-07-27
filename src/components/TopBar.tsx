@@ -1,8 +1,9 @@
 "use client";
 
-import { Grid3x3, Search, Settings, Plus, HelpCircle, Lightbulb } from "lucide-react";
+import { Search, Settings, Plus, HelpCircle, Lightbulb } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { useSearch } from "./search/SearchProvider";
+import AppLauncher from "./AppLauncher";
 
 function initials(name: string) {
   return name
@@ -20,12 +21,7 @@ export default function TopBar() {
       className="flex h-12 items-center gap-2 px-2 text-white shrink-0 z-30"
       style={{ background: "var(--d365-navy)" }}
     >
-      <button
-        aria-label="App launcher"
-        className="grid h-9 w-9 place-items-center rounded hover:bg-white/10 transition-colors"
-      >
-        <Grid3x3 size={18} />
-      </button>
+      <AppLauncher />
 
       <div className="flex items-center gap-3 pl-1 pr-4">
         <h1 className="whitespace-nowrap text-[15px] font-semibold tracking-tight">
