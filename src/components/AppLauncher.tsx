@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
 import {
   Grid3x3,
   PieChart,
@@ -11,13 +11,17 @@ import {
   Globe,
   MessageSquareText,
   Truck,
-  type LucideIcon,
+  Cloud,
+  Infinity,
 } from "lucide-react";
+import { GitHubIcon } from "./ui";
+
+type IconType = ComponentType<{ size?: number; style?: CSSProperties }>;
 
 type D365App = {
   name: string;
   note: string;
-  icon: LucideIcon;
+  icon: IconType;
   color: string;
   status?: "upcoming";
 };
@@ -90,6 +94,30 @@ const groups: AppGroup[] = [
     ],
   },
   {
+    heading: "DevOps & ALM",
+    caption: "Build, ship & govern",
+    apps: [
+      {
+        name: "Azure",
+        note: "App registrations & cloud services",
+        icon: Cloud,
+        color: "#0078d4",
+      },
+      {
+        name: "GitHub",
+        note: "Source control & collaboration",
+        icon: GitHubIcon,
+        color: "#24292f",
+      },
+      {
+        name: "Azure DevOps",
+        note: "Boards, repos & pipelines",
+        icon: Infinity,
+        color: "#0052cc",
+      },
+    ],
+  },
+  {
     heading: "Finance & Operations",
     caption: "aka F&O",
     apps: [
@@ -129,7 +157,7 @@ export default function AppLauncher() {
   return (
     <div ref={wrapperRef} className="relative">
       <button
-        aria-label="Apps I work with"
+        aria-label="Apps I've worked with"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className="grid h-9 w-9 place-items-center rounded transition-colors hover:bg-white/10"
@@ -143,7 +171,7 @@ export default function AppLauncher() {
           className="absolute left-0 top-full z-50 mt-1.5 w-[340px] origin-top-left overflow-hidden rounded-xl border bg-white text-[var(--text)] shadow-2xl sm:w-[380px]"
           style={{ borderColor: "var(--border)", animation: "launcherIn 0.14s ease-out" }}
           role="dialog"
-          aria-label="Dynamics 365 apps I work with"
+          aria-label="Apps I've worked with"
         >
           <div
             className="flex items-center gap-2.5 px-4 py-3 text-white"
@@ -151,8 +179,8 @@ export default function AppLauncher() {
           >
             <Grid3x3 size={16} />
             <div>
-              <p className="text-[13.5px] font-semibold leading-tight">Dynamics 365 apps I work with</p>
-              <p className="text-[11.5px] text-white/60">Products used across my experience</p>
+              <p className="text-[13.5px] font-semibold leading-tight">Apps I&apos;ve worked with</p>
+              <p className="text-[11.5px] text-white/60">Platforms &amp; tools across my experience</p>
             </div>
           </div>
 

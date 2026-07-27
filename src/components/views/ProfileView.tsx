@@ -1,9 +1,50 @@
 "use client";
 
-import { UserRound, MapPin, FileText, Award } from "lucide-react";
-import { profile, skillGroups } from "@/data/portfolio";
+import { UserRound, MapPin, FileText, Award, LayoutGrid, Database, Puzzle, GitBranch } from "lucide-react";
+import { profile } from "@/data/portfolio";
 import { Tile, LinkedInIcon } from "../ui";
 import { useRequestCv } from "../cv/RequestCvProvider";
+
+type GlanceItem = {
+  title: string;
+  description: string;
+  chips: string[];
+  icon: typeof LayoutGrid;
+  color: string;
+};
+
+const atAGlance: GlanceItem[] = [
+  {
+    title: "Dynamics 365 CE",
+    description: "Delivered Customer Engagement solutions built around Sales and Customer Service.",
+    chips: ["Sales", "Customer Service", "Model-driven apps"],
+    icon: LayoutGrid,
+    color: "#0f6cbd",
+  },
+  {
+    title: "Power Platform build",
+    description: "Model-driven apps on Dataverse, extended with the wider Power Platform.",
+    chips: ["Dataverse", "Power Apps", "Power Pages", "Power Automate"],
+    icon: Database,
+    color: "#107c41",
+  },
+  {
+    title: "Pro-dev & customisation",
+    description:
+      "Built plugins deployed through XrmToolBox, with configuration and customisation handled in Power Apps.",
+    chips: ["C# plugins", "XrmToolBox", "Configuration", "Customisation"],
+    icon: Puzzle,
+    color: "#8764b8",
+  },
+  {
+    title: "ALM & solution management",
+    description:
+      "Managed solutions promoted across Dev → UAT → Prod using Power Platform Pipelines.",
+    chips: ["Managed solutions", "Dev · UAT · Prod", "Power Platform Pipelines", "Azure DevOps"],
+    icon: GitBranch,
+    color: "#038387",
+  },
+];
 
 export default function ProfileView() {
   const { open } = useRequestCv();
@@ -73,16 +114,41 @@ export default function ProfileView() {
         </Tile>
 
         <Tile title="At a Glance" icon={UserRound} accent="#8764b8">
-          <div className="flex flex-wrap gap-2 p-5">
-            {skillGroups.flatMap((g) => g.skills).slice(0, 18).map((s) => (
-              <span
-                key={s}
-                className="rounded-full px-3 py-1 text-[12px] font-medium"
-                style={{ background: "var(--d365-blue-light)", color: "var(--d365-blue-hover)" }}
-              >
-                {s}
-              </span>
-            ))}
+          <div className="space-y-3 p-4">
+            {atAGlance.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="flex gap-3 rounded-lg border bg-white p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                  style={{ borderColor: "var(--border)" }}
+                >
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-lg"
+                    style={{ background: `${item.color}16` }}
+                  >
+                    <Icon size={19} style={{ color: item.color }} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[13.5px] font-semibold text-[var(--text)]">{item.title}</p>
+                    <p className="mt-0.5 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
+                      {item.description}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {item.chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="rounded-full px-2.5 py-0.5 text-[11.5px] font-medium"
+                          style={{ background: `${item.color}12`, color: item.color }}
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </Tile>
       </div>
