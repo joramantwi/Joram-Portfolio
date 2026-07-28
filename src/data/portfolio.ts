@@ -8,8 +8,10 @@ export const profile = {
   learnProfile: "https://learn.microsoft.com/en-us/users/joramantwi-5080/",
   learnCredentials: "https://learn.microsoft.com/en-us/users/joramantwi-5080/credentials/",
   learnProfileLabel: "learn.microsoft.com/users/joramantwi-5080",
-  summary:
-    "CRM professional focused on building and improving Microsoft D365 CE solutions that actually work for the people using them. Started out as a software engineer, which means I can read and write code as well as configure — useful when working with developers or scoping technical solutions. Have led CRM migrations, redesigned systems end-to-end, built automation with Power Automate, and supported teams across Sales, Customer Service, and Operations. Comfortable working with stakeholders directly, understanding what they need, and translating that into platform decisions. Outside of work, actively exploring AI tools and prompt engineering — including how they fit into CRM workflows and business use cases.",
+  summary: [
+    "I'm a builder at heart — a Dynamics 365 professional with a deep software engineering background, focused on bringing people, data and processes together to solve real problems and drive better business outcomes. Microsoft's business applications stack is home base: Dynamics 365 CE today, with a growing focus across the wider platform — CE, ERP and the Azure cloud.",
+    "I've led CRM migrations, redesigned systems end-to-end, and delivered automation with tools like Power Automate, custom plugins and third-party integrations such as Zapier. Coming from a development background means I can read and write code as well as configure — so I'm just as comfortable scoping a technical solution as I am sitting with stakeholders to turn what they need into something that genuinely works. Right now I'm going deep on AI and prompt engineering, exploring how they reshape CRM workflows and everyday business processes.",
+  ],
 };
 
 export type Kpi = {

@@ -4,7 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Joram Antwi · Dynamics 365 Specialist · Developer · AI",
   description:
-    "Professional portfolio of Joram Antwi — Microsoft Dynamics 365 CE, Power Platform and CRM solutions consultant based in London, UK.",
+    "Portfolio of Joram Antwi — a Dynamics 365 professional with a software engineering background, building solutions across Dynamics 365 CE, ERP, Power Platform and Azure. Based in London, UK.",
+  icons: {
+    icon: [{ url: "/ja-logo.png", type: "image/png" }],
+    shortcut: "/ja-logo.png",
+    apple: "/ja-logo.png",
+  },
 };
 
 export default function RootLayout({

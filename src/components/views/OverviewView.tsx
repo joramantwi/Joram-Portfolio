@@ -31,9 +31,11 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         <p className="mt-1 flex items-center gap-1.5 text-sm text-white/70">
           <MapPin size={14} /> {profile.location}
         </p>
-        <p className="mt-4 max-w-3xl text-[13.5px] leading-relaxed text-white/85">
-          {profile.summary}
-        </p>
+        <div className="mt-4 max-w-3xl space-y-2.5 text-[13.5px] leading-relaxed text-white/85">
+          {profile.summary.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </div>
         <div className="mt-5 flex flex-wrap gap-2">
           <button
             onClick={() => onNavigate("projects")}

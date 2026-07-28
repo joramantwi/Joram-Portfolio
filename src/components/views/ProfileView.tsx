@@ -98,9 +98,11 @@ export default function ProfileView() {
 
       <div className="space-y-4 lg:col-span-2">
         <Tile title="Professional Summary" icon={UserRound} accent="#0f6cbd">
-          <p className="p-5 text-[13.5px] leading-relaxed text-[var(--text-secondary)]">
-            {profile.summary}
-          </p>
+          <div className="space-y-3 p-5 text-[13.5px] leading-relaxed text-[var(--text-secondary)]">
+            {profile.summary.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
         </Tile>
 
         <Tile title="At a Glance" icon={UserRound} accent="#8764b8">
