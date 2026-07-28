@@ -39,7 +39,7 @@ export default function TechLounge() {
 
       <Image
         className={styles.portrait}
-        src="/hero/joram-tech-lounge-landscape.png"
+        src="/hero/joram-tech-lounge-fixed.png"
         alt=""
         width={1672}
         height={941}
