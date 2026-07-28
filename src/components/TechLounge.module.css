@@ -26,9 +26,10 @@
   right: clamp(0.25rem, 1.2vw, 1rem);
   bottom: 0.75rem;
   z-index: 2;
-  width: min(42rem, 96%);
-  height: auto;
+  width: auto;
+  height: calc(100% - 1.5rem);
   max-width: none;
+  max-height: calc(100% - 1.5rem);
   object-fit: contain;
   object-position: right bottom;
   filter: drop-shadow(0 18px 24px rgb(0 0 0 / 20%));
@@ -138,9 +139,11 @@
   }
 
   .portrait {
-    right: -1rem;
+    right: 0;
     bottom: 0.5rem;
-    width: min(43rem, 108%);
+    width: auto;
+    height: calc(100% - 1rem);
+    max-height: calc(100% - 1rem);
   }
 
   .iconCluster {
@@ -158,9 +161,11 @@
   }
 
   .portrait {
-    right: -2rem;
+    right: -0.5rem;
     bottom: 0.25rem;
-    width: 118%;
+    width: auto;
+    height: calc(100% - 0.5rem);
+    max-height: calc(100% - 0.5rem);
   }
 
   .iconCluster {

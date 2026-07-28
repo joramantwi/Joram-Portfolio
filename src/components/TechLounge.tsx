@@ -39,10 +39,10 @@ export default function TechLounge() {
 
       <Image
         className={styles.portrait}
-        src="/hero/joram-tech-lounge-fixed.png"
+        src="/hero/joram-tech-lounge-complete-v2.png"
         alt=""
-        width={1672}
-        height={941}
+        width={1036}
+        height={836}
         sizes="(min-width: 1024px) 52vw, (min-width: 640px) 82vw, 112vw"
         preload
       />
