@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo } from "react";
 import { skillGroups } from "@/data/portfolio";
+import { Tile } from "../ui";
 import {
   ArrowRight,
   Code2,
@@ -179,24 +180,23 @@ export default function SkillsView() {
 
   return (
     <div className="view-enter space-y-4">
-      {/* Intro */}
-      <header>
-        <h2 className="text-[17px] font-semibold text-[var(--text)]">My skill set</h2>
-        <p className="mt-1 max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
-          I started out as a software engineer and specialised into Microsoft Dynamics 365 and the
-          Power Platform. I'm now combining that engineering background with AI, working toward AI
-          solution architecture in the Dynamics 365 space.
-        </p>
-      </header>
+      {/* Intro + journey */}
+      <Tile title="My skill set" icon={Sparkles} accent="#8764b8">
+        <div className="space-y-4 p-4 sm:p-5">
+          <p className="max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
+            I started out as a software engineer and specialised into Microsoft Dynamics 365 and the
+            Power Platform. I'm now combining that engineering background with AI, working toward AI
+            solution architecture in the Dynamics 365 space.
+          </p>
 
-      {/* Journey strip */}
-      <div
-        className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-0"
-        style={{
-          borderColor: "var(--border)",
-          background: "linear-gradient(120deg, var(--d365-blue-light) 0%, white 70%)",
-        }}
-      >
+          {/* Journey strip */}
+          <div
+            className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-0"
+            style={{
+              borderColor: "var(--border)",
+              background: "linear-gradient(120deg, var(--d365-blue-light) 0%, white 70%)",
+            }}
+          >
         {JOURNEY.map((p, i) => (
           <Fragment key={p.title}>
             <div className="flex flex-1 items-center gap-3">
@@ -223,10 +223,14 @@ export default function SkillsView() {
             )}
           </Fragment>
         ))}
-      </div>
+          </div>
+        </div>
+      </Tile>
 
       {/* Skill areas */}
-      <div className="stagger-children grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <Tile title="Skill areas" icon={LayoutGrid} accent="#107c41">
+        <div className="p-4">
+          <div className="stagger-children grid grid-cols-1 gap-4 lg:grid-cols-2">
         {groups.map((group) => {
           const meta =
             CATEGORY_META[group.category] ??
@@ -285,7 +289,9 @@ export default function SkillsView() {
             </div>
           );
         })}
-      </div>
+          </div>
+        </div>
+      </Tile>
 
       {/* Footprint */}
       <div

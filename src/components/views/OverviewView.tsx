@@ -24,7 +24,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
           className="orb-float-delayed pointer-events-none absolute -bottom-24 right-40 h-72 w-72 rounded-full opacity-[0.14]"
           style={{ background: "radial-gradient(circle, #8764b8, transparent 70%)" }}
         />
-        <p className="text-[13px] font-medium uppercase tracking-widest text-white/60">
+        <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
           {profile.title}
         </p>
         <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
