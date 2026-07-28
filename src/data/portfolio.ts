@@ -9,7 +9,7 @@ export const profile = {
   learnCredentials: "https://learn.microsoft.com/en-us/users/joramantwi-5080/credentials/",
   learnProfileLabel: "learn.microsoft.com/users/joramantwi-5080",
   summary: [
-    "I'm a builder at heart — a Dynamics 365 professional with a deep software engineering background, focused on bringing people, data and processes together to solve real problems and drive better business outcomes. Microsoft's business applications stack is home base: Dynamics 365 CE today, with a growing focus across the wider platform — CE, ERP and the Azure cloud.",
+    "I'm a solution architect at heart, using technology to solve real problems — a Dynamics 365 professional with a deep software engineering background, focused on bringing people, data and processes together to drive better business outcomes. Microsoft's business applications stack is home base: Dynamics 365 CE today, with a growing focus across the wider platform — CE, ERP and the Azure cloud.",
     "I've led CRM migrations, redesigned systems end-to-end, and delivered automation with tools like Power Automate, custom plugins and third-party integrations such as Zapier. Coming from a development background means I can read and write code as well as configure — so I'm just as comfortable scoping a technical solution as I am sitting with stakeholders to turn what they need into something that genuinely works. Right now I'm going deep on AI and prompt engineering, exploring how they reshape CRM workflows and everyday business processes.",
   ],
 };
