@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, MapPin } from "lucide-react";
+import { Briefcase, MapPin, ExternalLink } from "lucide-react";
 import { experiences } from "@/data/portfolio";
 import { Badge } from "../ui";
 
@@ -39,7 +39,22 @@ export default function ExperienceView() {
                     {e.role}
                     {e.current && <Badge color="#107c41">Current</Badge>}
                   </h2>
-                  <p className="text-[13px] font-medium text-[var(--d365-blue-hover)]">{e.company}</p>
+                  {e.website ? (
+                    <a
+                      href={e.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1 text-[13px] font-medium text-[var(--d365-blue-hover)] hover:text-[var(--d365-blue)] hover:underline"
+                    >
+                      {e.company}
+                      <ExternalLink
+                        size={12}
+                        className="opacity-0 transition-opacity group-hover:opacity-100"
+                      />
+                    </a>
+                  ) : (
+                    <p className="text-[13px] font-medium text-[var(--d365-blue-hover)]">{e.company}</p>
+                  )}
                   <p className="mt-0.5 flex items-center gap-1 text-[12px] text-[var(--text-muted)]">
                     <MapPin size={12} /> {e.location}
                   </p>

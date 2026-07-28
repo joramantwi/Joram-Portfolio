@@ -26,7 +26,7 @@ export type Kpi = {
 
 export const kpis: Kpi[] = [
   { label: "Years in tech", value: "8+", caption: "Since 2017", accent: "#0f6cbd" },
-  { label: "Roles delivered", value: "5", caption: "CRM · Web · AR", accent: "#107c41" },
+  { label: "Roles delivered", value: "5", caption: "Dev · CRM · Cloud", accent: "#107c41" },
   { label: "Certifications", value: "1", caption: "D365 Fundamentals", accent: "#8764b8" },
   { label: "Core platforms", value: "6", caption: "D365 · Power Platform", accent: "#c33d2e" },
 ];
@@ -34,6 +34,7 @@ export const kpis: Kpi[] = [
 export type Experience = {
   role: string;
   company: string;
+  website?: string;
   location: string;
   period: string;
   current?: boolean;
@@ -44,6 +45,7 @@ export const experiences: Experience[] = [
   {
     role: "CRM Manager",
     company: "Simplexity Travel Management",
+    website: "https://www.simplexitytravel.com/",
     location: "London",
     period: "Apr 2023 – Present",
     current: true,
@@ -61,6 +63,7 @@ export const experiences: Experience[] = [
   {
     role: "IT Analyst (D365 CRM)",
     company: "Refugees at Home",
+    website: "https://refugeesathome.org/",
     location: "London",
     period: "Jun 2020 – Apr 2023",
     points: [
@@ -89,6 +92,7 @@ export const experiences: Experience[] = [
   {
     role: "AR Developer (Internship)",
     company: "1UP Studios (formerly Arcade)",
+    website: "https://www.1upstudios.tech/",
     location: "London",
     period: "Aug 2019",
     points: [
@@ -98,6 +102,7 @@ export const experiences: Experience[] = [
   {
     role: "Digital Development Placement",
     company: "npower",
+    website: "https://npowerbusinesssolutions.com/",
     location: "Birmingham / Solihull",
     period: "Aug 2017 – Aug 2018",
     points: [
