@@ -3,6 +3,7 @@
 import { Briefcase, Sparkles, FolderKanban, TrendingUp, MapPin, ArrowRight } from "lucide-react";
 import { profile, kpis, experiences, skillGroups, projects } from "@/data/portfolio";
 import { Tile, Badge, CountUp } from "../ui";
+import TechLounge from "../TechLounge";
 import type { ViewKey } from "../nav";
 
 export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
@@ -24,31 +25,37 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
           className="orb-float-delayed pointer-events-none absolute -bottom-24 right-40 h-72 w-72 rounded-full opacity-[0.14]"
           style={{ background: "radial-gradient(circle, #8764b8, transparent 70%)" }}
         />
-        <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
-          {profile.title}
-        </p>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
-        <p className="mt-1 flex items-center gap-1.5 text-sm text-white/70">
-          <MapPin size={14} /> {profile.location}
-        </p>
-        <div className="mt-4 max-w-3xl space-y-2.5 text-[13.5px] leading-relaxed text-white/85">
-          {profile.summary.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
-        <div className="mt-5 flex flex-wrap gap-2">
-          <button
-            onClick={() => onNavigate("projects")}
-            className="flex items-center gap-1.5 rounded bg-white px-4 py-2 text-[13px] font-semibold text-[var(--d365-navy)] transition-transform hover:-translate-y-0.5"
-          >
-            View projects <ArrowRight size={15} />
-          </button>
-          <button
-            onClick={() => onNavigate("contact")}
-            className="rounded border border-white/30 px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            Get in touch
-          </button>
+        <div className="relative z-10 grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(22rem,0.65fr)]">
+          <div className="min-w-0">
+            <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
+              {profile.title}
+            </p>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
+            <p className="mt-1 flex items-center gap-1.5 text-sm text-white/70">
+              <MapPin size={14} /> {profile.location}
+            </p>
+            <div className="mt-4 max-w-3xl space-y-2.5 text-[13.5px] leading-relaxed text-white/85">
+              {profile.summary.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <button
+                onClick={() => onNavigate("projects")}
+                className="flex items-center gap-1.5 rounded bg-white px-4 py-2 text-[13px] font-semibold text-[var(--d365-navy)] transition-transform hover:-translate-y-0.5"
+              >
+                View projects <ArrowRight size={15} />
+              </button>
+              <button
+                onClick={() => onNavigate("contact")}
+                className="rounded border border-white/30 px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Get in touch
+              </button>
+            </div>
+          </div>
+
+          <TechLounge />
         </div>
       </div>
 
