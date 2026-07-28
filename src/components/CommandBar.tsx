@@ -1,10 +1,10 @@
 "use client";
 
-import type { ComponentType, CSSProperties } from "react";
-import { ArrowLeft, ChevronDown, RefreshCw, Share2 } from "lucide-react";
+import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
+import { ArrowLeft, Check, ChevronDown, Menu, RefreshCw, Share2 } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { LinkedInIcon } from "./ui";
-import { viewTitles, type ViewKey } from "./nav";
+import { navGroups, viewTitles, type ViewKey } from "./nav";
 
 type IconType = ComponentType<{ size?: number; style?: CSSProperties }>;
 
@@ -12,12 +12,36 @@ type CommandBarProps = {
   view: ViewKey;
   onBack: () => void;
   canGoBack: boolean;
+  onNavigate: (v: ViewKey) => void;
+  onOpenNav: () => void;
 };
 
-export default function CommandBar({ view, onBack, canGoBack }: CommandBarProps) {
+export default function CommandBar({ view, onBack, canGoBack, onNavigate, onOpenNav }: CommandBarProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [menuOpen]);
+
   return (
     <div className="shrink-0 border-b bg-white" style={{ borderColor: "var(--border)" }}>
       <div className="flex items-center gap-1 px-3 py-1.5 text-[13px]">
+        <button
+          onClick={onOpenNav}
+          aria-label="Open navigation"
+          className="grid h-8 w-8 place-items-center rounded transition-colors hover:bg-[var(--sidebar-hover)] lg:hidden"
+        >
+          <Menu size={18} />
+        </button>
+
         <button
           onClick={onBack}
           disabled={!canGoBack}
@@ -41,11 +65,65 @@ export default function CommandBar({ view, onBack, canGoBack }: CommandBarProps)
         </div>
       </div>
 
-      <div className="flex items-center gap-2 px-5 pb-3 pt-1">
-        <h1 className="text-[20px] font-semibold tracking-tight text-[var(--text)]">
-          {viewTitles[view]}
-        </h1>
-        <ChevronDown size={17} className="text-[var(--text-secondary)]" />
+      <div ref={menuRef} className="relative px-5 pb-3 pt-1">
+        <button
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-haspopup="menu"
+          aria-expanded={menuOpen}
+          className="-mx-2 flex items-center gap-2 rounded px-2 py-1 transition-colors hover:bg-[var(--sidebar-hover)]"
+        >
+          <h1 className="text-[20px] font-semibold tracking-tight text-[var(--text)]">
+            {viewTitles[view]}
+          </h1>
+          <ChevronDown
+            size={17}
+            className={`text-[var(--text-secondary)] transition-transform duration-200 ${
+              menuOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+
+        {menuOpen && (
+          <div
+            role="menu"
+            className="launcher-in absolute left-5 top-full z-30 mt-1 w-64 rounded-lg border bg-white p-1.5 shadow-lg"
+            style={{ borderColor: "var(--border)" }}
+          >
+            {navGroups.map((group) => (
+              <div key={group.heading} className="py-1">
+                <p className="px-2 py-1 text-[10.5px] font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+                  {group.heading}
+                </p>
+                {group.items.map((item) => {
+                  const Icon = item.icon;
+                  const active = item.key === view;
+                  return (
+                    <button
+                      key={item.key}
+                      role="menuitem"
+                      onClick={() => {
+                        onNavigate(item.key);
+                        setMenuOpen(false);
+                      }}
+                      className="flex w-full items-center gap-2.5 rounded px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-[var(--sidebar-hover)]"
+                      style={{
+                        background: active ? "var(--sidebar-active)" : undefined,
+                        color: active ? "var(--d365-blue)" : "var(--text)",
+                        fontWeight: active ? 600 : 400,
+                      }}
+                    >
+                      <Icon size={15} style={{ color: item.color }} />
+                      {item.label}
+                      {active && (
+                        <Check size={14} className="ml-auto text-[var(--d365-blue)]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

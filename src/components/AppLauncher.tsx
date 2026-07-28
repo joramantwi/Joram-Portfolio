@@ -165,7 +165,7 @@ export default function AppLauncher() {
 
       {open && (
         <div
-          className="absolute left-0 top-full z-50 mt-1.5 w-[340px] origin-top-left overflow-hidden rounded-xl border bg-white text-[var(--text)] shadow-2xl sm:w-[380px]"
+          className="absolute left-0 top-full z-50 mt-1.5 w-[min(340px,calc(100vw-1rem))] origin-top-left overflow-hidden rounded-xl border bg-white text-[var(--text)] shadow-2xl sm:w-[380px]"
           style={{ borderColor: "var(--border)", animation: "launcherIn 0.14s ease-out" }}
           role="dialog"
           aria-label="Apps I've worked with"

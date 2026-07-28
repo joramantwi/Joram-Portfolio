@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Joram Antwi · Dynamics 365 Functional Consultant",
+  title: "Joram Antwi · Dynamics 365 Specialist · Developer · AI",
   description:
     "Professional portfolio of Joram Antwi — Microsoft Dynamics 365 CE, Power Platform and CRM solutions consultant based in London, UK.",
 };

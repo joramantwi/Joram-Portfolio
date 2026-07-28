@@ -10,7 +10,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
     <div className="space-y-4">
       {/* Hero */}
       <div
-        className="relative overflow-hidden rounded-lg p-6 text-white shadow-sm"
+        className="relative overflow-hidden rounded-lg p-5 text-white shadow-sm sm:p-6"
         style={{
           background:
             "linear-gradient(120deg, var(--d365-navy) 0%, var(--d365-navy-2) 45%, #0f3d6e 100%)",
@@ -27,9 +27,9 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         <p className="text-[13px] font-medium uppercase tracking-widest text-white/60">
           {profile.title}
         </p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight">{profile.name}</h1>
+        <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
         <p className="mt-1 flex items-center gap-1.5 text-sm text-white/70">
-          <MapPin size={14} /> {profile.location} · {profile.headline}
+          <MapPin size={14} /> {profile.location}
         </p>
         <p className="mt-4 max-w-3xl text-[13.5px] leading-relaxed text-white/85">
           {profile.summary}

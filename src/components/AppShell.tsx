@@ -18,9 +18,11 @@ export default function AppShell() {
   const [view, setView] = useState<ViewKey>("overview");
   const [history, setHistory] = useState<ViewKey[]>([]);
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileNav, setMobileNav] = useState(false);
 
   const navigate = useCallback(
     (next: ViewKey) => {
+      setMobileNav(false);
       setView((current) => {
         if (current !== next) setHistory((h) => [...h, current]);
         return next;
@@ -48,9 +50,17 @@ export default function AppShell() {
               onSelect={navigate}
               collapsed={collapsed}
               onToggle={() => setCollapsed((c) => !c)}
+              mobileOpen={mobileNav}
+              onMobileClose={() => setMobileNav(false)}
             />
             <main className="flex min-w-0 flex-1 flex-col">
-              <CommandBar view={view} onBack={goBack} canGoBack={history.length > 0} />
+              <CommandBar
+                view={view}
+                onBack={goBack}
+                canGoBack={history.length > 0}
+                onNavigate={navigate}
+                onOpenNav={() => setMobileNav(true)}
+              />
               <div className="flex-1 overflow-y-auto p-4 lg:p-5">
                 <div key={view} className="view-enter mx-auto max-w-6xl">
                   {view === "overview" && <OverviewView onNavigate={navigate} />}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Clock, Pin, ChevronDown } from "lucide-react";
+import { Menu, Clock, Pin, ChevronDown, X } from "lucide-react";
 import { navGroups, type ViewKey } from "./nav";
 
 type SidebarProps = {
@@ -8,26 +8,46 @@ type SidebarProps = {
   onSelect: (key: ViewKey) => void;
   collapsed: boolean;
   onToggle: () => void;
+  mobileOpen: boolean;
+  onMobileClose: () => void;
 };
 
-export default function Sidebar({ active, onSelect, collapsed, onToggle }: SidebarProps) {
+export default function Sidebar({ active, onSelect, collapsed, onToggle, mobileOpen, onMobileClose }: SidebarProps) {
   return (
-    <nav
-      className="flex h-full flex-col border-r bg-white transition-all duration-200 shrink-0"
-      style={{
-        width: collapsed ? 48 : 236,
-        borderColor: "var(--border)",
-      }}
-    >
-      <div className="flex h-11 items-center px-2">
-        <button
-          onClick={onToggle}
-          aria-label="Toggle navigation"
-          className="grid h-9 w-9 place-items-center rounded hover:bg-[var(--sidebar-hover)] transition-colors"
-        >
-          <Menu size={18} />
-        </button>
-      </div>
+    <>
+      {/* Backdrop (mobile only) */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-x-0 bottom-0 top-12 z-40 bg-black/40 lg:hidden"
+          onClick={onMobileClose}
+          aria-hidden
+        />
+      )}
+      <nav
+        className={`fixed left-0 top-12 z-50 flex h-[calc(100dvh-3rem)] flex-col border-r bg-white shrink-0 transition-[transform,width] duration-200 lg:static lg:top-auto lg:z-auto lg:h-full lg:translate-x-0 lg:shadow-none ${
+          mobileOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+        }`}
+        style={{
+          width: collapsed ? 48 : 236,
+          borderColor: "var(--border)",
+        }}
+      >
+        <div className="flex h-11 items-center px-2">
+          <button
+            onClick={onToggle}
+            aria-label="Toggle navigation"
+            className="hidden h-9 w-9 place-items-center rounded hover:bg-[var(--sidebar-hover)] transition-colors lg:grid"
+          >
+            <Menu size={18} />
+          </button>
+          <button
+            onClick={onMobileClose}
+            aria-label="Close navigation"
+            className="grid h-9 w-9 place-items-center rounded hover:bg-[var(--sidebar-hover)] transition-colors lg:hidden"
+          >
+            <X size={18} />
+          </button>
+        </div>
 
       {!collapsed && (
         <div className="px-3 pb-2">
@@ -83,7 +103,8 @@ export default function Sidebar({ active, onSelect, collapsed, onToggle }: Sideb
           </div>
         ))}
       </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 

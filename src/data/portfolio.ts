@@ -1,6 +1,6 @@
 export const profile = {
   name: "Joram Antwi",
-  title: "Dynamics 365 Functional Consultant",
+  title: "Dynamics 365 Specialist · Developer · AI",
   headline: "Microsoft Dynamics 365 CE · Power Platform · CRM Solutions",
   location: "London, UK",
   linkedin: "https://linkedin.com/in/joramantwi",

@@ -226,7 +226,7 @@ export default function SkillsView() {
       </div>
 
       {/* Skill areas */}
-      <div className="stagger-children grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
+      <div className="stagger-children grid grid-cols-1 gap-4 lg:grid-cols-2">
         {groups.map((group) => {
           const meta =
             CATEGORY_META[group.category] ??
@@ -235,13 +235,13 @@ export default function SkillsView() {
           return (
             <div
               key={group.category}
-              className="card-lift overflow-hidden rounded-xl border bg-white shadow-sm"
+              className="card-lift flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm"
               style={{ borderColor: "var(--border)" }}
             >
               {/* accent bar */}
               <div className="h-1 w-full" style={{ background: meta.accent }} />
 
-              <div className="p-5">
+              <div className="flex flex-1 flex-col p-5">
                 <div className="flex items-center gap-3">
                   <span
                     className="grid h-11 w-11 shrink-0 place-items-center rounded-lg"
