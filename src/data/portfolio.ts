@@ -6,8 +6,8 @@ export const profile = {
   // so changing this later won't affect the tab icon.
   avatar: "/ja-logo.png",
   location: "London, UK",
-  linkedin: "https://linkedin.com/in/joramantwi",
-  linkedinLabel: "linkedin.com/in/joramantwi",
+  linkedin: "https://www.linkedin.com/in/joram-antwi/",
+  linkedinLabel: "linkedin.com/in/joram-antwi",
   github: "https://github.com/joramantwi",
   githubLabel: "github.com/joramantwi",
   learnProfile: "https://learn.microsoft.com/en-us/users/joramantwi-5080/",
