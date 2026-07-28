@@ -6,8 +6,11 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Joram Antwi — a Dynamics 365 professional with a software engineering background, building solutions across Dynamics 365 CE, ERP, Power Platform and Azure. Based in London, UK.",
   icons: {
-    icon: [{ url: "/ja-logo.png", type: "image/png" }],
-    shortcut: "/ja-logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48 64x64 128x128 256x256" },
+      { url: "/ja-logo.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/ja-logo.png",
   },
 };
