@@ -2,7 +2,7 @@
 
 import { UserRound, MapPin, Award, LayoutGrid, Database, Puzzle, GitBranch } from "lucide-react";
 import { profile } from "@/data/portfolio";
-import { Tile, LinkedInIcon } from "../ui";
+import { Tile, LinkedInIcon, Avatar } from "../ui";
 
 type GlanceItem = {
   title: string;
@@ -56,12 +56,13 @@ export default function ProfileView() {
     <div className="grid items-start gap-4 lg:grid-cols-3">
       <Tile className="lg:col-span-1" title="Contact Card" icon={UserRound} accent="#038387">
         <div className="p-5">
-          <div
-            className="mx-auto grid h-20 w-20 place-items-center rounded-full text-2xl font-bold text-white"
-            style={{ background: "linear-gradient(135deg, var(--d365-teal), var(--d365-blue))" }}
-          >
-            {profile.name.split(" ").map((n) => n[0]).join("")}
-          </div>
+          <Avatar
+            src={profile.avatar}
+            name={profile.name}
+            imgClassName="mx-auto h-20 w-20 rounded-full object-cover ring-1 ring-[var(--border)]"
+            fallbackClassName="mx-auto grid h-20 w-20 place-items-center rounded-full text-2xl font-bold text-white"
+            fallbackStyle={{ background: "linear-gradient(135deg, var(--d365-teal), var(--d365-blue))" }}
+          />
           <h2 className="mt-3 text-center text-[16px] font-semibold text-[var(--text)]">{profile.name}</h2>
           <p className="text-center text-[12.5px] text-[var(--text-secondary)]">{profile.title}</p>
 

@@ -2,6 +2,9 @@ export const profile = {
   name: "Joram Antwi",
   title: "Dynamics 365 Specialist · Developer · AI",
   headline: "Microsoft Dynamics 365 CE · Power Platform · CRM Solutions",
+  // Profile / avatar image. Independent of the browser favicon (set in app/layout.tsx),
+  // so changing this later won't affect the tab icon.
+  avatar: "/ja-logo.png",
   location: "London, UK",
   linkedin: "https://linkedin.com/in/joramantwi",
   linkedinLabel: "linkedin.com/in/joramantwi",

@@ -28,6 +28,61 @@ export function LinkedInIcon({
   );
 }
 
+function initialsOf(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+/**
+ * Avatar that shows an image and gracefully falls back to the person's
+ * initials if the image is missing or fails to load.
+ */
+export function Avatar({
+  src,
+  name,
+  imgClassName,
+  fallbackClassName,
+  fallbackStyle,
+}: {
+  src: string;
+  name: string;
+  imgClassName?: string;
+  fallbackClassName?: string;
+  fallbackStyle?: CSSProperties;
+}) {
+  const [ok, setOk] = useState(true);
+  const ref = useRef<HTMLImageElement>(null);
+
+  // Catch images that already failed before the onError handler attached.
+  useEffect(() => {
+    const img = ref.current;
+    if (img && img.complete && img.naturalWidth === 0) setOk(false);
+  }, []);
+
+  if (!ok) {
+    return (
+      <div className={fallbackClassName} style={fallbackStyle} title={name}>
+        {initialsOf(name)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      ref={ref}
+      src={src}
+      alt={name}
+      title={name}
+      onError={() => setOk(false)}
+      className={imgClassName}
+    />
+  );
+}
+
 export function GitHubIcon({
   size = 16,
   style,

@@ -1,30 +1,13 @@
 "use client";
 
 import { Search, Settings, Plus, HelpCircle, Lightbulb } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/portfolio";
 import { useSearch } from "./search/SearchProvider";
+import { Avatar } from "./ui";
 import AppLauncher from "./AppLauncher";
-
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
 
 export default function TopBar() {
   const { open } = useSearch();
-  const [logoOk, setLogoOk] = useState(true);
-  const logoRef = useRef<HTMLImageElement>(null);
-
-  // Catch images that already failed before the onError handler attached.
-  useEffect(() => {
-    const img = logoRef.current;
-    if (img && img.complete && img.naturalWidth === 0) setLogoOk(false);
-  }, []);
 
   return (
     <header
@@ -70,24 +53,13 @@ export default function TopBar() {
             <Icon size={17} />
           </button>
         ))}
-        {logoOk ? (
-          <img
-            ref={logoRef}
-            src="/ja-logo.png"
-            alt={profile.name}
-            title={profile.name}
-            onError={() => setLogoOk(false)}
-            className="ml-1 h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-white/20"
-          />
-        ) : (
-          <div
-            className="ml-1 grid h-8 w-8 place-items-center rounded-full text-[12px] font-semibold"
-            style={{ background: "var(--d365-teal)" }}
-            title={profile.name}
-          >
-            {initials(profile.name)}
-          </div>
-        )}
+        <Avatar
+          src={profile.avatar}
+          name={profile.name}
+          imgClassName="ml-1 h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-white/20"
+          fallbackClassName="ml-1 grid h-8 w-8 place-items-center rounded-full text-[12px] font-semibold"
+          fallbackStyle={{ background: "var(--d365-teal)" }}
+        />
       </div>
     </header>
   );
