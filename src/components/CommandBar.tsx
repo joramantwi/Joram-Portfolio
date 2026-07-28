@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
-import { ArrowLeft, Check, ChevronDown, Link2, Menu, RefreshCw, Share2 } from "lucide-react";
+import { ArrowLeft, Check, ChevronDown, GraduationCap, Link2, Menu, RefreshCw, Share2 } from "lucide-react";
 import { profile } from "@/data/portfolio";
-import { LinkedInIcon } from "./ui";
+import { GitHubIcon, LinkedInIcon } from "./ui";
 import { navGroups, viewTitles, type ViewKey } from "./nav";
 
 type IconType = ComponentType<{ size?: number; style?: CSSProperties }>;
@@ -90,6 +90,8 @@ export default function CommandBar({ view, onBack, canGoBack, onNavigate, onOpen
         <span className="mx-1 h-5 w-px" style={{ background: "var(--border)" }} />
 
         <CmdButton icon={LinkedInIcon} label="LinkedIn" href={profile.linkedin} external />
+        <CmdButton icon={GitHubIcon} label="GitHub" href={profile.github} external />
+        <CmdButton icon={GraduationCap} label="Learn" href={profile.learnProfile} external />
         <CmdButton icon={RefreshCw} label="Refresh" onClick={() => window.location.reload()} />
 
         <div ref={shareRef} className="relative ml-auto">
@@ -227,6 +229,7 @@ function CmdButton({ icon: Icon, label, href, onClick, external, download }: Cmd
       <a
         href={href}
         className={className}
+        aria-label={label}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         {...(download ? { download: "" } : {})}
       >
@@ -235,7 +238,7 @@ function CmdButton({ icon: Icon, label, href, onClick, external, download }: Cmd
     );
   }
   return (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={className} aria-label={label}>
       {content}
     </button>
   );

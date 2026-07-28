@@ -8,6 +8,8 @@ export const profile = {
   location: "London, UK",
   linkedin: "https://linkedin.com/in/joramantwi",
   linkedinLabel: "linkedin.com/in/joramantwi",
+  github: "https://github.com/joramantwi",
+  githubLabel: "github.com/joramantwi",
   learnProfile: "https://learn.microsoft.com/en-us/users/joramantwi-5080/",
   learnCredentials: "https://learn.microsoft.com/en-us/users/joramantwi-5080/credentials/",
   learnProfileLabel: "learn.microsoft.com/users/joramantwi-5080",
@@ -222,59 +224,125 @@ export const skillGroups: SkillGroup[] = [
 export type Project = {
   name: string;
   org: string;
+  industry: string;
+  type: string;
+  module: string;
+  role: string;
+  year: string;
   stage: string;
   tags: string[];
   summary: string;
+  highlights: string[];
 };
 
 export const projects: Project[] = [
   {
     name: "D365 CE End-to-End Redesign",
     org: "Simplexity Travel Management",
+    industry: "Travel",
+    type: "Implementation",
+    module: "D365 Sales & Customer Service",
+    role: "CRM Manager",
+    year: "2023",
     stage: "Delivered",
     tags: ["D365 Sales", "Customer Service", "Ribbon Workbench", "BPF"],
     summary:
       "Rebuilt the sitemap, entity model, forms, views, field mappings and Business Process Flows into a scalable solution used across Sales, Commercial and Operations, with command bar customisations built in Ribbon Workbench.",
+    highlights: [
+      "Rebuilt the sitemap, entity model, forms, views and field mappings into a scalable, well-structured solution.",
+      "Designed Business Process Flows spanning Sales, Commercial and Operations.",
+      "Added command bar customisations in Ribbon Workbench to streamline everyday workflows.",
+    ],
   },
   {
     name: "Power Automate Automation Suite",
     org: "Simplexity Travel Management",
+    industry: "Travel",
+    type: "Automation",
+    module: "Power Automate",
+    role: "CRM Manager",
+    year: "2023",
     stage: "Delivered",
     tags: ["Power Automate", "Lead processing", "Case routing"],
     summary:
       "A suite of cloud flows automating lead processing, case routing and internal notifications — significantly reducing manual administrative overhead on the CRM team.",
+    highlights: [
+      "Automated lead processing, case routing and internal notifications with cloud flows.",
+      "Removed repetitive manual tasks, cutting administrative overhead on the CRM team.",
+      "Standardised notifications to keep Sales and Operations aligned in real time.",
+    ],
   },
   {
     name: "Power Pages External Portal",
     org: "Simplexity Travel Management",
+    industry: "Travel",
+    type: "Portal",
+    module: "Power Pages",
+    role: "CRM Manager",
+    year: "2024",
     stage: "Delivered",
     tags: ["Power Pages", "Azure AD", "App Registrations", "API"],
     summary:
       "Architected and deployed a Power Pages portal with role-based access and Azure AD App Registrations, enabling secure external access to CRM data via configured API connections.",
+    highlights: [
+      "Architected a Power Pages portal with role-based access to CRM data.",
+      "Secured external access using Azure AD App Registrations and configured API connections.",
+      "Enabled partners to self-serve without direct access to the core CRM.",
+    ],
   },
   {
     name: "CRM Migration: Zoho & Sheets → D365",
     org: "Refugees at Home",
+    industry: "Non-profit",
+    type: "Migration",
+    module: "D365 Customer Engagement",
+    role: "IT Analyst",
+    year: "2021",
     stage: "Delivered",
     tags: ["Migration", "D365 CE", "ITIL", "Data mapping"],
     summary:
       "Led a full CRM migration from Google Sheets & Zoho CRM to Microsoft D365 CE under an ITIL-aligned change process — from requirements and data migration through to full team adoption.",
+    highlights: [
+      "Migrated from Google Sheets and Zoho CRM to Microsoft D365 CE under an ITIL-aligned change process.",
+      "Owned requirements, data mapping and cleansing through to full team adoption.",
+      "Onboarded staff and volunteers with tailored training and documentation.",
+    ],
   },
   {
     name: "Dataverse Impact Dashboards",
     org: "Refugees at Home",
+    industry: "Non-profit",
+    type: "Analytics",
+    module: "Power BI",
+    role: "IT Analyst",
+    year: "2021",
     stage: "Delivered",
     tags: ["Power BI", "Dataverse", "KPIs"],
     summary:
       "Real-time Power BI dashboards connected to Dataverse, surfacing charity impact KPIs and operational metrics for leadership and external stakeholders.",
+    highlights: [
+      "Built real-time Power BI dashboards connected directly to Dataverse.",
+      "Surfaced charity impact KPIs and operational metrics for leadership.",
+      "Gave external stakeholders clear, self-serve visibility of outcomes.",
+    ],
   },
   {
     name: "CRM ↔ Website REST Integration",
     org: "Refugees at Home",
+    industry: "Non-profit",
+    type: "Integration",
+    module: "Web API",
+    role: "IT Analyst",
+    year: "2022",
     stage: "Delivered",
     tags: ["REST API", "JSON", "Web"],
     summary:
       "Connected CRM data to the public website via REST API, surfacing live volunteer placement and case statistics to improve transparency and trust with donors.",
+    highlights: [
+      "Connected CRM data to the public website through a REST API.",
+      "Surfaced live volunteer placement and case statistics to the public.",
+      "Improved transparency and trust with donors and supporters.",
+    ],
   },
 ];
 
