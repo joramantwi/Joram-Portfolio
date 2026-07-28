@@ -23,10 +23,10 @@
 
 .portrait {
   position: absolute;
-  right: clamp(-4rem, -4vw, -1.5rem);
-  bottom: 0;
+  right: clamp(0.25rem, 1.2vw, 1rem);
+  bottom: 0.75rem;
   z-index: 2;
-  width: min(46rem, 112%);
+  width: min(42rem, 96%);
   height: auto;
   max-width: none;
   object-fit: contain;
@@ -36,8 +36,8 @@
 
 .iconCluster {
   position: absolute;
-  top: 4%;
-  left: 9%;
+  top: 13%;
+  left: 12%;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -138,14 +138,14 @@
   }
 
   .portrait {
-    right: -5rem;
-    bottom: 0;
-    width: min(47rem, 122%);
+    right: -1rem;
+    bottom: 0.5rem;
+    width: min(43rem, 108%);
   }
 
   .iconCluster {
-    top: 5%;
-    left: 8%;
+    top: 11%;
+    left: 10%;
   }
 
 }
@@ -158,13 +158,14 @@
   }
 
   .portrait {
-    right: -4.5rem;
-    width: 135%;
+    right: -2rem;
+    bottom: 0.25rem;
+    width: 118%;
   }
 
   .iconCluster {
-    top: 4%;
-    left: 5%;
+    top: 9%;
+    left: 7%;
     gap: 0.9rem;
   }
 
