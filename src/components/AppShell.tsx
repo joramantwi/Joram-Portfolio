@@ -62,7 +62,7 @@ export default function AppShell() {
                 onOpenNav={() => setMobileNav(true)}
               />
               <div className="flex-1 overflow-y-auto p-4 lg:p-5">
-                <div key={view} className="view-enter mx-auto max-w-6xl">
+                <div key={view} className="view-enter mx-auto max-w-[1600px]">
                   {view === "overview" && <OverviewView onNavigate={navigate} />}
                   {view === "experience" && <ExperienceView />}
                   {view === "skills" && <SkillsView />}
