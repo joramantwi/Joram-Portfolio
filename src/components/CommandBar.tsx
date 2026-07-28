@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
-import { ArrowLeft, Check, ChevronDown, Menu, RefreshCw, Share2 } from "lucide-react";
+import { ArrowLeft, Check, ChevronDown, Link2, Menu, RefreshCw, Share2 } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { LinkedInIcon } from "./ui";
 import { navGroups, viewTitles, type ViewKey } from "./nav";
@@ -19,6 +19,9 @@ type CommandBarProps = {
 export default function CommandBar({ view, onBack, canGoBack, onNavigate, onOpenNav }: CommandBarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const shareRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -30,6 +33,39 @@ export default function CommandBar({ view, onBack, canGoBack, onNavigate, onOpen
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (!shareOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (shareRef.current && !shareRef.current.contains(e.target as Node)) {
+        setShareOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [shareOpen]);
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+        setShareOpen(false);
+      }, 1200);
+    } catch {
+      setShareOpen(false);
+    }
+  };
+
+  const shareOnLinkedIn = () => {
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setShareOpen(false);
+  };
 
   return (
     <div className="shrink-0 border-b bg-white" style={{ borderColor: "var(--border)" }}>
@@ -56,12 +92,50 @@ export default function CommandBar({ view, onBack, canGoBack, onNavigate, onOpen
         <CmdButton icon={LinkedInIcon} label="LinkedIn" href={profile.linkedin} external />
         <CmdButton icon={RefreshCw} label="Refresh" onClick={() => window.location.reload()} />
 
-        <div className="ml-auto">
-          <button className="flex items-center gap-1.5 rounded border px-3 py-1 text-[13px] transition-colors hover:bg-[var(--sidebar-hover)]" style={{ borderColor: "var(--border-strong)" }}>
+        <div ref={shareRef} className="relative ml-auto">
+          <button
+            onClick={() => setShareOpen((o) => !o)}
+            aria-haspopup="menu"
+            aria-expanded={shareOpen}
+            className="flex items-center gap-1.5 rounded border px-3 py-1 text-[13px] transition-colors hover:bg-[var(--sidebar-hover)]"
+            style={{ borderColor: "var(--border-strong)" }}
+          >
             <Share2 size={14} />
-            Share
-            <ChevronDown size={13} />
+            <span className="hidden sm:inline">Share</span>
+            <ChevronDown
+              size={13}
+              className={`transition-transform duration-200 ${shareOpen ? "rotate-180" : ""}`}
+            />
           </button>
+
+          {shareOpen && (
+            <div
+              role="menu"
+              className="launcher-in absolute right-0 top-full z-30 mt-1 w-52 rounded-lg border bg-white p-1.5 shadow-lg"
+              style={{ borderColor: "var(--border)" }}
+            >
+              <button
+                role="menuitem"
+                onClick={copyLink}
+                className="flex w-full items-center gap-2.5 rounded px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-[var(--sidebar-hover)]"
+              >
+                {copied ? (
+                  <Check size={15} style={{ color: "var(--d365-green)" }} />
+                ) : (
+                  <Link2 size={15} style={{ color: "var(--d365-blue)" }} />
+                )}
+                {copied ? "Link copied" : "Copy link"}
+              </button>
+              <button
+                role="menuitem"
+                onClick={shareOnLinkedIn}
+                className="flex w-full items-center gap-2.5 rounded px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-[var(--sidebar-hover)]"
+              >
+                <LinkedInIcon size={15} style={{ color: "#0a66c2" }} />
+                Share on LinkedIn
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

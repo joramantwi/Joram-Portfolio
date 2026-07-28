@@ -22,7 +22,7 @@ export default function ExperienceView() {
                 <Briefcase size={18} style={{ color: "var(--d365-blue)" }} />
               </div>
               <div>
-                <h2 className="flex items-center gap-2 text-[16px] font-semibold text-[var(--text)]">
+                <h2 className="flex items-center gap-2 text-[15px] font-semibold text-[var(--text)]">
                   {e.role}
                   {e.current && <Badge color="#107c41">Current</Badge>}
                 </h2>

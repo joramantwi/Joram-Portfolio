@@ -178,7 +178,7 @@ export default function SkillsView() {
   );
 
   return (
-    <div className="view-enter space-y-6">
+    <div className="view-enter space-y-4">
       {/* Intro */}
       <header>
         <h2 className="text-[17px] font-semibold text-[var(--text)]">My skill set</h2>
@@ -250,7 +250,7 @@ export default function SkillsView() {
                     <Icon size={20} style={{ color: meta.accent }} />
                   </span>
                   <div>
-                    <h3 className="text-[14.5px] font-semibold leading-tight text-[var(--text)]">
+                    <h3 className="text-[15px] font-semibold leading-tight text-[var(--text)]">
                       {group.category}
                     </h3>
                     <p className="mt-0.5 text-[11.5px] text-[var(--text-muted)]">

@@ -120,7 +120,7 @@ export default function ProfileView() {
                     <Icon size={19} style={{ color: item.color }} />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[13.5px] font-semibold text-[var(--text)]">{item.title}</p>
+                    <p className="text-[14px] font-semibold text-[var(--text)]">{item.title}</p>
                     <p className="mt-0.5 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
                       {item.description}
                     </p>
