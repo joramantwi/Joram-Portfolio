@@ -43,7 +43,7 @@ export default function TechLounge() {
         alt=""
         width={777}
         height={828}
-        sizes="(min-width: 1024px) 36vw, (min-width: 640px) 58vw, 92vw"
+        sizes="(min-width: 1024px) 384px, (min-width: 640px) 58vw, 92vw"
         preload
       />
 
