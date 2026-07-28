@@ -7,7 +7,7 @@ import { Tile } from "../ui";
 
 export default function CertificationsView() {
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="grid items-start gap-4 lg:grid-cols-2">
       <Tile title="Certifications" icon={BadgeCheck} accent="#8764b8">
         <div className="p-4">
           <ul className="stagger-children space-y-3">

@@ -53,7 +53,7 @@ export default function ProfileView() {
   ];
 
   return (
-    <div className="grid gap-4 lg:grid-cols-3">
+    <div className="grid items-start gap-4 lg:grid-cols-3">
       <Tile className="lg:col-span-1" title="Contact Card" icon={UserRound} accent="#038387">
         <div className="p-5">
           <div
