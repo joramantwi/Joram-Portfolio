@@ -23,12 +23,12 @@
 
 .portrait {
   position: absolute;
-  right: clamp(0.5rem, 1.2vw, 1.5rem);
-  bottom: 0.35rem;
+  right: clamp(-4rem, -4vw, -1.5rem);
+  bottom: 0;
   z-index: 2;
-  width: auto;
-  height: min(calc(100% - 2rem), 24rem);
-  max-width: calc(100% - 1rem);
+  width: min(46rem, 112%);
+  height: auto;
+  max-width: none;
   object-fit: contain;
   object-position: right bottom;
   filter: drop-shadow(0 18px 24px rgb(0 0 0 / 20%));
@@ -36,13 +36,16 @@
 
 .iconCluster {
   position: absolute;
-  inset: 0;
+  top: 6%;
+  left: 11%;
   z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2rem);
   pointer-events: none;
 }
 
 .iconReveal {
-  position: absolute;
   display: grid;
   place-items: center;
   opacity: 0;
@@ -57,22 +60,16 @@
 }
 
 .azure {
-  top: 2%;
-  left: 5%;
   width: clamp(4.3rem, 5vw, 5.3rem);
   animation-delay: 320ms;
 }
 
 .dynamics {
-  top: 23%;
-  left: 11%;
   width: clamp(2.5rem, 3vw, 3.15rem);
   animation-delay: 850ms;
 }
 
 .code {
-  top: 40%;
-  left: 6%;
   width: clamp(3.8rem, 4.3vw, 4.8rem);
   animation-delay: 1380ms;
 }
@@ -141,10 +138,14 @@
   }
 
   .portrait {
-    right: clamp(0rem, 7vw, 4rem);
-    bottom: -0.2rem;
-    height: calc(100% - 0.2rem);
-    max-width: none;
+    right: -5rem;
+    bottom: 0;
+    width: min(47rem, 122%);
+  }
+
+  .iconCluster {
+    top: 5%;
+    left: 8%;
   }
 
 }
@@ -157,25 +158,26 @@
   }
 
   .portrait {
-    right: -0.35rem;
+    right: -4.5rem;
+    width: 135%;
+  }
+
+  .iconCluster {
+    top: 4%;
+    left: 5%;
+    gap: 0.9rem;
   }
 
   .azure {
-    top: 4%;
-    left: 6%;
-    width: 4.2rem;
+    width: 4rem;
   }
 
   .dynamics {
-    top: 26%;
-    left: 14%;
-    width: 2.4rem;
+    width: 2.3rem;
   }
 
   .code {
-    top: 43%;
-    left: 7%;
-    width: 3.6rem;
+    width: 3.4rem;
   }
 }
 
