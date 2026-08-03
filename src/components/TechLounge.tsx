@@ -33,7 +33,7 @@ export default function TechLounge() {
     <div
       className={styles.stage}
       role="img"
-      aria-label="Joram seated in a modular Microsoft-colour tech lounge, pointing towards Azure, Dynamics 365 and development icons"
+      aria-label="Joram seated in a Microsoft-colour chair, presenting Azure, Dynamics 365 and development tools above his open hand"
     >
       <div className={styles.backlight} aria-hidden="true" />
 
@@ -43,11 +43,12 @@ export default function TechLounge() {
         alt=""
         width={1036}
         height={836}
-        sizes="(min-width: 1024px) 52vw, (min-width: 640px) 82vw, 112vw"
+        sizes="(min-width: 1024px) 40vw, (min-width: 640px) 65vw, 92vw"
         preload
       />
 
       <div className={styles.iconCluster} aria-hidden="true">
+        <span className={styles.orbit} />
         {techIcons.map((icon) => (
           <span
             key={icon.name}

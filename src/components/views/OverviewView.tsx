@@ -17,15 +17,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
             "linear-gradient(120deg, var(--d365-navy) 0%, var(--d365-navy-2) 45%, #0f3d6e 100%)",
         }}
       >
-        <div
-          className="orb-float pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full opacity-20"
-          style={{ background: "radial-gradient(circle, #4aa5f0, transparent 70%)" }}
-        />
-        <div
-          className="orb-float-delayed pointer-events-none absolute -bottom-24 right-40 h-72 w-72 rounded-full opacity-[0.14]"
-          style={{ background: "radial-gradient(circle, #8764b8, transparent 70%)" }}
-        />
-        <div className="relative z-10 grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(22rem,0.65fr)]">
+        <div className="relative z-10 grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(24rem,0.8fr)]">
           <div className="min-w-0">
             <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
               {profile.title}
