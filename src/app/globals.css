@@ -26,6 +26,32 @@
   --sidebar-active: #eff6fc;
 }
 
+html.dark {
+  color-scheme: dark;
+  --d365-navy: #07111f;
+  --d365-navy-2: #0e1b2f;
+  --d365-blue: #479ef5;
+  --d365-blue-hover: #62abf5;
+  --d365-blue-light: #102d47;
+  --d365-teal: #2aa0a4;
+  --d365-green: #54b987;
+  --d365-purple: #a78bd4;
+  --d365-red: #e36d62;
+  --d365-gold: #d6b44c;
+
+  --surface: #111820;
+  --surface-raised: #18212b;
+  --border: #303b47;
+  --border-strong: #465362;
+  --text: #f3f2f1;
+  --text-secondary: #c8c6c4;
+  --text-muted: #a19f9d;
+
+  --sidebar-bg: #151d26;
+  --sidebar-hover: #222d38;
+  --sidebar-active: #12324d;
+}
+
 @theme inline {
   --color-background: var(--surface);
   --color-foreground: var(--text);
@@ -53,6 +79,21 @@ body {
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+html.dark .bg-white {
+  background-color: var(--surface-raised);
+}
+
+html.dark .ring-white,
+html.dark .ring-white\/20,
+html.dark .ring-white\/30 {
+  --tw-ring-color: rgba(255, 255, 255, 0.22);
+}
+
+html.dark *::-webkit-scrollbar-thumb {
+  background: #465362;
+  background-clip: content-box;
 }
 
 /* Thin Fluent-style scrollbars */
@@ -95,6 +136,21 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.panel-in {
+  animation: panelIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Staggered entrance for card grids */

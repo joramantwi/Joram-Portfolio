@@ -157,7 +157,7 @@ function buildIndex(): SearchItem[] {
   return items;
 }
 
-type SearchContextValue = { open: () => void };
+type SearchContextValue = { open: () => void; navigate: (view: ViewKey) => void };
 const SearchContext = createContext<SearchContextValue | null>(null);
 
 export function useSearch(): SearchContextValue {
@@ -262,7 +262,7 @@ export function SearchProvider({
   }
 
   return (
-    <SearchContext.Provider value={{ open }}>
+    <SearchContext.Provider value={{ open, navigate: onNavigate }}>
       {children}
       {isOpen && (
         <div

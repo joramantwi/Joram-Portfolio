@@ -399,3 +399,49 @@ export const education: Education[] = [
     date: "2015 – 2019",
   },
 ];
+
+export type Hobby = {
+  name: string;
+  description: string;
+  accent: string;
+  icon: "hiking" | "anime" | "boxing" | "bass" | "travel" | "investing";
+};
+
+export const hobbies: Hobby[] = [
+  {
+    name: "Hiking",
+    description: "Long trails, open views and a proper reset away from screens.",
+    accent: "#107c41",
+    icon: "hiking",
+  },
+  {
+    name: "Anime & Manhwa",
+    description: "Big worlds, smart character arcs and stories that reward curiosity.",
+    accent: "#8764b8",
+    icon: "anime",
+  },
+  {
+    name: "Boxing",
+    description: "Discipline, sharp fundamentals and the satisfaction of steady progress.",
+    accent: "#c33d2e",
+    icon: "boxing",
+  },
+  {
+    name: "Playing Bass Guitar",
+    description: "Finding the groove and learning how the right foundation holds everything together.",
+    accent: "#c19c00",
+    icon: "bass",
+  },
+  {
+    name: "Travel",
+    description: "New places, local food and seeing how differently people live and work.",
+    accent: "#038387",
+    icon: "travel",
+  },
+  {
+    name: "Investing",
+    description: "Studying businesses, thinking long term and making informed decisions.",
+    accent: "#0f6cbd",
+    icon: "investing",
+  },
+];
