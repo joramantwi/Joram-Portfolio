@@ -153,6 +153,73 @@ html.dark *::-webkit-scrollbar-thumb {
   animation: panelIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes cashFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -32px, 0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--cash-drift), calc(100vh - 48px), 0) rotate(var(--cash-rotation));
+  }
+}
+
+.cash-drop {
+  position: absolute;
+  top: 0;
+  display: grid;
+  width: 34px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid #68b98b;
+  border-radius: 2px;
+  background: #dff6e8;
+  color: #0b6a37;
+  box-shadow: inset 0 0 0 2px rgba(16, 124, 65, 0.1), 0 3px 8px rgba(0, 0, 0, 0.14);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0;
+  animation-name: cashFall;
+  animation-timing-function: cubic-bezier(0.32, 0.1, 0.42, 1);
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+}
+
+.cash-drop::before,
+.cash-drop::after {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 1px solid rgba(16, 124, 65, 0.5);
+  border-radius: 50%;
+  content: "";
+}
+
+.cash-drop::before { left: 3px; }
+.cash-drop::after { right: 3px; }
+
+@keyframes cashSecret {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -12px) scale(0.96);
+  }
+  10%, 72% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -8px) scale(0.98);
+  }
+}
+
+.cash-secret {
+  animation: cashSecret 4.2s ease both;
+}
+
 /* Staggered entrance for card grids */
 .stagger-children > * {
   animation: fadeInUp 0.4s ease both;
@@ -218,5 +285,10 @@ html.dark *::-webkit-scrollbar-thumb {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .cash-secret {
+    opacity: 1;
+    animation: none !important;
   }
 }

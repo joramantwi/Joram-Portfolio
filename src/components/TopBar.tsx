@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
 import {
   BookOpen,
   ChartNoAxesCombined,
@@ -33,11 +33,26 @@ const hobbyIcons: Record<Hobby["icon"], ComponentType<{ size?: number }>> = {
   investing: ChartNoAxesCombined,
 };
 
+type CashDrop = {
+  id: number;
+  left: number;
+  drift: number;
+  delay: number;
+  duration: number;
+  rotation: number;
+};
+
 export default function TopBar() {
   const { open, navigate } = useSearch();
   const [hobbiesOpen, setHobbiesOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [cashDrops, setCashDrops] = useState<CashDrop[]>([]);
+  const [secretVisible, setSecretVisible] = useState(false);
   const hobbiesContentRef = useRef<HTMLDivElement>(null);
+  const cashClickCount = useRef(0);
+  const cashId = useRef(0);
+  const cashTimers = useRef<number[]>([]);
+  const secretRevealed = useRef(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("portfolio-theme");
@@ -56,11 +71,48 @@ export default function TopBar() {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [hobbiesOpen]);
 
+  useEffect(() => {
+    return () => cashTimers.current.forEach((timer) => window.clearTimeout(timer));
+  }, []);
+
   const toggleTheme = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("portfolio-theme", next ? "dark" : "light");
+  };
+
+  const openContact = () => {
+    setSecretVisible(false);
+    navigate("contact");
+  };
+
+  const makeItRain = () => {
+    cashClickCount.current += 1;
+    const click = cashClickCount.current;
+    const dropCount = click === 1 ? 1 + Math.floor(Math.random() * 3) : 1;
+    const batch = Array.from({ length: dropCount }, (_, index): CashDrop => ({
+      id: cashId.current++,
+      left: 3 + Math.random() * 94,
+      drift: -70 + Math.random() * 140,
+      delay: index * 120 + Math.random() * 180,
+      duration: 5000 + Math.random() * 2500,
+      rotation: -55 + Math.random() * 110,
+    }));
+
+    setCashDrops((current) => [...current.slice(-120), ...batch]);
+    const ids = new Set(batch.map((drop) => drop.id));
+    cashTimers.current.push(
+      window.setTimeout(() => {
+        setCashDrops((current) => current.filter((drop) => !ids.has(drop.id)));
+      }, 8000)
+    );
+
+    if (click >= 30 && !secretRevealed.current) {
+      secretRevealed.current = true;
+      setSecretVisible(true);
+      cashTimers.current.push(window.setTimeout(openContact, 4300));
+    }
   };
 
   return (
@@ -108,7 +160,7 @@ export default function TopBar() {
           >
             {dark ? <Sun size={17} /> : <Lightbulb size={17} />}
           </TopBarButton>
-          <TopBarButton label="Get in touch" onClick={() => navigate("contact")}>
+          <TopBarButton label="Make it rain" onClick={makeItRain} mobile>
             <Plus size={18} />
           </TopBarButton>
           <TopBarButton
@@ -145,6 +197,47 @@ export default function TopBar() {
           </button>
         </div>
       </header>
+
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 top-12 z-40 overflow-hidden" aria-hidden="true">
+        {cashDrops.map((drop) => (
+          <span
+            key={drop.id}
+            className="cash-drop"
+            style={
+              {
+                left: `${drop.left}%`,
+                animationDelay: `${drop.delay}ms`,
+                animationDuration: `${drop.duration}ms`,
+                "--cash-drift": `${drop.drift}px`,
+                "--cash-rotation": `${drop.rotation}deg`,
+              } as CSSProperties
+            }
+          >
+            <span>$</span>
+          </span>
+        ))}
+      </div>
+
+      {secretVisible && (
+        <button
+          onClick={openContact}
+          className="cash-secret fixed left-1/2 top-20 z-50 w-[min(90vw,390px)] -translate-x-1/2 rounded-lg border px-5 py-4 text-left shadow-2xl"
+          style={{
+            background: "var(--surface-raised)",
+            borderColor: "var(--d365-green)",
+            color: "var(--text)",
+          }}
+          aria-live="polite"
+        >
+          <span className="block text-[11px] font-semibold uppercase tracking-wide text-[var(--d365-green)]">
+            Secret unlocked
+          </span>
+          <span className="mt-1 block text-[16px] font-semibold">Got a job for me? Let&apos;s talk.</span>
+          <span className="mt-1 block text-[12.5px] text-[var(--text-secondary)]">
+            Opening contact details...
+          </span>
+        </button>
+      )}
 
       {hobbiesOpen && (
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="hobbies-title">
