@@ -3,7 +3,6 @@
 import { Briefcase, Sparkles, FolderKanban, TrendingUp, MapPin, ArrowRight } from "lucide-react";
 import { profile, kpis, experiences, skillGroups, projects } from "@/data/portfolio";
 import { Tile, Badge, CountUp } from "../ui";
-import TechLounge from "../TechLounge";
 import type { ViewKey } from "../nav";
 
 export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
@@ -17,7 +16,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
             "linear-gradient(120deg, var(--d365-navy) 0%, var(--d365-navy-2) 45%, #0f3d6e 100%)",
         }}
       >
-        <div className="relative z-10 grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(24rem,0.8fr)]">
+        <div className="relative z-10">
           <div className="min-w-0">
             <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
               {profile.title}
@@ -34,7 +33,8 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
             <div className="mt-5 flex flex-wrap gap-2">
               <button
                 onClick={() => onNavigate("projects")}
-                className="flex items-center gap-1.5 rounded bg-white px-4 py-2 text-[13px] font-semibold text-[var(--d365-navy)] transition-transform hover:-translate-y-0.5"
+                className="flex items-center gap-1.5 rounded px-4 py-2 text-[13px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ background: "var(--hero-primary-bg)", color: "var(--hero-primary-text)" }}
               >
                 View projects <ArrowRight size={15} />
               </button>
@@ -46,8 +46,6 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
               </button>
             </div>
           </div>
-
-          <TechLounge />
         </div>
       </div>
 

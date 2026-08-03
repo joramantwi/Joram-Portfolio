@@ -194,7 +194,8 @@ export default function SkillsView() {
             className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-0"
             style={{
               borderColor: "var(--border)",
-              background: "linear-gradient(120deg, var(--d365-blue-light) 0%, white 70%)",
+              background:
+                "linear-gradient(120deg, var(--d365-blue-light) 0%, var(--journey-end) 70%)",
             }}
           >
         {JOURNEY.map((p, i) => (

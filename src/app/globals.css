@@ -24,6 +24,9 @@
   --sidebar-bg: #ffffff;
   --sidebar-hover: #f3f2f1;
   --sidebar-active: #eff6fc;
+  --journey-end: #ffffff;
+  --hero-primary-bg: #ffffff;
+  --hero-primary-text: #0b1524;
 }
 
 html.dark {
@@ -50,6 +53,9 @@ html.dark {
   --sidebar-bg: #151d26;
   --sidebar-hover: #222d38;
   --sidebar-active: #12324d;
+  --journey-end: #18212b;
+  --hero-primary-bg: #f3f2f1;
+  --hero-primary-text: #0b1524;
 }
 
 @theme inline {
