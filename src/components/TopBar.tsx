@@ -4,9 +4,9 @@ import { useEffect, useRef, useState, type ComponentType, type CSSProperties } f
 import {
   BookOpen,
   ChartNoAxesCombined,
-  CircleUserRound,
   Dumbbell,
   Footprints,
+  Gamepad2,
   Guitar,
   HelpCircle,
   Lightbulb,
@@ -31,6 +31,7 @@ const hobbyIcons: Record<Hobby["icon"], ComponentType<{ size?: number }>> = {
   bass: Guitar,
   travel: Plane,
   investing: ChartNoAxesCombined,
+  gaming: Gamepad2,
 };
 
 type CashDrop = {
@@ -164,7 +165,7 @@ export default function TopBar() {
             <Plus size={18} />
           </TopBarButton>
           <TopBarButton
-            label="When I'm not building"
+            label="When I'm not behind the screen"
             onClick={() => setHobbiesOpen(true)}
             active={hobbiesOpen}
             mobile
@@ -260,7 +261,7 @@ export default function TopBar() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <h2 id="hobbies-title" className="text-[19px] font-semibold text-[var(--text)]">
-                    When I&apos;m not building
+                    When I&apos;m not behind the screen
                   </h2>
                   <p className="mt-1 text-[13px] leading-relaxed text-[var(--text-secondary)]">
                     The things that keep me curious, grounded and moving outside of technology.
@@ -301,19 +302,6 @@ export default function TopBar() {
                 })}
               </div>
 
-              <div
-                className="mt-4 rounded-lg border p-4"
-                style={{ borderColor: "var(--border)", background: "var(--surface)" }}
-              >
-                <div className="flex items-center gap-2 text-[12px] font-semibold text-[var(--text)]">
-                  <CircleUserRound size={15} style={{ color: "var(--d365-teal)" }} />
-                  More than a CV
-                </div>
-                <p className="mt-1.5 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
-                  Good solutions come from broad interests. Each of these shapes how I think about discipline,
-                  creativity, risk and people.
-                </p>
-              </div>
             </div>
           </aside>
         </div>

@@ -404,7 +404,7 @@ export type Hobby = {
   name: string;
   description: string;
   accent: string;
-  icon: "hiking" | "anime" | "boxing" | "bass" | "travel" | "investing";
+  icon: "hiking" | "anime" | "boxing" | "bass" | "travel" | "investing" | "gaming";
 };
 
 export const hobbies: Hobby[] = [
@@ -443,5 +443,11 @@ export const hobbies: Hobby[] = [
     description: "Studying businesses, thinking long term and making informed decisions.",
     accent: "#0f6cbd",
     icon: "investing",
+  },
+  {
+    name: "Gaming",
+    description: "Strategy, competition and getting immersed in worlds built around great ideas.",
+    accent: "#d83b82",
+    icon: "gaming",
   },
 ];
