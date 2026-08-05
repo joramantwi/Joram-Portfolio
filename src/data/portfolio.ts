@@ -400,6 +400,55 @@ export const certificationGoals: CertificationGoal[] = [
   },
 ];
 
+export type RoadmapStep = {
+  exam: string;
+  name: string;
+  level: "Fundamentals" | "Associate" | "Expert";
+  focus: string;
+  optional?: boolean;
+};
+
+// Power Platform certification roadmap (excluding Applied Skills), in the order I'm working through it.
+export const certificationRoadmap: RoadmapStep[] = [
+  {
+    exam: "PL-900",
+    name: "Power Platform Fundamentals",
+    level: "Fundamentals",
+    focus: "Entry-level foundation across Power Apps, Power Automate, Power Pages and Copilot Studio.",
+  },
+  {
+    exam: "PL-200",
+    name: "Power Platform Functional Consultant",
+    level: "Associate",
+    focus: "Analyse business requirements and configure the right Power Platform tools for the job.",
+  },
+  {
+    exam: "PL-400",
+    name: "Power Platform Developer",
+    level: "Associate",
+    focus: "Build, extend and integrate model-driven and canvas apps with pro-dev customisation.",
+  },
+  {
+    exam: "PL-500",
+    name: "Power Automate RPA Developer",
+    level: "Associate",
+    focus: "Design and manage robotic process automation with desktop and cloud flows.",
+    optional: true,
+  },
+  {
+    exam: "PL-600",
+    name: "Power Platform Solutions Architect",
+    level: "Expert",
+    focus: "Lead end-to-end solution design — the highest-level Power Platform certification.",
+  },
+  {
+    exam: "AZ-900",
+    name: "Azure Fundamentals",
+    level: "Fundamentals",
+    focus: "Core cloud concepts and Azure services underpinning the wider Microsoft stack.",
+  },
+];
+
 export type Education = {
   qualification: string;
   institution: string;

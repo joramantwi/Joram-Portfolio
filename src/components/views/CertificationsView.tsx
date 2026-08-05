@@ -1,13 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { BadgeCheck, GraduationCap, ExternalLink, ShieldCheck, Target } from "lucide-react";
-import { certifications, certificationGoals, education, profile } from "@/data/portfolio";
+import { BadgeCheck, GraduationCap, ExternalLink, ShieldCheck, Target, Route } from "lucide-react";
+import {
+  certifications,
+  certificationGoals,
+  certificationRoadmap,
+  education,
+  profile,
+} from "@/data/portfolio";
 import { Tile } from "../ui";
+
+const levelColor = (level: string) =>
+  level === "Expert" ? "#c19c00" : level === "Associate" ? "#8764b8" : "#0f6cbd";
 
 export default function CertificationsView() {
   return (
-    <div className="grid items-start gap-4 lg:grid-cols-2">
+    <div className="space-y-4">
+      <div className="grid items-start gap-4 lg:grid-cols-2">
       <Tile title="Certifications" icon={BadgeCheck} accent="#8764b8">
         <div className="p-4">
           <ul className="stagger-children space-y-3">
@@ -185,6 +195,64 @@ export default function CertificationsView() {
             </li>
           ))}
         </ul>
+      </Tile>
+      </div>
+
+      <Tile title="Certification roadmap" icon={Route} accent="#8764b8">
+        <div className="p-4">
+          <p className="mb-4 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
+            The Power Platform path I&apos;m working through, from fundamentals to solution architect
+            (excluding Applied Skills), alongside my current focus on the Agentic AI architect
+            certification.
+          </p>
+          <ol className="stagger-children grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {certificationRoadmap.map((s, i) => {
+              const color = levelColor(s.level);
+              return (
+                <li
+                  key={s.exam}
+                  className="flex flex-col rounded-lg border bg-white p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                  style={{ borderColor: "var(--border)" }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold text-white"
+                      style={{ background: color }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span
+                      className="rounded px-1.5 py-0.5 text-[11px] font-semibold"
+                      style={{ background: `${color}14`, color }}
+                    >
+                      {s.exam}
+                    </span>
+                    <span
+                      className="ml-auto text-[10.5px] font-semibold uppercase tracking-wide"
+                      style={{ color }}
+                    >
+                      {s.level}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-[13.5px] font-semibold leading-snug text-[var(--text)]">
+                    {s.name}
+                  </p>
+                  <p className="mt-1 text-[12px] leading-relaxed text-[var(--text-secondary)]">
+                    {s.focus}
+                  </p>
+                  {s.optional && (
+                    <span
+                      className="mt-2 inline-flex w-fit items-center rounded-full border px-2 py-0.5 text-[10.5px] font-semibold text-[var(--text-muted)]"
+                      style={{ borderColor: "var(--border-strong)" }}
+                    >
+                      Optional
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </Tile>
     </div>
   );
