@@ -1,9 +1,116 @@
 "use client";
 
-import { Briefcase, Sparkles, FolderKanban, TrendingUp, MapPin, ArrowRight } from "lucide-react";
-import { profile, kpis, experiences, skillGroups, projects } from "@/data/portfolio";
+import { useEffect, useState } from "react";
+import {
+  Briefcase,
+  Sparkles,
+  FolderKanban,
+  TrendingUp,
+  Award,
+  MapPin,
+  ArrowRight,
+  LayoutGrid,
+  AppWindow,
+  Workflow,
+  Globe,
+  Bot,
+  SquareTerminal,
+  BrainCircuit,
+  FlaskConical,
+  Database,
+  Cloud,
+  Building2,
+} from "lucide-react";
+import { profile, experiences, projects, certifications } from "@/data/portfolio";
 import { Tile, Badge, CountUp } from "../ui";
 import type { ViewKey } from "../nav";
+
+const microsoftStack = [
+  { name: "Power Platform", Icon: LayoutGrid, color: "#b36ae2" },
+  { name: "Power Apps", Icon: AppWindow, color: "#d264a9" },
+  { name: "Power Automate", Icon: Workflow, color: "#4b8df8" },
+  { name: "Power Pages", Icon: Globe, color: "#2bb6d8" },
+  { name: "Copilot Studio", Icon: Bot, color: "#8e6be6" },
+  { name: "Microsoft 365 Copilot", Icon: Sparkles, color: "#e267c0" },
+  { name: "GitHub Copilot", Icon: SquareTerminal, color: "#d8dee9" },
+  { name: "AI Builder", Icon: BrainCircuit, color: "#f2a63b" },
+  { name: "Microsoft AI Foundry", Icon: FlaskConical, color: "#5aa8ff" },
+  { name: "Dataverse", Icon: Database, color: "#33b77e" },
+  { name: "Azure", Icon: Cloud, color: "#008ad7" },
+  { name: "Dynamics 365", Icon: Building2, color: "#4b7be0" },
+] as const;
+
+function CertificationsCard({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
+  const [index, setIndex] = useState(0);
+  const count = certifications.length;
+
+  useEffect(() => {
+    if (count <= 1) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % count), 4500);
+    return () => clearInterval(id);
+  }, [count]);
+
+  const cert = certifications[Math.min(index, count - 1)];
+  const shortName = cert.name.replace(/^Microsoft Certified:\s*/, "");
+
+  return (
+    <button
+      onClick={() => onNavigate("certifications")}
+      className="card-lift group relative flex w-full items-center gap-4 overflow-hidden rounded-lg border bg-white p-4 text-left shadow-[0_1.6px_3.6px_rgba(0,0,0,0.08),0_0.3px_0.9px_rgba(0,0,0,0.06)]"
+      style={{ borderColor: "var(--border)" }}
+    >
+      <span
+        className="pointer-events-none absolute inset-y-0 left-0 w-1"
+        style={{ background: "#8764b8" }}
+        aria-hidden="true"
+      />
+      {cert.badge ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={cert.badge} alt="" className="h-16 w-16 shrink-0 drop-shadow-sm" />
+      ) : (
+        <span className="grid h-16 w-16 shrink-0 place-items-center rounded-xl" style={{ background: "#8764b814", color: "#8764b8" }}>
+          <Award size={28} />
+        </span>
+      )}
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <Award size={15} style={{ color: "#8764b8" }} />
+          <span className="text-[12px] font-medium text-[var(--text-secondary)]">Certifications</span>
+          {count > 1 && (
+            <span className="rounded-full px-1.5 py-0.5 text-[10px] font-semibold" style={{ background: "#8764b81f", color: "#8764b8" }}>
+              {count}
+            </span>
+          )}
+          <ArrowRight
+            size={15}
+            className="ml-auto text-[var(--text-muted)] opacity-0 transition-opacity group-hover:opacity-100"
+          />
+        </div>
+        <p className="mt-1.5 line-clamp-2 text-[14px] font-semibold leading-snug text-[var(--text)]">
+          {shortName}
+        </p>
+        <p className="mt-0.5 text-[12px] text-[var(--text-muted)]">
+          {cert.issuer} · {cert.date}
+        </p>
+        {count > 1 && (
+          <div className="mt-2 flex gap-1.5">
+            {certifications.map((_, i) => (
+              <span
+                key={i}
+                aria-hidden="true"
+                className="h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  width: i === index ? 16 : 6,
+                  background: i === index ? "#8764b8" : "var(--border-strong)",
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </button>
+  );
+}
 
 export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
   return (
@@ -49,106 +156,127 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
         </div>
       </div>
 
-      {/* KPI tiles */}
-      <div className="stagger-children grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {kpis.map((k) => (
-          <Tile key={k.label} className="card-lift p-4">
-            <div className="flex items-start justify-between">
-              <span className="text-[12px] font-medium text-[var(--text-secondary)]">{k.label}</span>
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: k.accent }} />
-            </div>
-            <div className="mt-2 text-3xl font-bold tracking-tight" style={{ color: k.accent }}>
-              <CountUp value={k.value} />
-            </div>
-            <div className="mt-1 text-[12px] text-[var(--text-muted)]">{k.caption}</div>
-          </Tile>
-        ))}
+      {/* Highlights: years in tech + certifications */}
+      <div className="stagger-children grid gap-4 sm:grid-cols-2">
+        <button
+          onClick={() => onNavigate("experience")}
+          className="card-lift group relative flex flex-col overflow-hidden rounded-lg border bg-white p-4 text-left shadow-[0_1.6px_3.6px_rgba(0,0,0,0.08),0_0.3px_0.9px_rgba(0,0,0,0.06)]"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <span
+            className="pointer-events-none absolute inset-y-0 left-0 w-1"
+            style={{ background: "#0f6cbd" }}
+            aria-hidden="true"
+          />
+          <div className="flex items-center gap-2.5">
+            <span
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-lg"
+              style={{ background: "#0f6cbd14", color: "#0f6cbd" }}
+            >
+              <TrendingUp size={18} />
+            </span>
+            <span className="text-[12px] font-medium text-[var(--text-secondary)]">Years in tech</span>
+            <ArrowRight
+              size={15}
+              className="ml-auto text-[var(--text-muted)] opacity-0 transition-opacity group-hover:opacity-100"
+            />
+          </div>
+          <div className="mt-3 text-3xl font-bold tracking-tight text-[var(--text)]">
+            <CountUp value="9+" />
+          </div>
+          <div className="mt-1 text-[12px] text-[var(--text-muted)]">Since 2017</div>
+        </button>
+
+        <CertificationsCard onNavigate={onNavigate} />
       </div>
 
-      {/* Two columns */}
-      <div className="grid gap-4 lg:grid-cols-3">
-        {/* Recent experience */}
-        <Tile
-          title="Recent Experience"
-          icon={Briefcase}
-          className="lg:col-span-2"
-          action={
-            <button
-              onClick={() => onNavigate("experience")}
-              className="text-[12px] font-medium text-[var(--d365-blue)] hover:underline"
-            >
-              See all
-            </button>
-          }
-        >
-          <table className="w-full text-[13px]">
-            <thead>
-              <tr className="border-b text-left text-[11px] uppercase tracking-wide text-[var(--text-muted)]" style={{ borderColor: "var(--border)" }}>
-                <th className="px-4 py-2 font-semibold">Role</th>
-                <th className="hidden px-4 py-2 font-semibold sm:table-cell">Organisation</th>
-                <th className="px-4 py-2 font-semibold">Period</th>
-              </tr>
-            </thead>
-            <tbody>
-              {experiences.slice(0, 4).map((e) => (
-                <tr
-                  key={e.role + e.company}
-                  className="border-b transition-colors hover:bg-[var(--sidebar-hover)]"
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  <td className="px-4 py-2.5">
-                    <span className="font-medium text-[var(--d365-blue-hover)]">{e.role}</span>
-                    {e.current && (
-                      <span className="ml-2 align-middle">
-                        <Badge color="#107c41">Current</Badge>
-                      </span>
-                    )}
-                  </td>
-                  <td className="hidden px-4 py-2.5 text-[var(--text-secondary)] sm:table-cell">{e.company}</td>
-                  <td className="px-4 py-2.5 text-[var(--text-secondary)]">{e.period}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Tile>
-
-        {/* Top skills */}
-        <Tile title="Skill Areas" icon={Sparkles} accent="#8764b8">
-          <div className="p-2">
-            {skillGroups.slice(0, 5).map((g, i) => {
-              const accent = ["#0f6cbd", "#038387", "#107c41", "#8764b8", "#c19c00"][i % 5];
-              return (
-                <button
-                  key={g.category}
-                  onClick={() => onNavigate("skills")}
-                  className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-[var(--sidebar-hover)]"
-                >
-                  <span className="flex min-w-0 items-center gap-2.5">
-                    <span
-                      className="h-2 w-2 shrink-0 rounded-full"
-                      style={{ background: accent }}
-                    />
-                    <span className="truncate text-[13px] font-medium text-[var(--text)]">
-                      {g.category}
+      {/* Recent experience */}
+      <Tile
+        title="Recent Experience"
+        icon={Briefcase}
+        action={
+          <button
+            onClick={() => onNavigate("experience")}
+            className="text-[12px] font-medium text-[var(--d365-blue)] hover:underline"
+          >
+            See all
+          </button>
+        }
+      >
+        <table className="w-full text-[13px]">
+          <thead>
+            <tr className="border-b text-left text-[11px] uppercase tracking-wide text-[var(--text-muted)]" style={{ borderColor: "var(--border)" }}>
+              <th className="px-4 py-2 font-semibold">Role</th>
+              <th className="hidden px-4 py-2 font-semibold sm:table-cell">Organisation</th>
+              <th className="px-4 py-2 font-semibold">Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            {experiences.slice(0, 4).map((e) => (
+              <tr
+                key={e.role + e.company}
+                className="border-b transition-colors hover:bg-[var(--sidebar-hover)]"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <td className="px-4 py-2.5">
+                  <span className="font-medium text-[var(--d365-blue-hover)]">{e.role}</span>
+                  {e.current && (
+                    <span className="ml-2 align-middle">
+                      <Badge color="#107c41">Current</Badge>
                     </span>
-                  </span>
-                  <span
-                    className="shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold"
-                    style={{ background: `${accent}14`, color: accent }}
-                  >
-                    {g.skills.length} skills
-                  </span>
-                </button>
-              );
-            })}
+                  )}
+                </td>
+                <td className="hidden px-4 py-2.5 text-[var(--text-secondary)] sm:table-cell">{e.company}</td>
+                <td className="px-4 py-2.5 text-[var(--text-secondary)]">{e.period}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Tile>
+
+      {/* Microsoft stack — gradient splash */}
+      <div
+        className="relative overflow-hidden rounded-lg p-5 text-white shadow-sm sm:p-6"
+        style={{
+          background:
+            "linear-gradient(120deg, var(--d365-navy) 0%, var(--d365-navy-2) 45%, #0f3d6e 100%)",
+        }}
+      >
+        <div
+          className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full"
+          style={{ background: "radial-gradient(circle, rgb(255 255 255 / 16%) 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10">
+          <div className="flex items-center justify-between gap-3">
+            <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-white/75 sm:text-[12px]">
+              <Sparkles size={14} /> Expertise across the Microsoft stack
+            </p>
             <button
               onClick={() => onNavigate("skills")}
-              className="mt-1 px-3 text-[12px] font-medium text-[var(--d365-blue)] hover:underline"
+              className="shrink-0 text-[12px] font-medium text-white/80 transition-colors hover:text-white hover:underline"
             >
               View all skills
             </button>
           </div>
-        </Tile>
+          <div className="stagger-children mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
+            {microsoftStack.map(({ name, Icon, color }) => (
+              <button
+                key={name}
+                onClick={() => onNavigate("skills")}
+                className="flex items-center gap-2.5 rounded-lg border border-white/[0.12] bg-white/[0.06] px-3 py-2.5 text-left backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.12]"
+              >
+                <span
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-md"
+                  style={{ background: `${color}26` }}
+                >
+                  <Icon size={16} style={{ color }} />
+                </span>
+                <span className="truncate text-[13px] font-medium text-white/90">{name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Highlighted projects */}

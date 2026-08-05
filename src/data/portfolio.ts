@@ -27,7 +27,7 @@ export type Kpi = {
 };
 
 export const kpis: Kpi[] = [
-  { label: "Years in tech", value: "8+", caption: "Since 2017", accent: "#0f6cbd" },
+  { label: "Years in tech", value: "9+", caption: "Since 2017", accent: "#0f6cbd" },
   { label: "Roles delivered", value: "5", caption: "Dev · CRM · Cloud", accent: "#107c41" },
   { label: "Certifications", value: "1", caption: "D365 Fundamentals", accent: "#8764b8" },
   { label: "Core platforms", value: "6", caption: "D365 · Power Platform", accent: "#c33d2e" },
