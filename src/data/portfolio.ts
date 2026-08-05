@@ -405,7 +405,7 @@ export type RoadmapStep = {
   name: string;
   level: "Fundamentals" | "Associate" | "Expert";
   focus: string;
-  optional?: boolean;
+  url: string;
 };
 
 // Power Platform certification roadmap (excluding Applied Skills), in the order I'm working through it.
@@ -415,37 +415,42 @@ export const certificationRoadmap: RoadmapStep[] = [
     name: "Power Platform Fundamentals",
     level: "Fundamentals",
     focus: "Entry-level foundation across Power Apps, Power Automate, Power Pages and Copilot Studio.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-fundamentals/",
   },
   {
     exam: "PL-200",
     name: "Power Platform Functional Consultant",
     level: "Associate",
     focus: "Analyse business requirements and configure the right Power Platform tools for the job.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-functional-consultant-associate/",
   },
   {
     exam: "PL-400",
     name: "Power Platform Developer",
     level: "Associate",
     focus: "Build, extend and integrate model-driven and canvas apps with pro-dev customisation.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-developer-associate/",
   },
   {
     exam: "PL-500",
     name: "Power Automate RPA Developer",
     level: "Associate",
     focus: "Design and manage robotic process automation with desktop and cloud flows.",
-    optional: true,
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-automate-rpa-developer-associate/",
   },
   {
     exam: "PL-600",
     name: "Power Platform Solutions Architect",
     level: "Expert",
     focus: "Lead end-to-end solution design — the highest-level Power Platform certification.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-solution-architect-expert/",
   },
   {
     exam: "AZ-900",
     name: "Azure Fundamentals",
     level: "Fundamentals",
     focus: "Core cloud concepts and Azure services underpinning the wider Microsoft stack.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
   },
 ];
 

@@ -209,45 +209,45 @@ export default function CertificationsView() {
             {certificationRoadmap.map((s, i) => {
               const color = levelColor(s.level);
               return (
-                <li
-                  key={s.exam}
-                  className="flex flex-col rounded-lg border bg-white p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold text-white"
-                      style={{ background: color }}
-                    >
-                      {i + 1}
-                    </span>
-                    <span
-                      className="rounded px-1.5 py-0.5 text-[11px] font-semibold"
-                      style={{ background: `${color}14`, color }}
-                    >
-                      {s.exam}
-                    </span>
-                    <span
-                      className="ml-auto text-[10.5px] font-semibold uppercase tracking-wide"
-                      style={{ color }}
-                    >
-                      {s.level}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-[13.5px] font-semibold leading-snug text-[var(--text)]">
-                    {s.name}
-                  </p>
-                  <p className="mt-1 text-[12px] leading-relaxed text-[var(--text-secondary)]">
-                    {s.focus}
-                  </p>
-                  {s.optional && (
-                    <span
-                      className="mt-2 inline-flex w-fit items-center rounded-full border px-2 py-0.5 text-[10.5px] font-semibold text-[var(--text-muted)]"
-                      style={{ borderColor: "var(--border-strong)" }}
-                    >
-                      Optional
-                    </span>
-                  )}
+                <li key={s.exam}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex h-full flex-col rounded-lg border bg-white p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold text-white"
+                        style={{ background: color }}
+                      >
+                        {i + 1}
+                      </span>
+                      <span
+                        className="rounded px-1.5 py-0.5 text-[11px] font-semibold"
+                        style={{ background: `${color}14`, color }}
+                      >
+                        {s.exam}
+                      </span>
+                      <span
+                        className="ml-auto text-[10.5px] font-semibold uppercase tracking-wide"
+                        style={{ color }}
+                      >
+                        {s.level}
+                      </span>
+                    </div>
+                    <p className="mt-2 flex items-center gap-1 text-[13.5px] font-semibold leading-snug text-[var(--text)]">
+                      {s.name}
+                      <ExternalLink
+                        size={13}
+                        className="shrink-0 text-[var(--text-muted)] opacity-0 transition-opacity group-hover:opacity-100"
+                      />
+                    </p>
+                    <p className="mt-1 text-[12px] leading-relaxed text-[var(--text-secondary)]">
+                      {s.focus}
+                    </p>
+                  </a>
                 </li>
               );
             })}
