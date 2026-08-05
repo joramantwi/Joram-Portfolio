@@ -350,15 +350,29 @@ export type Certification = {
   name: string;
   issuer: string;
   date: string;
+  exam?: string;
   badge?: string;
   credentialUrl?: string;
 };
+
+// Certification journey order (exam codes), excluding Applied Skills.
+// Earned certs are shown in the Overview carousel in this sequence; new badges slot in automatically.
+export const certRoadmap: string[] = [
+  "MB-910", // Dynamics 365 Fundamentals (CRM)
+  "PL-900", // Power Platform Fundamentals
+  "PL-200", // Power Platform Functional Consultant
+  "PL-400", // Power Platform Developer
+  "PL-500", // Power Automate RPA Developer
+  "PL-600", // Power Platform Solutions Architect
+  "AZ-900", // Azure Fundamentals
+];
 
 export const certifications: Certification[] = [
   {
     name: "Microsoft Certified: Dynamics 365 Fundamentals (CRM)",
     issuer: "Microsoft",
     date: "Dec 2023",
+    exam: "MB-910",
     badge: "/badges/d365-fundamentals.svg",
     credentialUrl:
       "https://learn.microsoft.com/api/credentials/share/en-us/JoramAntwi-5080/105DEDD0B17725D2?sharingId=2D2315E42F8E805",

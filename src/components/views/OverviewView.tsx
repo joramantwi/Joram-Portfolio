@@ -21,7 +21,7 @@ import {
   Cloud,
   Building2,
 } from "lucide-react";
-import { profile, experiences, projects, certifications } from "@/data/portfolio";
+import { profile, experiences, projects, certifications, certRoadmap } from "@/data/portfolio";
 import { Tile, Badge, CountUp } from "../ui";
 import type { ViewKey } from "../nav";
 
@@ -40,9 +40,16 @@ const microsoftStack = [
   { name: "Dynamics 365", Icon: Building2, color: "#4b7be0" },
 ] as const;
 
+// Earned certs ordered by the certification roadmap; unknown exams fall to the end.
+const roadmapRank = (exam?: string) => {
+  const i = exam ? certRoadmap.indexOf(exam) : -1;
+  return i === -1 ? certRoadmap.length : i;
+};
+const earnedCerts = [...certifications].sort((a, b) => roadmapRank(a.exam) - roadmapRank(b.exam));
+
 function CertificationsCard({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
   const [index, setIndex] = useState(0);
-  const count = certifications.length;
+  const count = earnedCerts.length;
 
   useEffect(() => {
     if (count <= 1) return;
@@ -50,7 +57,7 @@ function CertificationsCard({ onNavigate }: { onNavigate: (v: ViewKey) => void }
     return () => clearInterval(id);
   }, [count]);
 
-  const cert = certifications[Math.min(index, count - 1)];
+  const cert = earnedCerts[Math.min(index, count - 1)];
   const shortName = cert.name.replace(/^Microsoft Certified:\s*/, "");
 
   return (
@@ -94,7 +101,7 @@ function CertificationsCard({ onNavigate }: { onNavigate: (v: ViewKey) => void }
         </p>
         {count > 1 && (
           <div className="mt-2 flex gap-1.5">
-            {certifications.map((_, i) => (
+            {earnedCerts.map((_, i) => (
               <span
                 key={i}
                 aria-hidden="true"
