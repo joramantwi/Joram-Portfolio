@@ -30,16 +30,16 @@ const atAGlance: GlanceItem[] = [
   {
     title: "Pro-dev & customisation",
     description:
-      "Built plugins deployed through XrmToolBox, with configuration and customisation handled in Power Apps.",
-    chips: ["C# plugins", "XrmToolBox", "Configuration", "Customisation"],
+      "Developed C# Dataverse plug-ins and registered them using the Plugin Registration Tool, alongside JavaScript form customisation and solution-based deployment.",
+    chips: ["C# Dataverse plug-ins", "Plugin Registration Tool", "JavaScript customisation", "Solution deployment"],
     icon: Puzzle,
     color: "#8764b8",
   },
   {
     title: "ALM & solution management",
     description:
-      "Managed solutions promoted across Dev → UAT → Prod using Power Platform Pipelines.",
-    chips: ["Managed solutions", "Dev · UAT · Prod", "Power Platform Pipelines", "Azure DevOps"],
+      "Developed customisations in unmanaged solutions and promoted managed solutions through Development, Test/UAT and Production using Power Platform Pipelines.",
+    chips: ["Unmanaged development", "Managed promotion", "Power Platform Pipelines", "Development · Test/UAT · Production"],
     icon: GitBranch,
     color: "#038387",
   },

@@ -1,6 +1,6 @@
 export const profile = {
   name: "Joram Antwi",
-  title: "Dynamics 365 Specialist · Developer · AI",
+  title: "Dynamics 365 & Power Platform Specialist",
   headline: "Microsoft Dynamics 365 CE · Power Platform · CRM Solutions",
   // Profile / avatar image. Independent of the browser favicon (set in app/layout.tsx),
   // so changing this later won't affect the tab icon.
@@ -14,8 +14,8 @@ export const profile = {
   learnCredentials: "https://learn.microsoft.com/en-us/users/joramantwi-5080/credentials/",
   learnProfileLabel: "learn.microsoft.com/users/joramantwi-5080",
   summary: [
-    "I'm a solution architect at heart, using technology to solve real problems — a Dynamics 365 professional with a deep software engineering background, focused on bringing people, data and processes together to drive better business outcomes. Microsoft's business applications stack is home base: Dynamics 365 CE today, with a growing focus across the wider platform — CE, ERP and the Azure cloud.",
-    "I've led CRM migrations, redesigned systems end-to-end, and delivered automation with tools like Power Automate, custom plugins and third-party integrations such as Zapier. Coming from a development background means I can read and write code as well as configure — so I'm just as comfortable scoping a technical solution as I am sitting with stakeholders to turn what they need into something that genuinely works. Right now I'm going deep on AI and prompt engineering, exploring how they reshape CRM workflows and everyday business processes.",
+    "I help organisations design and improve Dynamics 365 and Power Platform solutions to solve real operational problems. With a strong software engineering background, I focus on joining up people, data, and processes to deliver measurable business outcomes.",
+    "I've led CRM migrations, redesigned systems end-to-end, and delivered automation with tools like Power Automate, custom plug-ins, and third-party integrations such as Zapier. My current direction is AI-enabled solution architecture, applying prompt engineering and practical AI use cases to strengthen CRM and business process delivery.",
   ],
 };
 
@@ -122,101 +122,78 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Dynamics 365 Apps",
+    category: "Dynamics 365 & Dataverse",
     skills: [
-      "Sales",
-      "Customer Service",
-      "Customer Voice",
-      "Supply Chain Management",
-    ],
-  },
-  {
-    category: "Dataverse & Model-Driven Apps",
-    skills: [
-      "Model-driven app design",
-      "Tables & relationships",
-      "Columns & data types",
+      "Dynamics 365 Sales",
+      "Dynamics 365 Customer Service",
+      "Dataverse data modelling",
       "Forms, views & business rules",
       "Business Process Flows",
-      "Command bar / Ribbon Workbench",
-      "Dataverse security roles",
+      "Command bar customisation",
     ],
   },
   {
     category: "Power Platform",
     skills: [
-      "Power Apps (canvas & model-driven)",
+      "Power Apps (model-driven & canvas)",
       "Power Automate cloud flows",
       "Power Pages",
       "Power BI",
-      "Connectors",
       "Copilot Studio",
     ],
   },
   {
-    category: "Pro-Dev & Extensibility",
+    category: "Pro-code extensibility",
     skills: [
-      "C# plug-ins",
+      "C# Dataverse plug-ins",
+      "Plugin Registration Tool",
       "JavaScript form scripting",
-      "Web API & REST",
-      "Azure App Registrations",
-      "XrmToolBox",
+      "Web API & REST integrations",
     ],
   },
   {
-    category: "ALM & Governance",
+    category: "ALM, security and governance",
     skills: [
       "Managed / unmanaged solutions",
-      "Solution layering",
-      "Environment strategy",
       "Power Platform Pipelines",
-      "Azure DevOps",
-      "Role-based security",
-      "GDPR & data retention",
+      "Dataverse security model",
+      "Data retention & compliance controls",
     ],
   },
   {
-    category: "Data & Integration",
+    category: "Integration and data",
     skills: [
       "Data migration & mapping",
-      "Duplicate detection & dedup",
+      "Duplicate detection and data quality",
       "Excel / CSV imports",
-      "Integration design",
-      "REST API & JSON",
+      "API integration design",
     ],
   },
   {
-    category: "Delivery & Consulting",
+    category: "Business analysis and delivery",
     skills: [
-      "Requirements gathering",
-      "Fit-gap analysis",
+      "Requirements discovery & fit-gap analysis",
       "Process mapping",
-      "User stories",
-      "Agile / Scrum",
-      "UAT support",
-      "End-user training",
-      "Technical documentation",
+      "User stories & backlog shaping",
+      "UAT facilitation",
+      "End-user training & documentation",
+      "CRM process optimisation",
     ],
   },
   {
-    category: "Engineering Foundations",
+    category: "Software engineering",
     skills: [
-      "JavaScript",
-      "C#",
-      "PHP",
-      "Python",
+      "JavaScript / TypeScript",
+      "C# / .NET",
       "Node.js",
-      "SQL & database design",
-      "Full-stack web development",
     ],
   },
   {
-    category: "AI & Emerging Tech",
+    category: "AI and emerging technology",
     skills: [
       "Microsoft Copilot",
-      "AI prompting",
-      "CRM process optimisation",
-      "AI use case design",
+      "Prompt engineering",
+      "AI use case design for CRM",
     ],
   },
 ];

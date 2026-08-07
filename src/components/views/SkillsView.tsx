@@ -41,20 +41,20 @@ import {
 } from "lucide-react";
 
 /* ---------------------------------------------------------------------------
- * The three chapters of the journey — software engineer → D365 → AI.
+ * The three chapters of the journey — engineering → delivery → AI direction.
  * ------------------------------------------------------------------------- */
 const JOURNEY: { icon: LucideIcon; title: string; note: string; accent: string }[] = [
   { icon: Code2, title: "Software Engineering", note: "Where I started", accent: "#0f6cbd" },
   {
     icon: LayoutGrid,
-    title: "Dynamics 365 & Power Platform",
+    title: "D365 & Power Platform Delivery",
     note: "My specialism today",
     accent: "#107c41",
   },
   {
     icon: Sparkles,
-    title: "AI Solution Architecture",
-    note: "Where I'm heading",
+    title: "AI-enabled Solution Architecture",
+    note: "Direction I'm building toward",
     accent: "#8764b8",
   },
 ];
@@ -65,64 +65,63 @@ const JOURNEY: { icon: LucideIcon; title: string; note: string; accent: string }
 type CategoryMeta = { icon: LucideIcon; accent: string; blurb: string };
 
 const CATEGORY_META: Record<string, CategoryMeta> = {
-  "Engineering Foundations": {
-    icon: Code2,
+  "Dynamics 365 & Dataverse": {
+    icon: LayoutGrid,
     accent: "#0f6cbd",
-    blurb: "The software-engineering background I build everything else on.",
+    blurb: "Microsoft business applications I configure, support and extend.",
+  },
+  "Power Platform": {
+    icon: Workflow,
+    accent: "#107c41",
+    blurb: "Low-code tooling I use to automate processes and extend CRM capability.",
+  },
+  "Pro-code extensibility": {
+    icon: Braces,
+    accent: "#8764b8",
+    blurb: "Code-first customisations for scenarios beyond out-of-the-box configuration.",
+  },
+  "ALM, security and governance": {
+    icon: ShieldCheck,
+    accent: "#c33d2e",
+    blurb: "Packaging, promoting and securing changes safely across environments.",
+  },
+  "Integration and data": {
+    icon: Cable,
+    accent: "#c19c00",
+    blurb: "Data migration, quality and API-based integration across systems.",
+  },
+  "Business analysis and delivery": {
+    icon: Users,
+    accent: "#0f6cbd",
+    blurb: "Translating business requirements into adopted solutions.",
+  },
+  "Software engineering": {
+    icon: Code2,
+    accent: "#038387",
+    blurb: "Development foundations that support pro-code Dynamics delivery.",
+  },
+  "AI and emerging technology": {
+    icon: Bot,
+    accent: "#8764b8",
+    blurb: "Applying prompt engineering and practical AI patterns in CRM contexts.",
   },
   "Dataverse & Model-Driven Apps": {
     icon: Database,
     accent: "#038387",
     blurb: "The data model and app-building layer beneath every D365 solution.",
   },
-  "Dynamics 365 Apps": {
-    icon: LayoutGrid,
-    accent: "#0f6cbd",
-    blurb: "The first-party business apps I configure and deliver on.",
-  },
-  "Power Platform": {
-    icon: Workflow,
-    accent: "#107c41",
-    blurb: "Low-code tools that extend and surface Dataverse data.",
-  },
-  "Pro-Dev & Extensibility": {
-    icon: Braces,
-    accent: "#8764b8",
-    blurb: "Code-first extensions where configuration alone isn't enough.",
-  },
-  "Data & Integration": {
-    icon: Cable,
-    accent: "#c19c00",
-    blurb: "Moving, cleaning and connecting data across systems.",
-  },
-  "ALM & Governance": {
-    icon: ShieldCheck,
-    accent: "#c33d2e",
-    blurb: "Shipping solutions safely across environments, with security and compliance.",
-  },
-  "Delivery & Consulting": {
-    icon: Users,
-    accent: "#0f6cbd",
-    blurb: "Turning business needs into shipped, adopted solutions.",
-  },
-  "AI & Emerging Tech": {
-    icon: Bot,
-    accent: "#8764b8",
-    blurb: "Exploring how AI fits into CRM workflows and business use cases.",
-  },
 };
 
-/** Order the skill set reads as a story, foundations → specialism → AI. */
+/** Order the skill set by market-facing specialism first, then breadth. */
 const CATEGORY_ORDER = [
-  "Engineering Foundations",
-  "Dataverse & Model-Driven Apps",
-  "Dynamics 365 Apps",
+  "Dynamics 365 & Dataverse",
   "Power Platform",
-  "Pro-Dev & Extensibility",
-  "Data & Integration",
-  "ALM & Governance",
-  "Delivery & Consulting",
-  "AI & Emerging Tech",
+  "Pro-code extensibility",
+  "ALM, security and governance",
+  "Integration and data",
+  "Business analysis and delivery",
+  "Software engineering",
+  "AI and emerging technology",
 ];
 
 /** Maps a skill name to a fitting icon via keywords, falling back to a default. */
@@ -184,9 +183,9 @@ export default function SkillsView() {
       <Tile title="My skill set" icon={Sparkles} accent="#8764b8">
         <div className="space-y-4 p-4 sm:p-5">
           <p className="max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
-            I started out as a software engineer and specialised into Microsoft Dynamics 365 and the
-            Power Platform. I'm now combining that engineering background with AI, working toward AI
-            solution architecture in the Dynamics 365 space.
+            I started out as a software engineer and specialised into Dynamics 365 and the Power
+            Platform. I'm now extending that foundation into AI-enabled solution architecture for CRM
+            and business process delivery.
           </p>
 
           {/* Journey strip */}
@@ -301,7 +300,7 @@ export default function SkillsView() {
       >
         <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
         <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
-        {groups.length} areas — from engineering foundations toward AI solution architecture.
+        {groups.length} areas — from D365 delivery through to AI-enabled solution architecture.
       </div>
     </div>
   );
