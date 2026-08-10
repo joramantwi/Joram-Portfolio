@@ -332,16 +332,15 @@ export type Certification = {
   credentialUrl?: string;
 };
 
-// Certification journey order (exam codes), excluding Applied Skills.
-// Earned certs are shown in the Overview carousel in this sequence; new badges slot in automatically.
+// Certification journey order (exam codes) — earned certs slot into the Overview carousel in this sequence.
 export const certRoadmap: string[] = [
-  "MB-910", // Dynamics 365 Fundamentals (CRM)
-  "PL-900", // Power Platform Fundamentals
-  "PL-200", // Power Platform Functional Consultant
+  "MB-910", // D365 Fundamentals (CRM) — earned
+  "MB-330", // Supply Chain Management Functional Consultant
   "PL-400", // Power Platform Developer
-  "PL-500", // Power Automate RPA Developer
-  "PL-600", // Power Platform Solutions Architect
-  "AZ-900", // Azure Fundamentals
+  "AB-620", // AI Agent Builder
+  "MB-230", // Customer Service Functional Consultant (optional path)
+  "AB-210", // Dynamics 365 Sales AI Consultant (optional path)
+  "AB-100", // Agentic AI Business Solutions Architect
 ];
 
 export const certifications: Certification[] = [
@@ -380,54 +379,57 @@ export const certificationGoals: CertificationGoal[] = [
 export type RoadmapStep = {
   exam: string;
   name: string;
-  level: "Fundamentals" | "Associate" | "Expert";
+  level: "Fundamentals" | "Associate" | "Expert" | "Advanced";
   focus: string;
   url: string;
+  optional?: boolean;
 };
 
-// Power Platform certification roadmap (excluding Applied Skills), in the order I'm working through it.
+// Revised certification plan — D365 ERP specialism, pro-dev extensibility, enterprise AI delivery.
 export const certificationRoadmap: RoadmapStep[] = [
   {
-    exam: "PL-900",
-    name: "Power Platform Fundamentals",
-    level: "Fundamentals",
-    focus: "Entry-level foundation across Power Apps, Power Automate, Power Pages and Copilot Studio.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-fundamentals/",
-  },
-  {
-    exam: "PL-200",
-    name: "Power Platform Functional Consultant",
+    exam: "MB-330",
+    name: "Supply Chain Management Functional Consultant",
     level: "Associate",
-    focus: "Analyse business requirements and configure the right Power Platform tools for the job.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-functional-consultant-associate/",
+    focus: "Directly supports ERP delivery — covers supply chain design, product management, procurement, warehouse and planning in Dynamics 365.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-functional-consultant-supply-chain-management/",
   },
   {
     exam: "PL-400",
     name: "Power Platform Developer",
     level: "Associate",
-    focus: "Build, extend and integrate model-driven and canvas apps with pro-dev customisation.",
+    focus: "Best technical differentiator — designing, developing, testing and troubleshooting Power Platform solution components and extension points.",
     url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-developer-associate/",
   },
   {
-    exam: "PL-500",
-    name: "Power Automate RPA Developer",
+    exam: "AB-620",
+    name: "AI Agent Builder",
     level: "Associate",
-    focus: "Design and manage robotic process automation with desktop and cloud flows.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-automate-rpa-developer-associate/",
+    focus: "Practical bridge into enterprise AI delivery — Copilot Studio, Power Platform, Microsoft 365 and Azure-integrated agent solutions.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/ai-agent-builder-associate/",
   },
   {
-    exam: "PL-600",
-    name: "Power Platform Solutions Architect",
-    level: "Expert",
-    focus: "Lead end-to-end solution design — the highest-level Power Platform certification.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-solution-architect-expert/",
+    exam: "MB-230",
+    name: "Dynamics 365 Customer Service Functional Consultant",
+    level: "Associate",
+    focus: "CE specialism for customer care, queues, SLAs, knowledge management and routing — relevant if the Service Analyst role is service-heavy.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-functional-consultant-customer-service-v3/",
+    optional: true,
   },
   {
-    exam: "AZ-900",
-    name: "Azure Fundamentals",
-    level: "Fundamentals",
-    focus: "Core cloud concepts and Azure services underpinning the wider Microsoft stack.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    exam: "AB-210",
+    name: "Dynamics 365 Sales AI Consultant",
+    level: "Associate",
+    focus: "AI-enhanced CRM specialism — Dynamics 365 Sales, Copilot, lead-to-cash, predictive insights and guided seller workflows.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-sales-ai-consultant-associate/",
+    optional: true,
+  },
+  {
+    exam: "AB-100",
+    name: "Agentic AI Business Solutions Architect",
+    level: "Advanced",
+    focus: "The architect destination — AI-first positioning across Dynamics 365, Copilot Studio and the Power Platform.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-business-solutions-architect/",
   },
 ];
 

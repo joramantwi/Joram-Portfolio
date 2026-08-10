@@ -12,7 +12,7 @@ import {
 import { Tile } from "../ui";
 
 const levelColor = (level: string) =>
-  level === "Expert" ? "#c19c00" : level === "Associate" ? "#8764b8" : "#0f6cbd";
+  level === "Expert" || level === "Advanced" ? "#c19c00" : level === "Associate" ? "#8764b8" : "#0f6cbd";
 
 export default function CertificationsView() {
   return (
@@ -201,9 +201,10 @@ export default function CertificationsView() {
       <Tile title="Certification roadmap" icon={Route} accent="#8764b8">
         <div className="p-4">
           <p className="mb-4 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
-            The Power Platform path I&apos;m working through, from fundamentals to solution architect
-            (excluding Applied Skills), alongside my current focus on the Agentic AI architect
-            certification.
+            Revised plan prioritising D365 ERP specialism, pro-dev extensibility and enterprise AI
+            delivery — removing retired credentials (PL-200, PL-600) and deprioritising
+            foundations I already demonstrate in practice. Two optional paths reflect how the Service
+            Analyst role develops.
           </p>
           <ol className="stagger-children grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {certificationRoadmap.map((s, i) => {
@@ -247,6 +248,14 @@ export default function CertificationsView() {
                     <p className="mt-1 text-[12px] leading-relaxed text-[var(--text-secondary)]">
                       {s.focus}
                     </p>
+                    {s.optional && (
+                      <span
+                        className="mt-2 inline-flex w-fit items-center rounded-full border px-2 py-0.5 text-[10.5px] font-semibold text-[var(--text-muted)]"
+                        style={{ borderColor: "var(--border-strong)" }}
+                      >
+                        Optional path
+                      </span>
+                    )}
                   </a>
                 </li>
               );
