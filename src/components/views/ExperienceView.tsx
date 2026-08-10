@@ -64,17 +64,13 @@ export default function ExperienceView() {
                 </span>
               </div>
 
-              <ul className="mt-4 space-y-2 pl-1">
-                {e.points.map((p, i) => (
-                  <li key={i} className="flex gap-2.5 text-[13px] leading-relaxed text-[var(--text-secondary)]">
-                    <span
-                      className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"
-                      style={{ background: e.current ? "var(--d365-green)" : "var(--d365-blue)" }}
-                    />
+              <div className="mt-4 space-y-3">
+                {e.paragraphs.map((p, i) => (
+                  <p key={i} className="text-[13px] leading-relaxed text-[var(--text-secondary)]">
                     {p}
-                  </li>
+                  </p>
                 ))}
-              </ul>
+              </div>
             </div>
           </article>
         ))}

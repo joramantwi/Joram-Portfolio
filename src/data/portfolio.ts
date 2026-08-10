@@ -40,7 +40,7 @@ export type Experience = {
   location: string;
   period: string;
   current?: boolean;
-  points: string[];
+  paragraphs: string[];
 };
 
 export const experiences: Experience[] = [
@@ -51,66 +51,56 @@ export const experiences: Experience[] = [
     location: "London",
     period: "Apr 2023 – Present",
     current: true,
-    points: [
-      "Delivered end-to-end redesign of D365 CE (Sales & Customer Service) — rebuilding the sitemap, entity model, forms, views, field mappings, and Business Process Flows, with command bar customisations built in Ribbon Workbench — establishing a scalable, well-structured solution used across Sales, Commercial, and Operations.",
-      "Designed and deployed a suite of Power Automate cloud flows to eliminate repetitive manual tasks, covering lead processing, case routing, and internal notifications — significantly reducing the administrative overhead on the CRM team.",
-      "Resolved long-standing data quality issues through a structured clean-up programme: duplicate detection rules, bulk deduplication, field validation, and Excel/CSV-based data mapping — resulting in a noticeably cleaner, more reliable dataset.",
-      "Architected and deployed a Power Pages portal with role-based access and Azure AD App Registrations, enabling secure external access to CRM data via configured API connections.",
-      "Built custom Power BI dashboards and dynamic marketing lists, giving stakeholders self-serve visibility into pipeline, case volumes, and segmentation — reducing reliance on manual reporting.",
-      "Led a CRM-integrated website redesign that embedded form capture directly into D365, improving lead data quality and creating a consistent, auditable intake process for the sales team.",
-      "Drove CRM adoption across the business through structured training sessions, desk-side coaching, and written user documentation tailored to each team's workflows.",
-      "Defined and enforced GDPR-compliant data retention policies and implemented BCDR-aligned backup procedures to meet organisational governance requirements.",
+    paragraphs: [
+      "Simplexity Travel is a UK-based travel management company delivering bespoke corporate and leisure travel services, with a strong emphasis on personal service and attention to detail. As CRM Manager, I took full ownership of the company’s Dynamics 365 model-driven application and led a ground-up redesign to build a more scalable, well-structured platform across Sales, Commercial and Operations.",
+      "I streamlined core business processes through Power Automate, improved the reliability of CRM data through structured cleansing and validation programmes, and introduced Power BI dashboards that gave stakeholders clearer visibility of pipeline performance, case volumes and customer segments. I also developed a secure Power Pages portal for independent contractors, integrated the company website directly with Dynamics 365 to improve lead data capture, and strengthened governance around access controls, data retention and business continuity.",
+      "Beyond the technical delivery, a significant part of my impact came from improving adoption across the business — through practical training, tailored documentation and ongoing support that helped each team build confidence and get more value from the platform.",
     ],
   },
   {
-    role: "IT Analyst (D365 CRM)",
+    role: "IT Analyst – D365 CRM",
     company: "Refugees at Home",
     website: "https://refugeesathome.org/",
     location: "London",
     period: "Jun 2020 – Apr 2023",
-    points: [
-      "Established an ITIL-aligned change management process and led a full CRM migration from Google Sheets & Zoho CRM to Microsoft D365 CE — managing requirements, stakeholder communication, data migration, and team onboarding through to full adoption.",
-      "Supported the full D365 CE solution build from scratch: requirements gathering, custom entity design, form and view configuration, Business Process Flows, and Dataverse field mappings to ensure clean, consistent data across the platform.",
-      "Defined Power Platform governance in the Admin Centre — configuring GDPR-aligned retention rules, business rules, and field-level security to protect sensitive case and personal data.",
-      "Built real-time Power BI dashboards connected to Dataverse, surfacing charity impact KPIs and operational metrics for leadership and external stakeholders.",
-      "Automated key internal workflows using Power Automate, replacing manual email-based processes with structured, auditable flows across the volunteer and case management teams.",
-      "Connected CRM data to the public website via REST API, surfacing live volunteer placement and case statistics to improve transparency and trust with donors.",
-      "Led a full cloud migration from G Suite to Microsoft 365 — including Exchange Online mailbox migration, DNS cutover, and user training — completed with no service downtime.",
-      "Operated as the sole IT professional across a growing organisation, owning CRM, reporting, web development (PHP/JS), and infrastructure — developing strong prioritisation and stakeholder management skills in a resource-constrained environment.",
+    paragraphs: [
+      "Refugees at Home is a UK charity that connects refugees and people seeking asylum with volunteer hosts who have a spare room. I joined the organisation during a major period of digital transformation and helped replace fragmented Google Sheets and Zoho CRM processes with a purpose-built Dynamics 365 solution. My work spanned the full delivery lifecycle — requirements gathering, Dataverse design, forms, views, business process configuration, data migration and user onboarding — alongside introducing a structured, ITIL-aligned approach to managing ongoing system changes.",
+      "I automated manual case and volunteer-management workflows using Power Automate, and built live Power BI dashboards that gave leadership and external stakeholders greater visibility of placements, operational performance and charitable impact. I also connected CRM data to the public website through REST APIs, and led the organisation’s full migration from G Suite to Microsoft 365, including Exchange Online mailbox migration, DNS cutover and user training, completed without service disruption.",
+      "Working as the sole IT professional across a growing organisation sharpened my ability to prioritise independently, communicate with varied stakeholders and deliver practical solutions within a resource-constrained environment.",
     ],
   },
   {
-    role: "Full Stack Web Developer",
+    role: "Co-Director & Full Stack Developer",
     company: "Lavida Digital",
     location: "London",
     period: "Dec 2019 – Apr 2023",
-    points: [
-      "Built and launched bespoke web applications using Next.js, Angular, and Node.js — owning full project lifecycles from technical scoping and sprint planning through to deployment and client handover.",
-      "Refactored and maintained legacy JavaScript/Angular codebases, improving performance through modularisation and bundle optimisation, and resolving critical bugs ahead of client deadlines.",
-      "Maintained code quality across distributed and offshore teams through PR reviews, linting standards, and CI pipeline integration — developing a disciplined, collaborative approach to software delivery.",
-      "Provided post-launch technical support and trained non-technical clients on CMS usage and frontend updates, building confidence in translating technical concepts for non-technical audiences.",
+    paragraphs: [
+      "Lavida Digital was a digital agency delivering websites, applications and online experiences for a range of clients. As Co-Director and active developer, I worked across the complete delivery lifecycle — from understanding client requirements and defining the technical approach through to development, deployment and post-launch support.",
+      "I built bespoke applications using Next.js, Angular and Node.js, and modernised legacy JavaScript and Angular codebases to improve performance, maintainability and long-term reliability. Working within distributed teams gave me hands-on experience of structured code reviews, linting standards and CI pipeline integration, helping establish a more consistent approach to software delivery across the business.",
+      "I also supported and trained non-technical clients after launch, translating technical concepts into clear guidance that gave them the confidence to manage content and routine updates independently.",
     ],
   },
   {
-    role: "AR Developer (Internship)",
-    company: "1UP Studios (formerly Arcade)",
+    role: "AR Developer",
+    company: "1UP Studios",
     website: "https://www.1upstudios.tech/",
     location: "London",
     period: "Aug 2019",
-    points: [
-      "Delivered a production-ready AR prototype in Unity (AR Foundation) for Android/iOS within a 4-week sprint — integrating real-world object tracking and custom shaders, and recognised for high-impact delivery ahead of schedule.",
+    paragraphs: [
+      "1UP Studios, formerly known as Arcade, is an award-winning game studio that creates playful digital experiences connecting people with places, culture and learning. During an intensive four-week project, I designed and delivered a production-ready augmented reality prototype using Unity and AR Foundation for Android and iOS.",
+      "The experience combined real-world object tracking with custom shaders to create an engaging interaction between physical and digital content. Delivering the prototype ahead of schedule demonstrated my ability to learn unfamiliar technologies quickly, work effectively within a short sprint and turn an experimental concept into a polished, functional product.",
     ],
   },
   {
-    role: "Digital Development Placement",
+    role: "Digital Development",
     company: "npower",
     website: "https://npowerbusinesssolutions.com/",
     location: "Birmingham / Solihull",
     period: "Aug 2017 – Aug 2018",
-    points: [
-      "Developed Node.js APIs powering Amazon Alexa and Google Assistant voice experiences, enabling real-time energy account lookups — building the REST API and JSON fundamentals that underpin current integration work.",
-      "Worked alongside backend teams to improve microservice performance using profiling tools, and supported CI/CD pipeline integration for voice platform deployments.",
-      "Delivered projects in a Scrum environment, contributing to sprint ceremonies, cross-functional planning, and test automation using Selenium.",
+    paragraphs: [
+      "npower was one of the UK’s largest energy suppliers, serving residential and business customers across the country. Working within its digital development teams gave me my first experience of building technology at enterprise scale, alongside engineers who brought rigour, structure and discipline to every part of the process.",
+      "I developed Node.js APIs for Amazon Alexa and Google Assistant voice experiences, enabling customers to retrieve energy account information through natural voice interactions and giving me a strong foundation in REST APIs, JSON and backend integration. I also worked alongside experienced engineers to profile and improve microservice performance, support CI/CD pipeline integration and contribute to automated testing with Selenium.",
+      "Delivering work through Scrum ceremonies and cross-functional sprint planning introduced me to collaborative development practices that continue to shape how I approach technical projects today.",
     ],
   },
 ];

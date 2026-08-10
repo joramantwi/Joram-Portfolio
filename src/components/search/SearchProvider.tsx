@@ -96,7 +96,7 @@ function buildIndex(): SearchItem[] {
       subtitle: `${e.company} · ${e.period}`,
       category: "Experience",
       view: "experience",
-      keywords: `${e.role} ${e.company} ${e.location} ${e.period} ${e.points.join(" ")}`.toLowerCase(),
+      keywords: `${e.role} ${e.company} ${e.location} ${e.period} ${e.paragraphs.join(" ")}`.toLowerCase(),
     })
   );
 
