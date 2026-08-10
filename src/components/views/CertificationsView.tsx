@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { BadgeCheck, GraduationCap, ExternalLink, ShieldCheck, Target, Route } from "lucide-react";
+import { BadgeCheck, GraduationCap, ExternalLink, ShieldCheck, Route } from "lucide-react";
 import {
   certifications,
-  certificationGoals,
   certificationRoadmap,
   education,
   profile,
@@ -119,60 +118,6 @@ export default function CertificationsView() {
             </div>
             <ExternalLink size={16} className="shrink-0 text-[var(--d365-blue)]" />
           </a>
-
-          {certificationGoals.length > 0 && (
-            <div className="mt-5">
-              <div className="mb-2 flex items-center gap-2">
-                <Target size={15} style={{ color: "var(--d365-purple)" }} />
-                <p className="text-[12px] font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
-                  Working toward
-                </p>
-              </div>
-              <ul className="space-y-3">
-                {certificationGoals.map((g) => (
-                  <li key={g.name}>
-                    <a
-                      href={g.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-start gap-4 rounded-lg border border-dashed bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--d365-purple)] hover:shadow-md"
-                      style={{ borderColor: "var(--border-strong)" }}
-                    >
-                      <div
-                        className="grid h-12 w-12 shrink-0 place-items-center rounded-lg"
-                        style={{ background: "#8764b814" }}
-                      >
-                        <Target size={22} style={{ color: "var(--d365-purple)" }} />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-[14px] font-semibold leading-snug text-[var(--text)]">
-                          {g.name}
-                        </p>
-                        <p className="mt-0.5 text-[12.5px] text-[var(--text-secondary)]">
-                          {g.issuer}
-                          {g.exam ? ` · Exam ${g.exam}` : ""}
-                          {g.level ? ` · ${g.level}` : ""}
-                        </p>
-                        <p className="mt-1.5 text-[12px] leading-relaxed text-[var(--text-secondary)]">
-                          {g.focus}
-                        </p>
-                        <span
-                          className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-semibold"
-                          style={{ background: "#8764b814", color: "var(--d365-purple)" }}
-                        >
-                          <Target size={13} /> Goal
-                        </span>
-                      </div>
-                      <ExternalLink
-                        size={16}
-                        className="mt-1 shrink-0 text-[var(--text-muted)] transition-colors group-hover:text-[var(--d365-purple)]"
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </Tile>
 
@@ -200,12 +145,6 @@ export default function CertificationsView() {
 
       <Tile title="Certification roadmap" icon={Route} accent="#8764b8">
         <div className="p-4">
-          <p className="mb-4 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
-            Revised plan prioritising D365 ERP specialism, pro-dev extensibility and enterprise AI
-            delivery — removing retired credentials (PL-200, PL-600) and deprioritising
-            foundations I already demonstrate in practice. Two optional paths reflect how the Service
-            Analyst role develops.
-          </p>
           <ol className="stagger-children grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {certificationRoadmap.map((s, i) => {
               const color = levelColor(s.level);
@@ -248,14 +187,6 @@ export default function CertificationsView() {
                     <p className="mt-1 text-[12px] leading-relaxed text-[var(--text-secondary)]">
                       {s.focus}
                     </p>
-                    {s.optional && (
-                      <span
-                        className="mt-2 inline-flex w-fit items-center rounded-full border px-2 py-0.5 text-[10.5px] font-semibold text-[var(--text-muted)]"
-                        style={{ borderColor: "var(--border-strong)" }}
-                      >
-                        Optional path
-                      </span>
-                    )}
                   </a>
                 </li>
               );
