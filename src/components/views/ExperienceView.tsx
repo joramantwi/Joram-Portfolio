@@ -4,6 +4,9 @@ import { Briefcase, MapPin, ExternalLink } from "lucide-react";
 import { experiences } from "@/data/portfolio";
 import { Badge } from "../ui";
 
+// Strips month names, leaving only years: "Apr 2023 – Present" → "2023 – Present"
+const yearRange = (period: string) => period.replace(/[A-Za-z]{3}\s(\d{4})/g, "$1");
+
 export default function ExperienceView() {
   return (
     <div className="relative">
@@ -60,7 +63,7 @@ export default function ExperienceView() {
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full bg-[var(--surface)] px-3 py-1 text-[12px] font-medium text-[var(--text-secondary)]">
-                  {e.period}
+                  {yearRange(e.period)}
                 </span>
               </div>
 

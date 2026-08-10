@@ -234,7 +234,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
                   )}
                 </td>
                 <td className="hidden px-4 py-2.5 text-[var(--text-secondary)] sm:table-cell">{e.company}</td>
-                <td className="px-4 py-2.5 text-[var(--text-secondary)]">{e.period}</td>
+                    <td className="px-4 py-2.5 text-[var(--text-secondary)]">{e.period.replace(/[A-Za-z]{3}\s(\d{4})/g, "$1")}</td>
               </tr>
             ))}
           </tbody>
