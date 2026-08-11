@@ -6,7 +6,6 @@ import {
   certifications,
   certificationRoadmap,
   education,
-  profile,
 } from "@/data/portfolio";
 import { Tile } from "../ui";
 
@@ -92,32 +91,6 @@ export default function CertificationsView() {
               );
             })}
           </ul>
-
-          <a
-            href={profile.learnCredentials}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-dashed p-4 transition-colors hover:bg-[var(--sidebar-hover)]"
-            style={{ borderColor: "var(--border-strong)" }}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-md"
-                style={{ background: "var(--d365-blue-light)" }}
-              >
-                <BadgeCheck size={18} style={{ color: "var(--d365-blue)" }} />
-              </div>
-              <div>
-                <p className="text-[13px] font-semibold text-[var(--text)]">
-                  Live on Microsoft Learn
-                </p>
-                <p className="text-[12px] text-[var(--text-secondary)]">
-                  All certifications &amp; applied skills, always up to date
-                </p>
-              </div>
-            </div>
-            <ExternalLink size={16} className="shrink-0 text-[var(--d365-blue)]" />
-          </a>
         </div>
       </Tile>
 
