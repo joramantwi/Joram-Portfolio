@@ -219,7 +219,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
             </tr>
           </thead>
           <tbody>
-            {experiences.slice(0, 4).map((e) => (
+                {experiences.slice(0, 3).map((e) => (
               <tr
                 key={e.role + e.company}
                 className="border-b transition-colors hover:bg-[var(--sidebar-hover)]"
