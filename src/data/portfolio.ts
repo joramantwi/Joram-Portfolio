@@ -80,13 +80,6 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Co-Director & Full Stack Developer",
-    company: "Lavida Digital",
-    location: "London",
-    period: "Dec 2019 – Apr 2023",
-    paragraphs: [],
-  },
-  {
     role: "AR Developer",
     company: "1UP Studios",
     website: "https://www.1upstudios.tech/",
