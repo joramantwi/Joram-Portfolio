@@ -9,7 +9,6 @@ import {
   Workflow,
   Globe,
   MessageSquareText,
-  Truck,
   Cloud,
   Infinity,
 } from "lucide-react";
@@ -46,6 +45,12 @@ const groups: AppGroup[] = [
         note: "Case management, routing & SLAs",
         icon: Headset,
         color: "#8764b8",
+      },
+      {
+        name: "Contact Center",
+        note: "Upcoming focus: chat, voice, SMS & consults",
+        icon: MessageSquareText,
+        color: "#038387",
       },
     ],
   },
@@ -112,18 +117,6 @@ const groups: AppGroup[] = [
         note: "Boards, repos & pipelines",
         icon: Infinity,
         color: "#0052cc",
-      },
-    ],
-  },
-  {
-    heading: "Finance & Operations",
-    caption: "aka F&O",
-    apps: [
-      {
-        name: "Supply Chain Management",
-        note: "Planning, inventory & warehouse operations",
-        icon: Truck,
-        color: "#0078d4",
       },
     ],
   },

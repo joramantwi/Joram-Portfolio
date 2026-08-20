@@ -33,7 +33,9 @@ export default function ExperienceView() {
 
             {/* Card */}
             <div
-              className="card-lift min-w-0 flex-1 rounded-lg border bg-white p-5 shadow-sm"
+              className={`card-lift min-w-0 flex-1 rounded-lg border bg-white shadow-sm ${
+                e.paragraphs.length > 0 ? "p-5" : "px-5 py-3"
+              }`}
               style={{ borderColor: "var(--border)" }}
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
@@ -67,13 +69,15 @@ export default function ExperienceView() {
                 </span>
               </div>
 
-              <div className="mt-4 space-y-3">
-                {e.paragraphs.map((p, i) => (
-                  <p key={i} className="text-[13px] leading-relaxed text-[var(--text-secondary)]">
-                    {p}
-                  </p>
-                ))}
-              </div>
+              {e.paragraphs.length > 0 && (
+                <div className="mt-4 space-y-3">
+                  {e.paragraphs.map((p, i) => (
+                    <p key={i} className="text-[13px] leading-relaxed text-[var(--text-secondary)]">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
           </article>
         ))}

@@ -45,6 +45,16 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    role: "D365 Functional Consultant",
+    company: "Sciensus",
+    location: "London",
+    period: "Sep 2026 – Present",
+    current: true,
+    paragraphs: [
+      "Joining Sciensus in September 2026 as a Dynamics 365 Functional Consultant, with a focus on Dynamics 365 Customer Service and Contact Center. The role will extend my CRM delivery experience into customer engagement across live chat, voice, SMS and in-session collaboration.",
+    ],
+  },
+  {
     role: "CRM Manager",
     company: "Simplexity Travel Management",
     website: "https://www.simplexitytravel.com/",
@@ -74,11 +84,7 @@ export const experiences: Experience[] = [
     company: "Lavida Digital",
     location: "London",
     period: "Dec 2019 – Apr 2023",
-    paragraphs: [
-      "Lavida Digital was a digital agency delivering websites, applications and online experiences for a range of clients. As Co-Director and active developer, I worked across the complete delivery lifecycle — from understanding client requirements and defining the technical approach through to development, deployment and post-launch support.",
-      "I built bespoke applications using Next.js, Angular and Node.js, and modernised legacy JavaScript and Angular codebases to improve performance, maintainability and long-term reliability. Working within distributed teams gave me hands-on experience of structured code reviews, linting standards and CI pipeline integration, helping establish a more consistent approach to software delivery across the business.",
-      "I also supported and trained non-technical clients after launch, translating technical concepts into clear guidance that gave them the confidence to manage content and routine updates independently.",
-    ],
+    paragraphs: [],
   },
   {
     role: "AR Developer",
@@ -86,10 +92,7 @@ export const experiences: Experience[] = [
     website: "https://www.1upstudios.tech/",
     location: "London",
     period: "Aug 2019",
-    paragraphs: [
-      "1UP Studios, formerly known as Arcade, is an award-winning game studio that creates playful digital experiences connecting people with places, culture and learning. During an intensive four-week project, I designed and delivered a production-ready augmented reality prototype using Unity and AR Foundation for Android and iOS.",
-      "The experience combined real-world object tracking with custom shaders to create an engaging interaction between physical and digital content. Delivering the prototype ahead of schedule demonstrated my ability to learn unfamiliar technologies quickly, work effectively within a short sprint and turn an experimental concept into a polished, functional product.",
-    ],
+    paragraphs: [],
   },
   {
     role: "Digital Development",
@@ -97,11 +100,7 @@ export const experiences: Experience[] = [
     website: "https://npowerbusinesssolutions.com/",
     location: "Birmingham / Solihull",
     period: "Aug 2017 – Aug 2018",
-    paragraphs: [
-      "npower was one of the UK’s largest energy suppliers, serving residential and business customers across the country. Working within its digital development teams gave me my first experience of building technology at enterprise scale, alongside engineers who brought rigour, structure and discipline to every part of the process.",
-      "I developed Node.js APIs for Amazon Alexa and Google Assistant voice experiences, enabling customers to retrieve energy account information through natural voice interactions and giving me a strong foundation in REST APIs, JSON and backend integration. I also worked alongside experienced engineers to profile and improve microservice performance, support CI/CD pipeline integration and contribute to automated testing with Selenium.",
-      "Delivering work through Scrum ceremonies and cross-functional sprint planning introduced me to collaborative development practices that continue to shape how I approach technical projects today.",
-    ],
+    paragraphs: [],
   },
 ];
 
