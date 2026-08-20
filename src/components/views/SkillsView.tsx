@@ -1,7 +1,6 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
-import { skillGroups } from "@/data/portfolio";
+import { Fragment } from "react";
 import { Tile } from "../ui";
 import {
   ArrowRight,
@@ -11,7 +10,6 @@ import {
   Database,
   UserCog,
   Braces,
-  ShieldCheck,
   Cable,
   Users,
   Bot,
@@ -35,7 +33,6 @@ import {
   Zap,
   Headset,
   MessageSquare,
-  Truck,
   Handshake,
   type LucideIcon,
 } from "lucide-react";
@@ -59,69 +56,50 @@ const JOURNEY: { icon: LucideIcon; title: string; note: string; accent: string }
   },
 ];
 
-/* ---------------------------------------------------------------------------
- * Visual metadata + reading order for each skill area.
- * ------------------------------------------------------------------------- */
-type CategoryMeta = { icon: LucideIcon; accent: string; blurb: string };
-
-const CATEGORY_META: Record<string, CategoryMeta> = {
-  "Dynamics 365 & Dataverse": {
-    icon: LayoutGrid,
-    accent: "#0f6cbd",
-    blurb: "Microsoft business applications I configure, support and extend.",
-  },
-  "Power Platform": {
-    icon: Workflow,
-    accent: "#107c41",
-    blurb: "Low-code tooling I use to automate processes and extend CRM capability.",
-  },
-  "Pro-code extensibility": {
-    icon: Braces,
-    accent: "#8764b8",
-    blurb: "Code-first customisations for scenarios beyond out-of-the-box configuration.",
-  },
-  "ALM, security and governance": {
-    icon: ShieldCheck,
-    accent: "#c33d2e",
-    blurb: "Packaging, promoting and securing changes safely across environments.",
-  },
-  "Integration and data": {
-    icon: Cable,
-    accent: "#c19c00",
-    blurb: "Data migration, quality and API-based integration across systems.",
-  },
-  "Business analysis and delivery": {
-    icon: Users,
-    accent: "#0f6cbd",
-    blurb: "Translating business requirements into adopted solutions.",
-  },
-  "Software engineering": {
-    icon: Code2,
-    accent: "#038387",
-    blurb: "Development foundations that support pro-code Dynamics delivery.",
-  },
-  "AI and emerging technology": {
-    icon: Bot,
-    accent: "#8764b8",
-    blurb: "Applying prompt engineering and practical AI patterns in CRM contexts.",
-  },
-  "Dataverse & Model-Driven Apps": {
-    icon: Database,
-    accent: "#038387",
-    blurb: "The data model and app-building layer beneath every D365 solution.",
-  },
+type SkillColumn = {
+  label: string;
+  accent: string;
+  skills: string[];
 };
 
-/** Order the skill set by market-facing specialism first, then breadth. */
-const CATEGORY_ORDER = [
-  "Dynamics 365 & Dataverse",
-  "Power Platform",
-  "Pro-code extensibility",
-  "ALM, security and governance",
-  "Integration and data",
-  "Business analysis and delivery",
-  "Software engineering",
-  "AI and emerging technology",
+const SKILL_COLUMNS: SkillColumn[] = [
+  {
+    label: "Platform & architecture",
+    accent: "#0f6cbd",
+    skills: [
+      "Dynamics 365 Customer Service",
+      "Dynamics 365 Contact Center",
+      "Dynamics 365 Sales",
+      "Dataverse data modelling",
+      "Model-driven app design",
+      "Power Platform",
+    ],
+  },
+  {
+    label: "Engineering & extensibility",
+    accent: "#8764b8",
+    skills: [
+      "C# Dataverse plug-ins",
+      "Plugin Registration Tool",
+      "JavaScript form scripting",
+      "Power Automate cloud flows",
+      "Power Apps",
+      "Web API & REST integrations",
+    ],
+  },
+  {
+    label: "Governance, delivery & AI",
+    accent: "#107c41",
+    skills: [
+      "Managed / unmanaged solutions",
+      "Power Platform Pipelines",
+      "Dataverse security model",
+      "Requirements discovery",
+      "UAT facilitation",
+      "Prompt engineering",
+      "AI use case design for CRM",
+    ],
+  },
 ];
 
 /** Maps a skill name to a fitting icon via keywords, falling back to a default. */
@@ -129,9 +107,8 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
   const s = skill.toLowerCase();
   const rules: [RegExp, LucideIcon][] = [
     [/sales/, PieChart],
-    [/customer service|case|sla|routing/, Headset],
+    [/customer service|contact center|case|sla|routing/, Headset],
     [/customer voice|survey|feedback/, MessageSquare],
-    [/supply chain/, Truck],
     [/copilot studio|copilot/, Bot],
     [/customer engagement|\bce\b/, Handshake],
     [/power automate|workflow|flow|automation/, Workflow],
@@ -152,7 +129,7 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
     [/role|team|business unit|field-level|permission/, KeyRound],
     [/training|documentation|workshop|coaching/, BookOpen],
     [/requirement|fit-gap|process map|user stor|agile|scrum|uat/, UserCog],
-    [/javascript|c#|php|node|python|full-stack/, Braces],
+    [/javascript|c#|php|node|python|full-stack|plugin/, Braces],
     [/copilot|ai |prompt|use case|optim/, Sparkles],
     [/stakeholder|adoption/, Users],
     [/network|topology/, Network],
@@ -165,17 +142,7 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
 }
 
 export default function SkillsView() {
-  const groups = useMemo(
-    () =>
-      CATEGORY_ORDER.map((name) => skillGroups.find((g) => g.category === name)).filter(
-        (g): g is NonNullable<typeof g> => Boolean(g)
-      ),
-    []
-  );
-  const totalSkills = useMemo(
-    () => groups.reduce((n, g) => n + g.skills.length, 0),
-    [groups]
-  );
+  const totalSkills = SKILL_COLUMNS.reduce((total, column) => total + column.skills.length, 0);
 
   return (
     <div className="view-enter space-y-4">
@@ -228,68 +195,43 @@ export default function SkillsView() {
       </Tile>
 
       {/* Skill areas */}
-      <Tile title="Skill areas" icon={LayoutGrid} accent="#107c41">
-        <div className="p-4">
-          <div className="stagger-children grid grid-cols-1 gap-4 lg:grid-cols-2">
-        {groups.map((group) => {
-          const meta =
-            CATEGORY_META[group.category] ??
-            ({ icon: Code2, accent: "#0f6cbd", blurb: "" } as CategoryMeta);
-          const Icon = meta.icon;
-          return (
-            <div
-              key={group.category}
-              className="card-lift flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm"
-              style={{ borderColor: "var(--border)" }}
-            >
-              {/* accent bar */}
-              <div className="h-1 w-full" style={{ background: meta.accent }} />
-
-              <div className="flex flex-1 flex-col p-5">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-lg"
-                    style={{ background: `${meta.accent}14` }}
-                  >
-                    <Icon size={20} style={{ color: meta.accent }} />
-                  </span>
-                  <div>
-                    <h3 className="text-[15px] font-semibold leading-tight text-[var(--text)]">
-                      {group.category}
-                    </h3>
-                    <p className="mt-0.5 text-[11.5px] text-[var(--text-muted)]">
-                      {group.skills.length} skills
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-3 text-[12.5px] leading-relaxed text-[var(--text-secondary)]">
-                  {meta.blurb}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => {
-                    const SkillIcon = iconForSkill(skill, Icon);
-                    return (
+      <Tile title="Skills & technologies" icon={LayoutGrid} accent="#107c41">
+        <div className="grid divide-y lg:grid-cols-3 lg:divide-x lg:divide-y-0" style={{ borderColor: "var(--border)" }}>
+          {SKILL_COLUMNS.map((column) => (
+            <section key={column.label} className="p-5 sm:p-6">
+              <p
+                className="text-[10.5px] font-semibold uppercase tracking-[0.18em]"
+                style={{ color: column.accent }}
+              >
+                {column.label}
+              </p>
+              <ol className="stagger-children mt-4 space-y-0">
+                {column.skills.map((skill, index) => {
+                  const SkillIcon = iconForSkill(skill, LayoutGrid);
+                  return (
+                    <li
+                      key={skill}
+                      className="group flex items-center gap-3 border-b py-3 transition-transform duration-200 last:border-b-0 hover:translate-x-1"
+                      style={{ borderColor: "var(--border)" }}
+                    >
                       <span
-                        key={skill}
-                        className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] text-[var(--text)]"
-                        style={{
-                          borderColor: `${meta.accent}33`,
-                          background: `${meta.accent}0a`,
-                        }}
+                        className="w-5 shrink-0 font-mono text-[10px]"
+                        style={{ color: column.accent }}
                       >
-                        <SkillIcon size={13} style={{ color: meta.accent }} />
-                        {skill}
+                        {String(index + 1).padStart(2, "0")}
                       </span>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-          </div>
+                      <SkillIcon
+                        size={15}
+                        className="shrink-0 transition-transform duration-200 group-hover:scale-110"
+                        style={{ color: column.accent }}
+                      />
+                      <span className="text-[13px] font-medium text-[var(--text)]">{skill}</span>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          ))}
         </div>
       </Tile>
 
@@ -300,7 +242,7 @@ export default function SkillsView() {
       >
         <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
         <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
-        {groups.length} areas — from D365 delivery through to AI-enabled solution architecture.
+        3 capability areas — from D365 delivery through to AI-enabled solution architecture.
       </div>
     </div>
   );
