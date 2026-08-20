@@ -13,6 +13,7 @@ import ProfileView from "./views/ProfileView";
 import ContactView from "./views/ContactView";
 import { SearchProvider } from "./search/SearchProvider";
 import type { ViewKey } from "./nav";
+import ParticleField from "./ParticleField";
 
 export default function AppShell() {
   const [view, setView] = useState<ViewKey>("overview");
@@ -42,7 +43,9 @@ export default function AppShell() {
 
   return (
     <SearchProvider onNavigate={navigate}>
-      <div className="flex h-screen flex-col overflow-hidden">
+        <div className="relative flex h-screen flex-col overflow-hidden">
+          <ParticleField />
+          <div className="relative z-10 flex h-full flex-col">
           <TopBar />
           <div className="flex min-h-0 flex-1">
             <Sidebar
@@ -73,6 +76,7 @@ export default function AppShell() {
                 </div>
               </div>
             </main>
+          </div>
           </div>
         </div>
     </SearchProvider>

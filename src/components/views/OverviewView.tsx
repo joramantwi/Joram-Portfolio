@@ -47,6 +47,84 @@ const roadmapRank = (exam?: string) => {
 };
 const earnedCerts = [...certifications].sort((a, b) => roadmapRank(a.exam) - roadmapRank(b.exam));
 
+const consoleLines = [
+  { prompt: "$", text: "pac auth create --environment sciensus-prod" },
+  { prompt: "✓", text: "Connected to Dataverse", success: true },
+  { prompt: "$", text: "pac solution init --publisher joramantwi" },
+  { prompt: "✓", text: "Solution scaffold created", success: true },
+  { prompt: "$", text: "dotnet build ./plugins -c Release" },
+  { prompt: "✓", text: "Build succeeded · 0 warnings", success: true },
+  { prompt: "$", text: "pac solution pack --managed" },
+  { prompt: "✓", text: "crm-core_1.0.0_managed.zip", success: true },
+  { prompt: "$", text: "pac solution import --async" },
+  { prompt: "✓", text: "Import complete · health checks passed", success: true },
+];
+
+function DeploymentConsole() {
+  const [lineIndex, setLineIndex] = useState(0);
+  const [characterIndex, setCharacterIndex] = useState(0);
+
+  useEffect(() => {
+    const currentLine = consoleLines[lineIndex];
+    const finished = characterIndex >= currentLine.text.length;
+    const id = setTimeout(
+      () => {
+        if (finished) {
+          setLineIndex((current) => (current + 1) % consoleLines.length);
+          setCharacterIndex(0);
+        } else {
+          setCharacterIndex((current) => current + 1);
+        }
+      },
+      finished ? 700 : currentLine.prompt === "✓" ? 18 : 28
+    );
+    return () => clearTimeout(id);
+  }, [lineIndex, characterIndex]);
+
+  return (
+    <div
+      className="relative mt-6 h-[286px] overflow-hidden rounded-xl border border-white/15 bg-[#101820]/90 shadow-2xl backdrop-blur-sm lg:mt-0"
+      aria-label="Animated Power Platform deployment console"
+    >
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-[10px] text-white/45">
+        <span className="flex items-center gap-1.5 font-mono tracking-wide">
+          <span className="h-2 w-2 rounded-full bg-[#f25022]" />
+          <span className="h-2 w-2 rounded-full bg-[#ffb900]" />
+          <span className="h-2 w-2 rounded-full bg-[#7fba00]" />
+          deploy · d365-crm-solution
+        </span>
+        <span className="font-mono">joramantwi</span>
+      </div>
+      <div className="h-[238px] space-y-2 overflow-hidden p-4 font-mono text-[11px] leading-relaxed sm:text-[12px]">
+        {consoleLines.slice(0, lineIndex).map((line, index) => (
+          <div
+            key={`${line.text}-${index}`}
+          >
+            <span className={line.success ? "mr-2 text-[#7fba00]" : "mr-2 text-[#4b8df8]"}>
+              {line.prompt}
+            </span>
+            <span className={line.success ? "text-white/65" : "text-white/85"}>{line.text}</span>
+          </div>
+        ))}
+        <div>
+          <span
+            className={consoleLines[lineIndex].success ? "mr-2 text-[#7fba00]" : "mr-2 text-[#4b8df8]"}
+          >
+            {consoleLines[lineIndex].prompt}
+          </span>
+          <span className={consoleLines[lineIndex].success ? "text-white/65" : "text-white/85"}>
+            {consoleLines[lineIndex].text.slice(0, characterIndex)}
+          </span>
+        </div>
+        <span className="inline-block h-3.5 w-1.5 animate-pulse bg-[#4b8df8] align-middle" />
+      </div>
+      <div className="border-t border-white/10 px-4 py-2 text-right font-mono text-[10px] text-white/35">
+        Power Platform · ALM · plug-ins
+      </div>
+    </div>
+  );
+}
+
 function CertificationsCard({ onNavigate }: { onNavigate: (v: ViewKey) => void }) {
   const [index, setIndex] = useState(0);
   const count = earnedCerts.length;
@@ -130,7 +208,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
             "linear-gradient(120deg, var(--d365-navy) 0%, var(--d365-navy-2) 45%, #0f3d6e 100%)",
         }}
       >
-        <div className="relative z-10">
+        <div className="relative z-10 grid items-center gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)]">
           <div className="min-w-0">
             <p className="text-[12px] font-medium uppercase tracking-wide text-white/60 sm:text-[13px] sm:tracking-widest">
               {profile.title}
@@ -160,6 +238,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (v: ViewKey) 
               </button>
             </div>
           </div>
+          <DeploymentConsole />
         </div>
       </div>
 
