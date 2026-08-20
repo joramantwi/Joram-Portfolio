@@ -47,6 +47,7 @@ export const experiences: Experience[] = [
   {
     role: "D365 Functional Consultant",
     company: "Sciensus",
+    website: "https://www.sciensus.com/",
     location: "London",
     period: "Sep 2026 – Present",
     current: true,
