@@ -317,11 +317,9 @@ export type Certification = {
 // Certification journey order (exam codes) — earned certs slot into the Overview carousel in this sequence.
 export const certRoadmap: string[] = [
   "MB-910", // D365 Fundamentals (CRM) — earned
-  "MB-330", // Supply Chain Management Functional Consultant
+  "MB-230", // Dynamics 365 Customer Service Functional Consultant
   "PL-400", // Power Platform Developer
   "AB-620", // AI Agent Builder
-  "MB-230", // Customer Service Functional Consultant (optional path)
-  "AB-210", // Dynamics 365 Sales AI Consultant (optional path)
   "AB-100", // Agentic AI Business Solutions Architect
 ];
 
@@ -367,50 +365,34 @@ export type RoadmapStep = {
   optional?: boolean;
 };
 
-// Revised certification plan — D365 ERP specialism, pro-dev extensibility, enterprise AI delivery.
+// Role-aligned progression from Customer Service delivery to AI-enabled solution architecture.
 export const certificationRoadmap: RoadmapStep[] = [
   {
-    exam: "MB-330",
-    name: "Supply Chain Management Functional Consultant",
+    exam: "MB-230",
+    name: "Dynamics 365 Customer Service Functional Consultant",
     level: "Associate",
-    focus: "Directly supports ERP delivery — covers supply chain design, product management, procurement, warehouse and planning in Dynamics 365.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-functional-consultant-supply-chain-management/",
+    focus: "Role-aligned credential for configuring cases, knowledge, SLAs, omnichannel engagement, unified routing and service operations.",
+    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-functional-consultant-customer-service-v3/",
   },
   {
     exam: "PL-400",
     name: "Power Platform Developer",
     level: "Associate",
-    focus: "Best technical differentiator — designing, developing, testing and troubleshooting Power Platform solution components and extension points.",
+    focus: "Technical differentiator for extending Dataverse and Power Platform solutions through custom development, integrations, testing and governed ALM.",
     url: "https://learn.microsoft.com/en-us/credentials/certifications/power-platform-developer-associate/",
   },
   {
     exam: "AB-620",
     name: "AI Agent Builder",
     level: "Associate",
-    focus: "Practical bridge into enterprise AI delivery — Copilot Studio, Power Platform, Microsoft 365 and Azure-integrated agent solutions.",
+    focus: "Build and integrate enterprise-ready AI agents with Copilot Studio, Power Platform and connected business data.",
     url: "https://learn.microsoft.com/en-us/credentials/certifications/ai-agent-builder-associate/",
-  },
-  {
-    exam: "MB-230",
-    name: "Dynamics 365 Customer Service Functional Consultant",
-    level: "Associate",
-    focus: "CE specialism for customer care, queues, SLAs, knowledge management and routing — relevant if the Service Analyst role is service-heavy.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-functional-consultant-customer-service-v3/",
-    optional: true,
-  },
-  {
-    exam: "AB-210",
-    name: "Dynamics 365 Sales AI Consultant",
-    level: "Associate",
-    focus: "AI-enhanced CRM specialism — Dynamics 365 Sales, Copilot, lead-to-cash, predictive insights and guided seller workflows.",
-    url: "https://learn.microsoft.com/en-us/credentials/certifications/d365-sales-ai-consultant-associate/",
-    optional: true,
   },
   {
     exam: "AB-100",
     name: "Agentic AI Business Solutions Architect",
     level: "Advanced",
-    focus: "The architect destination — AI-first positioning across Dynamics 365, Copilot Studio and the Power Platform.",
+    focus: "Architect AI-enabled business solutions across Dynamics 365, Copilot Studio, Power Platform and Azure—with a focus on security, governance and measurable outcomes.",
     url: "https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-business-solutions-architect/",
   },
 ];

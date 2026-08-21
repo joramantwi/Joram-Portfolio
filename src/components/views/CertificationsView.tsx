@@ -116,7 +116,7 @@ export default function CertificationsView() {
       </Tile>
       </div>
 
-      <Tile title="Certification roadmap — Up next" icon={Route} accent="#8764b8">
+      <Tile title="Certification roadmap" icon={Route} accent="#8764b8">
         <div className="p-4">
           <ol className="stagger-children grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {certificationRoadmap.map((s, i) => {
