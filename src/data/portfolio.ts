@@ -18,7 +18,6 @@ export const profile = {
     "I've led CRM migrations, redesigned systems end-to-end, and delivered automation with tools like Power Automate, custom plug-ins, and third-party integrations such as Zapier. My current direction is AI-enabled solution architecture, applying prompt engineering and practical AI use cases to strengthen CRM and business process delivery.",
   ],
 };
-
 export type Kpi = {
   label: string;
   value: string;
@@ -68,7 +67,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "IT Analyst – D365 CRM",
+    role: "D365 IT Analyst",
     company: "Refugees at Home",
     website: "https://refugeesathome.org/",
     location: "London",
