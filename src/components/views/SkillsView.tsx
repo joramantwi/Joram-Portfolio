@@ -143,8 +143,9 @@ export default function SkillsView() {
   return (
     <div className="view-enter space-y-4">
       {/* Intro + journey */}
+      <div className="crm-accent-bar crm-ring rounded-lg">
       <Tile title="My skill set" icon={Sparkles} accent="#8764b8">
-        <div className="space-y-4 p-4 sm:p-5">
+        <div className="crm-surface space-y-4 p-4 sm:p-5">
           <p className="max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
             I started out as a software engineer and specialised into Dynamics 365 and the Power
             Platform. I&apos;m now extending that foundation toward AI-enabled solution architecture
@@ -157,7 +158,7 @@ export default function SkillsView() {
             style={{
               borderColor: "var(--border)",
               background:
-                "linear-gradient(120deg, var(--d365-blue-light) 0%, var(--journey-end) 70%)",
+                "linear-gradient(115deg, rgba(135,100,184,0.16) 0%, rgba(15,108,189,0.12) 52%, var(--journey-end) 100%)",
             }}
           >
         {JOURNEY.map((p, i) => (
@@ -189,17 +190,16 @@ export default function SkillsView() {
           </div>
         </div>
       </Tile>
+      </div>
 
       {/* Skill areas */}
+      <div className="crm-accent-bar crm-ring rounded-lg">
       <Tile title="Skills & technologies" icon={LayoutGrid} accent="#107c41">
         <div className="grid divide-y lg:grid-cols-3 lg:divide-x lg:divide-y-0" style={{ borderColor: "var(--border)" }}>
           {SKILL_COLUMNS.map((column) => (
             <section key={column.label} className="p-5 sm:p-6">
               <div className="flex items-center justify-between gap-2">
-                <p
-                  className="text-[10.5px] font-semibold uppercase tracking-[0.18em]"
-                  style={{ color: column.accent }}
-                >
+                <p className="crm-gradient-text text-[10.5px] font-semibold uppercase tracking-[0.18em]">
                   {column.label}
                 </p>
                 <span
@@ -241,6 +241,7 @@ export default function SkillsView() {
           ))}
         </div>
       </Tile>
+      </div>
 
     </div>
   );

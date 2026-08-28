@@ -284,6 +284,53 @@ html.dark *::-webkit-scrollbar-thumb {
   box-shadow: 0 8px 20px rgba(11, 21, 36, 0.12);
 }
 
+/* -------------------------------------------------------------------------
+ * CRM gradient theme — purple → blue Dynamics 365 accent language.
+ * ---------------------------------------------------------------------- */
+.crm-gradient-text {
+  background: linear-gradient(100deg, var(--d365-purple), var(--d365-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft purple→blue wash for panel backgrounds. */
+.crm-surface {
+  background-image:
+    radial-gradient(130% 150% at 0% 0%, rgba(135, 100, 184, 0.12), transparent 55%),
+    radial-gradient(130% 150% at 100% 0%, rgba(15, 108, 189, 0.12), transparent 58%);
+}
+html.dark .crm-surface {
+  background-image:
+    radial-gradient(130% 150% at 0% 0%, rgba(167, 139, 212, 0.16), transparent 55%),
+    radial-gradient(130% 150% at 100% 0%, rgba(71, 158, 245, 0.15), transparent 58%);
+}
+
+/* Gradient hairline that sits along the top edge of a panel. */
+.crm-accent-bar {
+  position: relative;
+}
+.crm-accent-bar::before {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(90deg, var(--d365-purple), var(--d365-blue), var(--d365-teal));
+  content: "";
+  z-index: 1;
+}
+
+/* Gradient ring that intensifies on hover. */
+.crm-ring {
+  transition: box-shadow 0.24s ease, border-color 0.24s ease;
+}
+.crm-ring:hover {
+  border-color: transparent;
+  box-shadow:
+    0 0 0 1px rgba(135, 100, 184, 0.35),
+    0 10px 26px rgba(15, 108, 189, 0.14);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -14,6 +14,7 @@ import ContactView from "./views/ContactView";
 import { SearchProvider } from "./search/SearchProvider";
 import type { ViewKey } from "./nav";
 import ParticleField from "./ParticleField";
+import CursorTrail from "./CursorTrail";
 
 export default function AppShell() {
   const [view, setView] = useState<ViewKey>("overview");
@@ -64,17 +65,19 @@ export default function AppShell() {
                 onNavigate={navigate}
                 onOpenNav={() => setMobileNav(true)}
               />
-              <div className="flex-1 overflow-y-auto p-4 lg:p-5">
-                <div key={view} className="view-enter mx-auto max-w-[1600px]">
-                  {view === "overview" && <OverviewView onNavigate={navigate} />}
-                  {view === "experience" && <ExperienceView />}
-                  {view === "skills" && <SkillsView />}
-                  {view === "projects" && <ProjectsView />}
-                  {view === "certifications" && <CertificationsView />}
-                  {view === "profile" && <ProfileView />}
-                  {view === "contact" && <ContactView />}
+              <CursorTrail className="flex min-h-0 flex-1 flex-col">
+                <div className="flex-1 overflow-y-auto p-4 lg:p-5">
+                  <div key={view} className="view-enter mx-auto max-w-[1600px]">
+                    {view === "overview" && <OverviewView onNavigate={navigate} />}
+                    {view === "experience" && <ExperienceView />}
+                    {view === "skills" && <SkillsView />}
+                    {view === "projects" && <ProjectsView />}
+                    {view === "certifications" && <CertificationsView />}
+                    {view === "profile" && <ProfileView />}
+                    {view === "contact" && <ContactView />}
+                  </div>
                 </div>
-              </div>
+              </CursorTrail>
             </main>
           </div>
           </div>
