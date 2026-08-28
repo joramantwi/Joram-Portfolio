@@ -64,7 +64,7 @@ type SkillColumn = {
 
 const SKILL_COLUMNS: SkillColumn[] = [
   {
-    label: "Platform & architecture",
+    label: "Dynamics 365 & Platform",
     accent: "#0f6cbd",
     skills: [
       "Dynamics 365 Customer Service",
@@ -72,32 +72,30 @@ const SKILL_COLUMNS: SkillColumn[] = [
       "Dynamics 365 Sales",
       "Dataverse data modelling",
       "Model-driven app design",
-      "Power Platform",
+      "Business process flows",
     ],
   },
   {
-    label: "Engineering & extensibility",
+    label: "Pro-code & Extensibility",
     accent: "#8764b8",
     skills: [
       "C# Dataverse plug-ins",
-      "Plugin Registration Tool",
       "JavaScript form scripting",
       "Power Automate cloud flows",
-      "Power Apps",
       "Web API & REST integrations",
     ],
   },
   {
-    label: "Governance, delivery & AI",
+    label: "ALM, Governance & AI",
     accent: "#107c41",
     skills: [
       "Managed / unmanaged solutions",
       "Power Platform Pipelines",
       "Dataverse security model",
-      "Requirements discovery",
+      "Requirements & fit-gap analysis",
       "UAT facilitation",
-      "Prompt engineering",
-      "AI use case design for CRM",
+      "Copilot Studio",
+      "AI-assisted service design",
     ],
   },
 ];
@@ -130,7 +128,7 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
     [/training|documentation|workshop|coaching/, BookOpen],
     [/requirement|fit-gap|process map|user stor|agile|scrum|uat/, UserCog],
     [/javascript|c#|php|node|python|full-stack|plugin/, Braces],
-    [/copilot|ai |prompt|use case|optim/, Sparkles],
+    [/copilot|\bai\b|prompt|use case|optim/, Sparkles],
     [/stakeholder|adoption/, Users],
     [/network|topology/, Network],
     [/sync|refresh/, RefreshCw],
@@ -142,8 +140,6 @@ function iconForSkill(skill: string, fallback: LucideIcon): LucideIcon {
 }
 
 export default function SkillsView() {
-  const totalSkills = SKILL_COLUMNS.reduce((total, column) => total + column.skills.length, 0);
-
   return (
     <div className="view-enter space-y-4">
       {/* Intro + journey */}
@@ -151,8 +147,8 @@ export default function SkillsView() {
         <div className="space-y-4 p-4 sm:p-5">
           <p className="max-w-2xl text-[13px] leading-relaxed text-[var(--text-secondary)]">
             I started out as a software engineer and specialised into Dynamics 365 and the Power
-            Platform. I'm now extending that foundation into AI-enabled solution architecture for CRM
-            and business process delivery.
+            Platform. I&apos;m now extending that foundation toward AI-enabled solution architecture
+            across Dynamics 365 CE and business process delivery.
           </p>
 
           {/* Journey strip */}
@@ -199,33 +195,44 @@ export default function SkillsView() {
         <div className="grid divide-y lg:grid-cols-3 lg:divide-x lg:divide-y-0" style={{ borderColor: "var(--border)" }}>
           {SKILL_COLUMNS.map((column) => (
             <section key={column.label} className="p-5 sm:p-6">
-              <p
-                className="text-[10.5px] font-semibold uppercase tracking-[0.18em]"
-                style={{ color: column.accent }}
-              >
-                {column.label}
-              </p>
+              <div className="flex items-center justify-between gap-2">
+                <p
+                  className="text-[10.5px] font-semibold uppercase tracking-[0.18em]"
+                  style={{ color: column.accent }}
+                >
+                  {column.label}
+                </p>
+                <span
+                  className="grid h-5 min-w-5 place-items-center rounded-full px-1.5 text-[10px] font-semibold tabular-nums"
+                  style={{ background: `${column.accent}14`, color: column.accent }}
+                >
+                  {column.skills.length}
+                </span>
+              </div>
               <ol className="stagger-children mt-4 space-y-0">
                 {column.skills.map((skill, index) => {
                   const SkillIcon = iconForSkill(skill, LayoutGrid);
                   return (
                     <li
                       key={skill}
-                      className="group flex items-center gap-3 border-b py-3 transition-transform duration-200 last:border-b-0 hover:translate-x-1"
+                      className="group flex items-center gap-3 border-b py-2.5 last:border-b-0"
                       style={{ borderColor: "var(--border)" }}
                     >
                       <span
-                        className="w-5 shrink-0 font-mono text-[10px]"
-                        style={{ color: column.accent }}
+                        className="w-4 shrink-0 font-mono text-[10px] tabular-nums"
+                        style={{ color: "var(--text-muted)" }}
                       >
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <SkillIcon
-                        size={15}
-                        className="shrink-0 transition-transform duration-200 group-hover:scale-110"
-                        style={{ color: column.accent }}
-                      />
-                      <span className="text-[13px] font-medium text-[var(--text)]">{skill}</span>
+                      <span
+                        className="grid h-7 w-7 shrink-0 place-items-center rounded-md transition-transform duration-200 group-hover:scale-105"
+                        style={{ background: `${column.accent}14` }}
+                      >
+                        <SkillIcon size={14} style={{ color: column.accent }} aria-hidden />
+                      </span>
+                      <span className="text-[13px] font-medium text-[var(--text)] transition-transform duration-200 group-hover:translate-x-0.5">
+                        {skill}
+                      </span>
                     </li>
                   );
                 })}
@@ -235,15 +242,6 @@ export default function SkillsView() {
         </div>
       </Tile>
 
-      {/* Footprint */}
-      <div
-        className="flex items-center gap-2 rounded-lg border border-dashed px-4 py-3 text-[12.5px] text-[var(--text-secondary)]"
-        style={{ borderColor: "var(--border-strong)" }}
-      >
-        <Sparkles size={15} style={{ color: "var(--d365-purple)" }} />
-        <span className="font-medium text-[var(--text)]">{totalSkills} skills</span> across{" "}
-        3 capability areas — from D365 delivery through to AI-enabled solution architecture.
-      </div>
     </div>
   );
 }
